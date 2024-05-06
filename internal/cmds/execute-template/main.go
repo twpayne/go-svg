@@ -65,15 +65,6 @@ func (p *Attribute) generateExportedGoName() {
 		return
 	}
 	p.ExportedGoName = titleize(p.GoName)
-	/*
-		components := strings.Split(p.Name, "-")
-		goComponents := make([]string, 0, len(components))
-		for _, component := range components {
-			goComponent := titleize(component)
-			goComponents = append(goComponents, goComponent)
-		}
-		p.ExportedGoName = strings.Join(goComponents, "")
-	*/
 }
 
 func (p *Attribute) generateGoType(defaultType string) {
