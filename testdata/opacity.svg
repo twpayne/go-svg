@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg height="175" version="1.1" viewBox="0 0 1200 350" width="600" xmlns="http://www.w3.org/2000/svg">
+	<rect fill="blue" height="150" width="1000" x="100" y="100"></rect>
+	<circle cx="200" cy="100" fill="red" opacity="1" r="50"></circle>
+	<circle cx="400" cy="100" fill="red" opacity="0.8" r="50"></circle>
+	<circle cx="600" cy="100" fill="red" opacity="0.6" r="50"></circle>
+	<circle cx="800" cy="100" fill="red" opacity="0.4" r="50"></circle>
+	<circle cx="1000" cy="100" fill="red" opacity="0.2" r="50"></circle>
+	<g opacity="1">
+		<circle cx="182.5" cy="250" fill="red" opacity="1" r="50"></circle>
+		<circle cx="217.5" cy="250" fill="green" opacity="1" r="50"></circle>
+	</g>
+	<g opacity="0.5">
+		<circle cx="382.5" cy="250" fill="red" opacity="1" r="50"></circle>
+		<circle cx="417.5" cy="250" fill="green" opacity="1" r="50"></circle>
+	</g>
+	<g opacity="1">
+		<circle cx="582.5" cy="250" fill="red" opacity="0.5" r="50"></circle>
+		<circle cx="617.5" cy="250" fill="green" opacity="0.5" r="50"></circle>
+	</g>
+	<g opacity="1">
+		<circle cx="817.5" cy="250" fill="green" opacity="0.5" r="50"></circle>
+		<circle cx="782.5" cy="250" fill="red" opacity="0.5" r="50"></circle>
+	</g>
+	<g opacity="0.5">
+		<circle cx="982.5" cy="250" fill="red" opacity="0.5" r="50"></circle>
+		<circle cx="1017.5" cy="250" fill="green" opacity="0.5" r="50"></circle>
+	</g>
+</svg>

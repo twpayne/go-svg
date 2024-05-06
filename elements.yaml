@@ -1,0 +1,410 @@
+attributeGroups:
+
+  core:
+  - name: id
+    exportedGoName: ID
+  - name: tabindex
+    goName: tabIndex
+    exportedGoName: TabIndex
+    type: Int
+  - name: lang
+  - name: class
+  - name: style
+    
+  conditionalProcessing:
+  - name: requiredExtensions
+  - name: systemLanguage
+
+  # https://www.w3.org/TR/SVG2/styling.html#TermPresentationAttribute
+  presentation:
+  - name: alignment-baseline
+  - name: baseline-shift
+  - name: clip-path
+  - name: clip-rule
+  - name: color
+  - name: color-interpolation
+  - name: color-interpolation-filters
+  - name: color-rendering
+  - name: cursor
+  - name: direction
+  - name: display
+  - name: dominant-baseline
+  - name: fill
+  - name: fill-opacity
+    type: Float64
+  - name: fill-rule
+  - name: filter
+  - name: flood-color
+  - name: flood-opacity
+    type: Float64
+  - name: font-family
+  - name: font-size
+  - name: font-size-adjust
+  - name: font-stretch
+  - name: font-style
+  - name: font-variant
+  - name: font-weight
+  - name: glyph-orientation-horizontal
+  - name: glyph-orientation-vertical
+  - name: image-rendering
+  - name: letter-spacing
+  - name: lighting-color
+  - name: marker-end
+  - name: marker-mid
+  - name: marker-start
+  - name: mask
+  - name: opacity
+    type: Float64
+  - name: overflow
+  - name: paint-order
+  - name: pointer-events
+  - name: shape-rendering
+  - name: stop-color
+  - name: stop-opacity
+    type: Float64
+  - name: stroke
+  - name: stroke-dasharray
+    goName: strokeDashArray
+  - name: stroke-dashoffset
+    goName: strokeDashOffset
+    type: Float64
+  - name: stroke-linecap
+    goName: strokeLineCap
+  - name: stroke-linejoin
+    goName: strokeLineJoin
+  - name: stroke-miterlimit
+    goName: strokeMiterLimit
+    type: Float64
+  - name: stroke-opacity
+    type: Float64
+  - name: stroke-width
+    type: Length
+  - name: text-anchor
+  - name: text-decoration
+  - name: text-overflow
+  - name: text-rendering
+  - name: unicode-bidi
+    goName: UnicodeBiDi
+  - name: vector-effect
+  - name: visibility
+  - name: white-space
+  - name: word-spacing
+  - name: writing-mode
+
+elements:
+
+- name: svg
+  goName: SVG
+  article: an
+  container: true
+  attributes:
+  - name: version
+    default: '1.1'
+  - name: xmlns
+    exportedGoName: XMLNS
+    default: 'http://www.w3.org/2000/svg'
+  - name: viewBox
+    type: ViewBox
+  - name: preserveAspectRatio
+  - name: zoomAndPan
+  - name: transform
+  geometryProperties:
+  - name: x
+  - name: y
+  - name: width
+  - name: height
+
+- name: a
+  article: an
+  container: true
+  attributes:
+  - name: href
+  - name: target
+  - name: download
+  - name: ping
+  - name: rel
+  - name: hreflang
+    goName: hrefLang
+    exportedGoName: HrefLang
+  - name: type
+    goName: _type
+    exportedGoName: Type
+  - name: referrerpolicy
+    goName: referrerPolicy
+    exportedGoName: ReferrerPolicy
+
+- name: circle
+  container: true
+  attributeGroups:
+  - core
+  - presentation
+  attributes:
+  - name: pathLength
+  geometryProperties:
+  - name: cx
+    exportedGoName: CX
+  - name: cy
+    exportedGoName: CY
+  - name: r
+
+- name: clipPath
+  container: true
+  attributeGroups:
+  - core
+  - presentation
+  attributes:
+  - name: externalResourcesRequired
+  - name: transform
+  - name: clipPathUnits
+
+- name: defs
+  container: true
+
+- name: desc
+  container: true
+
+- name: ellipse
+  article: an
+  container: true
+  attributeGroups:
+  - core
+  - presentation
+  attributes:
+  - name: pathLength
+  geometryProperties:
+  - name: cx
+    exportedGoName: CX
+  - name: cy
+    exportedGoName: CY
+  - name: rx
+    exportedGoName: RX
+  - name: ry
+    exportedGoName: RY
+
+- name: foreignObject
+  container: true
+  attributeGroups:
+  - core
+  - presentation
+  - conditionalProcessing
+  attributes:
+  - name: href
+  geometryProperties:
+  - name: x
+  - name: y
+  - name: width
+  - name: height
+
+- name: g
+  attributeGroups:
+  - core
+  - presentation
+  container: true
+
+- name: image
+  attributeGroups:
+  - core
+  - presentation
+  attributes:
+  - name: preserveAspectRatio
+  - name: href
+  - name: crossorigin
+    goName: crossOrigin
+  geometryProperties:
+  - name: x
+  - name: y
+  - name: width
+  - name: height
+
+- name: line
+  container: true
+  attributeGroups:
+  - core
+  - presentation
+  attributes:
+  - name: pathLength
+  - name: x1
+  - name: y1
+  - name: x2
+  - name: y2
+
+- name: marker
+  container: true
+  attributeGroups:
+  - core
+  - presentation
+  attributes:
+  - name: viewBox
+    type: ViewBox
+  - name: preserveAspectRatio
+  - name: refX
+    type: Float64
+  - name: refY
+    type: Float64
+  - name: markerUnits
+  - name: markerWidth
+    type: Float64
+  - name: markerHeight
+    type: Float64
+  - name: orient
+
+- name: mask
+  container: true
+  attributeGroups:
+  - core
+  - presentation
+  attributes:
+  - name: maskUnits
+  - name: maskContentUnits
+  geometryProperties:
+  - name: x
+  - name: y
+  - name: width
+  - name: height
+
+- name: path
+  attributeGroups:
+  - core
+  - presentation
+  geometryProperties:
+  - name: d
+    type: String
+
+- name: pattern
+  container: true
+  attributeGroups:
+  - core
+  - presentation
+  attributes:
+  - name: viewBox
+    type: ViewBox
+  - name: preserveAspectRatio
+  - name: patternUnits
+  - name: patternContentUnits
+  - name: patternTransform
+  - name: href
+  geometryProperties:
+  - name: x
+  - name: y
+  - name: width
+  - name: height
+
+- name: polygon
+  container: true
+  attributeGroups:
+  - core
+  - presentation
+  attributes:
+  - name: pathLength
+  - name: points
+    type: Points
+
+- name: polyline
+  container: true
+  attributeGroups:
+  - core
+  - presentation
+  attributes:
+  - name: pathLength
+  - name: points
+    type: Points
+
+- name: rect
+  container: true
+  attributeGroups:
+  - core
+  - presentation
+  attributes:
+  - name: pathLength
+  geometryProperties:
+  - name: x
+  - name: y
+  - name: width
+  - name: height
+  - name: rx
+    exportedGoName: RX
+  - name: ry
+    exportedGoName: RY
+
+- name: switch
+  container: true
+  attributeGroups:
+  - core
+  - presentation
+
+- name: symbol
+  container: true
+  attributeGroups:
+  - core
+  - presentation
+  attributes:
+  - name: preserveAspectRatio
+  - name: viewBox
+    type: ViewBox
+  - name: refX
+  - name: refY
+  geometryProperties:
+  - name: x
+  - name: y
+  - name: width
+  - name: height
+
+- name: text
+  container: true
+  attributeGroups:
+  - core
+  - presentation
+  attributes:
+  - name: lengthAdjust
+  - name: x
+  - name: y
+  - name: dx
+  - name: dy
+  - name: rotate
+  - name: textLength
+
+- name: textPath
+  container: true
+  attributeGroups:
+  - core
+  - presentation
+  attributes:
+  - name: lengthAdjust
+  - name: textLength
+  - name: path
+  - name: href
+  - name: startOffset
+  - name: method
+  - name: spacing
+  - name: side
+
+- name: title
+  container: true
+
+- name: tspan
+  goName: TSpan
+  container: true
+  attributeGroups:
+  - core
+  - presentation
+  attributes:
+  - name: x
+  - name: y
+  - name: dx
+  - name: dy
+  - name: rotate
+  - name: textLength
+  - name: lengthAdjust
+
+- name: use
+  container: true
+  attributeGroups:
+  - core
+  - presentation
+  attributes:
+  - name: href
+  geometryProperties:
+  - name: x
+  - name: y
+  - name: width
+  - name: height

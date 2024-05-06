@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg height="4cm" version="1.1" viewBox="0 0 1200 400" width="12cm" xmlns="http://www.w3.org/2000/svg">
+	<desc>Example line01 - lines expressed in user coordinates</desc>
+	<rect fill="none" height="398" stroke="blue" stroke-width="2" width="1198" x="1" y="1"></rect>
+	<g stroke="green">
+		<line stroke-width="5" x1="100" x2="300" y1="300" y2="100"></line>
+		<line stroke-width="10" x1="300" x2="500" y1="300" y2="100"></line>
+		<line stroke-width="15" x1="500" x2="700" y1="300" y2="100"></line>
+		<line stroke-width="20" x1="700" x2="900" y1="300" y2="100"></line>
+		<line stroke-width="25" x1="900" x2="1100" y1="300" y2="100"></line>
+	</g>
+</svg>
