@@ -95,6 +95,7 @@ elements:
 
 - name: svg
   goName: SVG
+  constructorName: New
   article: an
   container: true
   attributes:

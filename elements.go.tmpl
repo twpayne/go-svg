@@ -14,8 +14,8 @@ type {{ $element.GoType }} struct {
 {{-   end }}
 }
 
-// {{ $element.GoName }} returns a new {{ $element.GoType }}.
-func {{ $element.GoName }}({{ if $element.Container }} children ...Element{{ end }}) *{{ $element.GoType }} {
+// {{ $element.ConstructorName }} returns a new {{ $element.GoType }}.
+func {{ $element.ConstructorName }}({{ if $element.Container }} children ...Element{{ end }}) *{{ $element.GoType }} {
     return &{{ $element.GoType }}{
         attrs: map[string]AttrValue{
 {{-   range $attribute := allAttributes $element }}

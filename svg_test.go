@@ -23,11 +23,11 @@ func TestSimple(t *testing.T) {
 	}{
 		{
 			name: "empty",
-			svg:  svg.SVG(),
+			svg:  svg.New(),
 		},
 		{
 			name: "simple",
-			svg: svg.SVG().WidthHeight(300, 200, svg.Number).Children(
+			svg: svg.New().WidthHeight(300, 200, svg.Number).Children(
 				svg.Rect().WidthHeight(100, 100, svg.Percent).Fill("red"),
 				svg.Circle().CXCYR(150, 80, 80, svg.Number).Fill("green"),
 				svg.Text().XY(150, 125, svg.Number).FontSize("60").TextAnchor("middle").Fill("white").Children(
@@ -37,7 +37,7 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "opacity", // 3.6.1
-			svg: svg.SVG().WidthHeight(600, 175, svg.Number).ViewBox(0, 0, 1200, 350).Children(
+			svg: svg.New().WidthHeight(600, 175, svg.Number).ViewBox(0, 0, 1200, 350).Children(
 				svg.Rect().XYWidthHeight(100, 100, 1000, 150, svg.Number).Fill("blue"),
 				svg.Circle().CXCYR(200, 100, 50, svg.Number).Fill("red").Opacity(1),
 				svg.Circle().CXCYR(400, 100, 50, svg.Number).Fill("red").Opacity(0.8),
@@ -68,7 +68,7 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "slightlyMoreComplex", // 5.1.1.
-			svg: svg.SVG().WidthHeight(5, 4, svg.CM).Children(
+			svg: svg.New().WidthHeight(5, 4, svg.CM).Children(
 				svg.Desc(
 					svg.CharData("Four separate rectangles"),
 				),
@@ -82,7 +82,7 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "triangle01", // 9.3.1
-			svg: svg.SVG().WidthHeight(4, 4, svg.CM).ViewBox(0, 0, 400, 400).Children(
+			svg: svg.New().WidthHeight(4, 4, svg.CM).ViewBox(0, 0, 400, 400).Children(
 				svg.Title(svg.CharData("Example triangle01- simple example of a 'path'")),
 				svg.Desc(svg.CharData("A path that draws a triangle")),
 				svg.Rect().XYWidthHeight(1, 1, 398, 398, svg.Number).Fill("none").Stroke("blue"),
@@ -91,7 +91,7 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "line01", // 10.5
-			svg: svg.SVG().WidthHeight(12, 4, svg.CM).ViewBox(0, 0, 1200, 400).Children(
+			svg: svg.New().WidthHeight(12, 4, svg.CM).ViewBox(0, 0, 1200, 400).Children(
 				svg.Desc(
 					svg.CharData("Example line01 - lines expressed in user coordinates"),
 				),
@@ -107,7 +107,7 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "polyline01", // 10.6
-			svg: svg.SVG().WidthHeight(12, 4, svg.CM).ViewBox(0, 0, 1200, 400).Children(
+			svg: svg.New().WidthHeight(12, 4, svg.CM).ViewBox(0, 0, 1200, 400).Children(
 				svg.Desc(
 					svg.CharData("Example polyline01 - increasingly larger bars"),
 				),
@@ -140,7 +140,7 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "polygon01", // 10.7
-			svg: svg.SVG().WidthHeight(12, 4, svg.CM).ViewBox(0, 0, 1200, 400).Children(
+			svg: svg.New().WidthHeight(12, 4, svg.CM).ViewBox(0, 0, 1200, 400).Children(
 				svg.Desc(
 					svg.CharData("Example polygon01 - star and hexagon"),
 				),
@@ -169,7 +169,7 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "toap01", // 11.8.1
-			svg: svg.SVG().WidthHeight(12, 3.6, svg.CM).ViewBox(0, 0, 1000, 300).Children(
+			svg: svg.New().WidthHeight(12, 3.6, svg.CM).ViewBox(0, 0, 1000, 300).Children(
 				svg.Defs(
 					svg.Path().ID("MyPath").D("M 100 200 C 200 100 300 0 400 100 C 500 200 600 300 700 200 C 800 100 900 100 900 100"),
 				),
@@ -187,7 +187,7 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "foreignObject", // 12.5
-			svg: svg.SVG().WidthHeight(4, 3, svg.In).Children(
+			svg: svg.New().WidthHeight(4, 3, svg.In).Children(
 				svg.Desc(
 					svg.CharData("This example uses the 'switch' element to provide a fallback graphical representation of an paragraph, if XMHTML is not supported."),
 				),
@@ -206,7 +206,7 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "marker", // 13.7.2
-			svg: svg.SVG().ViewBox(0, 0, 100, 300).Children(
+			svg: svg.New().ViewBox(0, 0, 100, 300).Children(
 				svg.Defs(
 					svg.Marker().ID("m1").ViewBox(0, 0, 10, 10).RefXY(5, 5).MarkerWidthHeight(8, 8).Children(
 						svg.Circle().CXCYR(5, 5, 5, svg.Number).Fill("green"),

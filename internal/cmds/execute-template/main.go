@@ -33,6 +33,7 @@ type Element struct {
 	Name               string      `yaml:"name"`
 	GoName             string      `yaml:"goName"`
 	GoType             string      `yaml:"goType"`
+	ConstructorName    string      `yaml:"constructorName"`
 	Article            string      `yaml:"article"`
 	Container          bool        `yaml:"container"`
 	AttributeGroups    []string    `yaml:"attributeGroups"`
@@ -120,6 +121,9 @@ func run() error {
 		}
 		if element.GoType == "" {
 			element.GoType = element.GoName + "Element"
+		}
+		if element.ConstructorName == "" {
+			element.ConstructorName = element.GoName
 		}
 		for j := range templateData.Elements[i].Attributes {
 			attribute := &element.Attributes[j]

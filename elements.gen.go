@@ -10,8 +10,8 @@ type SVGElement struct {
 	children []Element
 }
 
-// SVG returns a new SVGElement.
-func SVG(children ...Element) *SVGElement {
+// New returns a new SVGElement.
+func New(children ...Element) *SVGElement {
 	return &SVGElement{
 		attrs: map[string]AttrValue{
 			"version": String("1.1"),
