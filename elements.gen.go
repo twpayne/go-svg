@@ -4748,7 +4748,7 @@ func (e *PathElement) WritingMode(writingMode String) *PathElement {
 }
 
 // D sets the d attribute.
-func (e *PathElement) D(d String) *PathElement {
+func (e *PathElement) D(d AttrValue) *PathElement {
 	e.attrs["d"] = d
 	return e
 }

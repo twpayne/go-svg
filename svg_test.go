@@ -14,6 +14,7 @@ import (
 	"github.com/alecthomas/assert/v2"
 
 	"github.com/twpayne/go-svg"
+	"github.com/twpayne/go-svg/svgpath"
 )
 
 func TestSimple(t *testing.T) {
@@ -86,7 +87,69 @@ func TestSimple(t *testing.T) {
 				svg.Title(svg.CharData("Example triangle01- simple example of a 'path'")),
 				svg.Desc(svg.CharData("A path that draws a triangle")),
 				svg.Rect().XYWidthHeight(1, 1, 398, 398, svg.Number).Fill("none").Stroke("blue"),
-				svg.Path().D("M 100 100 L 300 100 L 200 300 z").Fill("red").Stroke("blue").StrokeWidth(svg.Number(3)),
+				svg.Path().D(svgpath.New(
+					svgpath.MoveToAbs([]float64{100, 100}),
+					svgpath.LineToAbs([]float64{300, 100}),
+					svgpath.LineToAbs([]float64{200, 300}),
+					svgpath.ClosePath(),
+				)).Fill("red").Stroke("blue").StrokeWidth(svg.Number(3)),
+			),
+		},
+		{
+			name: "cubic01", // 9.3.6
+			svg: svg.New().WidthHeight(5, 4, svg.CM).ViewBox(0, 0, 500, 400).Children(
+				svg.Title(
+					svg.CharData("Example cubic01- cubic Bézier commands in path data"),
+				),
+				svg.Desc(
+					svg.CharData(`Picture showing a simple example of path data using both a "C" and an "S" command, along with annotations showing the control points and end points`),
+				),
+				svg.Style().Type("text/css").Children(
+					svg.CharData(strings.Join([]string{
+						".Border { fill:none; stroke:blue; stroke-width:1 }",
+						"    .Connect { fill:none; stroke:#888888; stroke-width:2 }",
+						"    .SamplePath { fill:none; stroke:red; stroke-width:5 }",
+						"    .EndPoint { fill:none; stroke:#888888; stroke-width:2 }",
+						"    .CtlPoint { fill:#888888; stroke:none }",
+						"    .AutoCtlPoint { fill:none; stroke:blue; stroke-width:4 }",
+						"    .Label { font-size:22; font-family:Verdana }",
+					}, "\n")),
+				),
+				svg.Rect().Class("Border").XYWidthHeight(1, 1, 498, 398, svg.Number),
+				svg.Polyline().Class("Connect").Points(svg.Points{
+					{100, 200},
+					{100, 100},
+				}),
+				svg.Polyline().Class("Connect").Points(svg.Points{
+					{250, 100},
+					{250, 200},
+				}),
+				svg.Polyline().Class("Connect").Points(svg.Points{
+					{250, 200},
+					{250, 300},
+				}),
+				svg.Polyline().Class("Connect").Points(svg.Points{
+					{400, 300},
+					{400, 200},
+				}),
+				svg.Path().Class("SamplePath").D(svgpath.New(
+					svgpath.MoveToAbs([]float64{100, 200}),
+					svgpath.CurveToAbs([][]float64{{100, 100}, {250, 100}, {250, 200}}...),
+					svgpath.SmoothCurveToAbs([][]float64{{400, 300}, {400, 200}}...),
+				)),
+				svg.Circle().Class("EndPoint").CXCYR(100, 200, 10, svg.Number),
+				svg.Circle().Class("EndPoint").CXCYR(250, 200, 10, svg.Number),
+				svg.Circle().Class("EndPoint").CXCYR(400, 200, 10, svg.Number),
+				svg.Circle().Class("CtlPoint").CXCYR(100, 100, 10, svg.Number),
+				svg.Circle().Class("CtlPoint").CXCYR(250, 100, 10, svg.Number),
+				svg.Circle().Class("CtlPoint").CXCYR(400, 300, 10, svg.Number),
+				svg.Circle().Class("AutoCtlPoint").CXCYR(250, 300, 9, svg.Number),
+				svg.Text().Class("Label").XY(25, 70, svg.Number).Children(
+					svg.CharData("M100,200 C100,100 250,100 250,200"),
+				),
+				svg.Text().Class("Label").XY(325, 350, svg.Number).Style("text-anchor:middle").Children(
+					svg.CharData("S400,300 400,200"),
+				),
 			),
 		},
 		{
@@ -171,7 +234,12 @@ func TestSimple(t *testing.T) {
 			name: "toap01", // 11.8.1
 			svg: svg.New().WidthHeight(12, 3.6, svg.CM).ViewBox(0, 0, 1000, 300).Children(
 				svg.Defs(
-					svg.Path().ID("MyPath").D("M 100 200 C 200 100 300 0 400 100 C 500 200 600 300 700 200 C 800 100 900 100 900 100"),
+					svg.Path().ID("MyPath").D(svgpath.New(
+						svgpath.MoveToAbs([]float64{100, 200}),
+						svgpath.CurveToAbs([][]float64{{200, 100}, {300, 0}, {400, 100}}...),
+						svgpath.CurveToAbs([][]float64{{500, 200}, {600, 300}, {700, 200}}...),
+						svgpath.CurveToAbs([][]float64{{800, 100}, {900, 100}, {900, 100}}...),
+					)),
 				),
 				svg.Desc(
 					svg.CharData("Example toap01 - simple text on a path"),
@@ -218,7 +286,20 @@ func TestSimple(t *testing.T) {
 						svg.Circle().CXCYR(5, 5, 5, svg.Number).Fill("maroon").Opacity(0.85),
 					),
 				),
-				svg.Path().D("M10,10 h10 v10 z m20,0 h10 v10 z m20,0 h10 v10 z").Fill("none").Stroke("black").MarkerStart("url(#m1)").MarkerMid("url(#m2)").MarkerEnd("url(#m3)"),
+				svg.Path().D(svgpath.New(
+					svgpath.MoveToAbs([]float64{10, 10}),
+					svgpath.HLineToRel(10),
+					svgpath.VLineToRel(10),
+					svgpath.ClosePath(),
+					svgpath.MoveToRel([]float64{20, 0}),
+					svgpath.HLineToRel(10),
+					svgpath.VLineToRel(10),
+					svgpath.ClosePath(),
+					svgpath.MoveToRel([]float64{20, 0}),
+					svgpath.HLineToRel(10),
+					svgpath.VLineToRel(10),
+					svgpath.ClosePath(),
+				)).Fill("none").Stroke("black").MarkerStart("url(#m1)").MarkerMid("url(#m2)").MarkerEnd("url(#m3)"),
 			),
 		},
 	} {

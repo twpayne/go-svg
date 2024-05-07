@@ -269,7 +269,7 @@ elements:
   - presentation
   geometryProperties:
   - name: d
-    type: String
+    type: AttrValue
 
 - name: pattern
   container: true
