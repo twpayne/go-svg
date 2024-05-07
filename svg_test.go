@@ -9,6 +9,7 @@ import (
 	"os"
 	"path/filepath"
 	"slices"
+	"strings"
 	"testing"
 
 	"github.com/alecthomas/assert/v2"
@@ -347,7 +348,7 @@ func normalizedXMLTokens(data []byte) ([]any, error) {
 			var normalizedToken any
 			switch token := token.(type) {
 			case xml.CharData:
-				normalizedToken = string(token)
+				normalizedToken = string(bytes.TrimSpace(token))
 			case xml.StartElement:
 				slices.SortFunc(token.Attr, func(a, b xml.Attr) int {
 					return cmp.Or(

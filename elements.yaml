@@ -327,6 +327,13 @@ elements:
   - name: ry
     exportedGoName: RY
 
+- name: style
+  container: true
+  attributes:
+  - name: type
+    goName: _type
+    exportedGoName: Type
+
 - name: switch
   container: true
   attributeGroups:

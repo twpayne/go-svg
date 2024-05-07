@@ -6574,6 +6574,43 @@ func (e *RectElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error
 	return encodeElement(encoder, "rect", e.attrs, e.children)
 }
 
+// A StyleElement is a style element.
+type StyleElement struct {
+	attrs    map[string]AttrValue
+	children []Element
+}
+
+// Style returns a new StyleElement.
+func Style(children ...Element) *StyleElement {
+	return &StyleElement{
+		attrs:    map[string]AttrValue{},
+		children: children,
+	}
+}
+
+// AppendChildren appends the given children.
+func (e *StyleElement) AppendChildren(children ...Element) *StyleElement {
+	e.children = append(e.children, children...)
+	return e
+}
+
+// Children sets the children.
+func (e *StyleElement) Children(children ...Element) *StyleElement {
+	e.children = children
+	return e
+}
+
+// Type sets the type attribute.
+func (e *StyleElement) Type(_type String) *StyleElement {
+	e.attrs["type"] = _type
+	return e
+}
+
+// MarshallXML implements encoding/xml.Marshaller.MarshalXML.
+func (e *StyleElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
+	return encodeElement(encoder, "style", e.attrs, e.children)
+}
+
 // A SwitchElement is a switch element.
 type SwitchElement struct {
 	attrs    map[string]AttrValue
