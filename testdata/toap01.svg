@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg height="3.6cm" version="1.1" viewBox="0 0 1000 300" width="12cm" xmlns="http://www.w3.org/2000/svg">
-	<defs>
-		<path d="M100,200 C200,100 300,0 400,100 C500,200 600,300 700,200 C800,100 900,100 900,100" id="MyPath"></path>
-	</defs>
-	<desc>Example toap01 - simple text on a path</desc>
-	<use fill="none" href="#MyPath" stroke="red"></use>
-	<text fill="blue" font-family="Verdana" font-size="42.5">
-		<textPath href="#MyPath">We go up, then we go down, then up again</textPath>
-	</text>
-	<rect fill="none" height="298" stroke="blue" stroke-width="2" width="998" x="1" y="1"></rect>
+  <defs>
+    <path d="M100,200 C200,100 300,0 400,100 C500,200 600,300 700,200 C800,100 900,100 900,100" id="MyPath"></path>
+  </defs>
+  <desc>Example toap01 - simple text on a path</desc>
+  <use fill="none" href="#MyPath" stroke="red"></use>
+  <text fill="blue" font-family="Verdana" font-size="42.5">
+    <textPath href="#MyPath">We go up, then we go down, then up again</textPath>
+  </text>
+  <rect fill="none" height="298" stroke="blue" stroke-width="2" width="998" x="1" y="1"></rect>
 </svg>

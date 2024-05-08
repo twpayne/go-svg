@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg height="4cm" version="1.1" viewBox="0 0 400 400" width="4cm" xmlns="http://www.w3.org/2000/svg">
-	<title>Example triangle01- simple example of a &#39;path&#39;</title>
-	<desc>A path that draws a triangle</desc>
-	<rect fill="none" height="398" stroke="blue" width="398" x="1" y="1"></rect>
-	<path d="M100,100 L300,100 L200,300 z" fill="red" stroke="blue" stroke-width="3"></path>
+  <title>Example triangle01- simple example of a &#39;path&#39;</title>
+  <desc>A path that draws a triangle</desc>
+  <rect fill="none" height="398" stroke="blue" width="398" x="1" y="1"></rect>
+  <path d="M100,100 L300,100 L200,300 z" fill="red" stroke="blue" stroke-width="3"></path>
 </svg>

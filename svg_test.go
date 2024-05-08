@@ -306,7 +306,7 @@ func TestSimple(t *testing.T) {
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			var buffer bytes.Buffer
-			n, err := tc.svg.WriteToIndent(&buffer, "", "\t")
+			n, err := tc.svg.WriteToIndent(&buffer, "", "  ")
 			assert.NoError(t, err)
 			actual := buffer.Bytes()
 			filename := filepath.Join("testdata", tc.name+".svg")

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg height="4cm" version="1.1" viewBox="0 0 1200 400" width="12cm" xmlns="http://www.w3.org/2000/svg">
-	<desc>Example polygon01 - star and hexagon</desc>
-	<rect fill="none" height="398" stroke="blue" stroke-width="2" width="1198" x="1" y="1"></rect>
-	<polygon fill="red" points="350,75 379,161 469,161 397,215 423,301 350,250 277,301 303,215 231,161 321,161" stroke="blue" stroke-width="10"></polygon>
-	<polygon fill="lime" points="850,75 958,137.5 958,262.5 850,325 742,262.6 742,137.5" stroke="blue" stroke-width="10"></polygon>
+  <desc>Example polygon01 - star and hexagon</desc>
+  <rect fill="none" height="398" stroke="blue" stroke-width="2" width="1198" x="1" y="1"></rect>
+  <polygon fill="red" points="350,75 379,161 469,161 397,215 423,301 350,250 277,301 303,215 231,161 321,161" stroke="blue" stroke-width="10"></polygon>
+  <polygon fill="lime" points="850,75 958,137.5 958,262.5 850,325 742,262.6 742,137.5" stroke="blue" stroke-width="10"></polygon>
 </svg>
