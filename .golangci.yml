@@ -42,7 +42,6 @@ linters:
   - importas
   - ineffassign
   - interfacebloat
-  - ireturn
   - loggercheck
   - makezero
   - misspell
@@ -86,6 +85,7 @@ linters:
   - gocognit
   - godox
   - gomnd
+  - ireturn
   - lll
   - maintidx
   - nlreturn
