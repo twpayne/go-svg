@@ -88,12 +88,12 @@ func TestSimple(t *testing.T) {
 				svg.Title(svg.CharData("Example triangle01- simple example of a 'path'")),
 				svg.Desc(svg.CharData("A path that draws a triangle")),
 				svg.Rect().XYWidthHeight(1, 1, 398, 398, svg.Number).Fill("none").Stroke("blue"),
-				svg.Path().D(svgpath.New(
-					svgpath.MoveToAbs([]float64{100, 100}),
-					svgpath.LineToAbs([]float64{300, 100}),
-					svgpath.LineToAbs([]float64{200, 300}),
-					svgpath.ClosePath(),
-				)).Fill("red").Stroke("blue").StrokeWidth(svg.Number(3)),
+				svg.Path().D(svgpath.New().
+					MoveToAbs([]float64{100, 100}).
+					LineToAbs([]float64{300, 100}).
+					LineToAbs([]float64{200, 300}).
+					ClosePath(),
+				).Fill("red").Stroke("blue").StrokeWidth(svg.Number(3)),
 			),
 		},
 		{
@@ -133,11 +133,11 @@ func TestSimple(t *testing.T) {
 					{400, 300},
 					{400, 200},
 				}),
-				svg.Path().Class("SamplePath").D(svgpath.New(
-					svgpath.MoveToAbs([]float64{100, 200}),
-					svgpath.CurveToAbs([][]float64{{100, 100}, {250, 100}, {250, 200}}...),
-					svgpath.SmoothCurveToAbs([][]float64{{400, 300}, {400, 200}}...),
-				)),
+				svg.Path().Class("SamplePath").D(svgpath.New().
+					MoveToAbs([]float64{100, 200}).
+					CurveToAbs([][]float64{{100, 100}, {250, 100}, {250, 200}}...).
+					SCurveToAbs([][]float64{{400, 300}, {400, 200}}...),
+				),
 				svg.Circle().Class("EndPoint").CXCYR(100, 200, 10, svg.Number),
 				svg.Circle().Class("EndPoint").CXCYR(250, 200, 10, svg.Number),
 				svg.Circle().Class("EndPoint").CXCYR(400, 200, 10, svg.Number),
@@ -235,12 +235,12 @@ func TestSimple(t *testing.T) {
 			name: "toap01", // 11.8.1
 			svg: svg.New().WidthHeight(12, 3.6, svg.CM).ViewBox(0, 0, 1000, 300).Children(
 				svg.Defs(
-					svg.Path().ID("MyPath").D(svgpath.New(
-						svgpath.MoveToAbs([]float64{100, 200}),
-						svgpath.CurveToAbs([][]float64{{200, 100}, {300, 0}, {400, 100}}...),
-						svgpath.CurveToAbs([][]float64{{500, 200}, {600, 300}, {700, 200}}...),
-						svgpath.CurveToAbs([][]float64{{800, 100}, {900, 100}, {900, 100}}...),
-					)),
+					svg.Path().ID("MyPath").D(svgpath.New().
+						MoveToAbs([]float64{100, 200}).
+						CurveToAbs([][]float64{{200, 100}, {300, 0}, {400, 100}}...).
+						CurveToAbs([][]float64{{500, 200}, {600, 300}, {700, 200}}...).
+						CurveToAbs([][]float64{{800, 100}, {900, 100}, {900, 100}}...),
+					),
 				),
 				svg.Desc(
 					svg.CharData("Example toap01 - simple text on a path"),
@@ -287,20 +287,20 @@ func TestSimple(t *testing.T) {
 						svg.Circle().CXCYR(5, 5, 5, svg.Number).Fill("maroon").Opacity(0.85),
 					),
 				),
-				svg.Path().D(svgpath.New(
-					svgpath.MoveToAbs([]float64{10, 10}),
-					svgpath.HLineToRel(10),
-					svgpath.VLineToRel(10),
-					svgpath.ClosePath(),
-					svgpath.MoveToRel([]float64{20, 0}),
-					svgpath.HLineToRel(10),
-					svgpath.VLineToRel(10),
-					svgpath.ClosePath(),
-					svgpath.MoveToRel([]float64{20, 0}),
-					svgpath.HLineToRel(10),
-					svgpath.VLineToRel(10),
-					svgpath.ClosePath(),
-				)).Fill("none").Stroke("black").MarkerStart("url(#m1)").MarkerMid("url(#m2)").MarkerEnd("url(#m3)"),
+				svg.Path().D(svgpath.New().
+					MoveToAbs([]float64{10, 10}).
+					HLineToRel(10).
+					VLineToRel(10).
+					ClosePath().
+					MoveToRel([]float64{20, 0}).
+					HLineToRel(10).
+					VLineToRel(10).
+					ClosePath().
+					MoveToRel([]float64{20, 0}).
+					HLineToRel(10).
+					VLineToRel(10).
+					ClosePath(),
+				).Fill("none").Stroke("black").MarkerStart("url(#m1)").MarkerMid("url(#m2)").MarkerEnd("url(#m3)"),
 			),
 		},
 	} {

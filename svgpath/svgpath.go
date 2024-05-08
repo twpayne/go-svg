@@ -21,116 +21,113 @@ const (
 	commandVerticalLineToRel   = "v"
 )
 
-type Command interface {
-	String() string
+// A Path is an SVG path.
+type Path struct {
+	commands []string
 }
 
-type Path []Command
-
-func New(commands ...Command) Path {
-	return Path(commands)
+// New returns a new Path.
+func New() *Path {
+	return &Path{}
 }
 
-func (p Path) String() string {
-	ss := make([]string, 0, len(p))
-	for _, s := range p {
-		ss = append(ss, s.String())
+func (p *Path) String() string {
+	if p == nil {
+		return ""
 	}
-	return strings.Join(ss, " ")
+	return strings.Join(p.commands, " ")
 }
 
-type curveToAbsCommand struct {
-	coords [][]float64
+// CurveToAbs appends an absolute curveto command to p.
+func (p *Path) CurveToAbs(coords ...[]float64) *Path {
+	command := commandCurveToAbs + formatCoords(coords)
+	p.commands = append(p.commands, command)
+	return p
 }
 
-func CurveToAbs(coords ...[]float64) Command { return curveToAbsCommand{coords: coords} }
-func (c curveToAbsCommand) String() string   { return commandCurveToAbs + formatCoords(c.coords) }
-
-type curveToRelCommand struct {
-	coords [][]float64
+// CurveToAbs appends a relative curveto command to p.
+func (p *Path) CurveToRel(coords ...[]float64) *Path {
+	command := commandCurveToRel + formatCoords(coords)
+	p.commands = append(p.commands, command)
+	return p
 }
 
-func CurveToRel(coords ...[]float64) Command { return curveToRelCommand{coords: coords} }
-func (c curveToRelCommand) String() string   { return commandCurveToRel + formatCoords(c.coords) }
-
-type closePathCommand struct{}
-
-func ClosePath() Command                  { return closePathCommand{} }
-func (c closePathCommand) String() string { return string(commandClosePath) }
-
-type hLineToAbsCommand struct {
-	x float64
+// ClosePath appends a closepath command to p.
+func (p *Path) ClosePath() *Path {
+	command := commandClosePath
+	p.commands = append(p.commands, command)
+	return p
 }
 
-func HLineToAbs(x float64) Command         { return hLineToAbsCommand{x: x} }
-func (c hLineToAbsCommand) String() string { return commandHorizontalLineToAbs + formatFloat(c.x) }
-
-type hLineToRelCommand struct {
-	x float64
+// HLineToAbs appends an absolute horizontal lineto command to p.
+func (p *Path) HLineToAbs(x float64) *Path {
+	command := commandHorizontalLineToAbs + formatFloat(x)
+	p.commands = append(p.commands, command)
+	return p
 }
 
-func HLineToRel(x float64) Command         { return hLineToRelCommand{x: x} }
-func (c hLineToRelCommand) String() string { return commandHorizontalLineToRel + formatFloat(c.x) }
-
-type lineToAbsCommand struct {
-	coords [][]float64
+// HLineToAbs appends a relative horizontal lineto command to p.
+func (p *Path) HLineToRel(x float64) *Path {
+	command := commandHorizontalLineToRel + formatFloat(x)
+	p.commands = append(p.commands, command)
+	return p
 }
 
-func LineToAbs(coords ...[]float64) Command { return lineToAbsCommand{coords: coords} }
-func (c lineToAbsCommand) String() string   { return commandLineToAbs + formatCoords(c.coords) }
-
-type lineToRelCommand struct {
-	coords [][]float64
+// LineToAbs appends an absolute lineto command to p.
+func (p *Path) LineToAbs(coords ...[]float64) *Path {
+	command := commandLineToAbs + formatCoords(coords)
+	p.commands = append(p.commands, command)
+	return p
 }
 
-func LineToRel(coords ...[]float64) Command { return lineToRelCommand{coords: coords} }
-func (c lineToRelCommand) String() string   { return commandLineToRel + formatCoords(c.coords) }
-
-type moveToAbsCommand struct {
-	coords [][]float64
+// LineToAbs appends a relative lineto command to p.
+func (p *Path) LineToRel(coords ...[]float64) *Path {
+	command := commandLineToRel + formatCoords(coords)
+	p.commands = append(p.commands, command)
+	return p
 }
 
-func MoveToAbs(coords ...[]float64) Command { return moveToAbsCommand{coords: coords} }
-func (c moveToAbsCommand) String() string   { return commandMoveToAbs + formatCoords(c.coords) }
-
-type moveToRelCommand struct {
-	coords [][]float64
+// MoveToAbs appends an absolute moveto command to p.
+func (p *Path) MoveToAbs(coords ...[]float64) *Path {
+	command := commandMoveToAbs + formatCoords(coords)
+	p.commands = append(p.commands, command)
+	return p
 }
 
-func MoveToRel(coords ...[]float64) Command { return moveToRelCommand{coords: coords} }
-func (c moveToRelCommand) String() string   { return commandMoveToRel + formatCoords(c.coords) }
-
-type smoothCurveToAbsCommand struct {
-	coords [][]float64
+// MoveToAbs appends a relative moveto command to p.
+func (p *Path) MoveToRel(coords ...[]float64) *Path {
+	command := commandMoveToRel + formatCoords(coords)
+	p.commands = append(p.commands, command)
+	return p
 }
 
-func SmoothCurveToAbs(coords ...[]float64) Command { return smoothCurveToAbsCommand{coords: coords} }
-func (c smoothCurveToAbsCommand) String() string {
-	return commandSmoothCurveToAbs + formatCoords(c.coords)
+// SCurveToAbs appends an absolute shorthand/smooth curveto command to p.
+func (p *Path) SCurveToAbs(coords ...[]float64) *Path {
+	command := commandSmoothCurveToAbs + formatCoords(coords)
+	p.commands = append(p.commands, command)
+	return p
 }
 
-type smoothCurveToRelCommand struct {
-	coords [][]float64
+// SCurveToRel appends a relative shorthand/smooth curveto command to p.
+func (p *Path) SCurveToRel(coords ...[]float64) *Path {
+	command := commandSmoothCurveToRel + formatCoords(coords)
+	p.commands = append(p.commands, command)
+	return p
 }
 
-func SmoothCurveToRel(coords ...[]float64) Command { return smoothCurveToRelCommand{coords: coords} }
-func (c smoothCurveToRelCommand) String() string {
-	return commandSmoothCurveToRel + formatCoords(c.coords)
+// VLineToAbs appends an absolute vertical lineto command to p.
+func (p *Path) VLineToAbs(x float64) *Path {
+	command := commandVerticalLineToAbs + formatFloat(x)
+	p.commands = append(p.commands, command)
+	return p
 }
 
-type vLineToAbsCommand struct {
-	x float64
+// VLineToAbs appends a relative vertical lineto command to p.
+func (p *Path) VLineToRel(x float64) *Path {
+	command := commandVerticalLineToRel + formatFloat(x)
+	p.commands = append(p.commands, command)
+	return p
 }
-
-func VLineToAbs(x float64) Command         { return vLineToAbsCommand{x: x} }
-func (c vLineToAbsCommand) String() string { return commandVerticalLineToAbs + formatFloat(c.x) }
-
-type vLineToRelCommand struct {
-	y float64
-}
-
-func VLineToRel(y float64) Command         { return vLineToRelCommand{y: y} }
-func (c vLineToRelCommand) String() string { return commandVerticalLineToRel + formatFloat(c.y) }
 
 func formatCoord(c []float64) string {
 	return formatFloat(c[0]) + "," + formatFloat(c[1])

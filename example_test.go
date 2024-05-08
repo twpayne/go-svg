@@ -12,12 +12,12 @@ func ExampleNew() {
 		svg.Title(svg.CharData("Example triangle01- simple example of a 'path'")),
 		svg.Desc(svg.CharData("A path that draws a triangle")),
 		svg.Rect().XYWidthHeight(1, 1, 398, 398, svg.Number).Fill("none").Stroke("blue"),
-		svg.Path().D(svgpath.New(
-			svgpath.MoveToAbs([]float64{100, 100}),
-			svgpath.LineToAbs([]float64{300, 100}),
-			svgpath.LineToAbs([]float64{200, 300}),
-			svgpath.ClosePath(),
-		)).Fill("red").Stroke("blue").StrokeWidth(svg.Number(3)),
+		svg.Path().D(svgpath.New().
+			MoveToAbs([]float64{100, 100}).
+			LineToAbs([]float64{300, 100}).
+			LineToAbs([]float64{200, 300}).
+			ClosePath(),
+		).Fill("red").Stroke("blue").StrokeWidth(svg.Number(3)),
 	)
 	if _, err := svgElement.WriteToIndent(os.Stdout, "", "  "); err != nil {
 		panic(err)

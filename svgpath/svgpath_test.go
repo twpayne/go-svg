@@ -11,7 +11,7 @@ import (
 func TestString(t *testing.T) {
 	for _, tc := range []struct {
 		name     string
-		path     svgpath.Path
+		path     *svgpath.Path
 		expected string
 	}{
 		{
@@ -19,11 +19,10 @@ func TestString(t *testing.T) {
 		},
 		{
 			name: "simple",
-			path: svgpath.Path{
-				svgpath.MoveToAbs([]float64{200, 300}),
-				svgpath.LineToAbs([]float64{400, 50}),
-				svgpath.ClosePath(),
-			},
+			path: svgpath.New().
+				MoveToAbs([]float64{200, 300}).
+				LineToAbs([]float64{400, 50}).
+				ClosePath(),
 			expected: "M200,300 L400,50 z",
 		},
 	} {
