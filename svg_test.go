@@ -336,32 +336,29 @@ func assertEquivalentXML(t *testing.T, expectedBytes, actualBytes []byte) {
 // normalizedXMLTokens returns all the XML tokens in data, with attributes
 // sorted in order and [xml.CharData]s converted to strings.
 func normalizedXMLTokens(data []byte) ([]any, error) {
-	var normalizedTokens []any
+	var tokens []any
 	decoder := xml.NewDecoder(bytes.NewReader(data))
 	for {
 		switch token, err := decoder.Token(); {
 		case errors.Is(err, io.EOF):
-			return normalizedTokens, nil
+			return tokens, nil
 		case err != nil:
 			return nil, err
 		default:
-			var normalizedToken any
-			switch token := token.(type) {
-			case xml.CharData:
-				normalizedToken = string(bytes.TrimSpace(token))
-			case xml.StartElement:
-				slices.SortFunc(token.Attr, func(a, b xml.Attr) int {
+			token = xml.CopyToken(token)
+			if charData, ok := token.(xml.CharData); ok {
+				token = string(bytes.TrimSpace(charData))
+			} else if startElement, ok := token.(xml.StartElement); ok {
+				slices.SortFunc(startElement.Attr, func(a, b xml.Attr) int {
 					return cmp.Or(
 						cmp.Compare(a.Name.Space, b.Name.Space),
 						cmp.Compare(a.Name.Local, b.Name.Local),
 						cmp.Compare(a.Value, b.Value),
 					)
 				})
-				normalizedToken = token
-			default:
-				normalizedToken = token
+				token = startElement
 			}
-			normalizedTokens = append(normalizedTokens, normalizedToken)
+			tokens = append(tokens, token)
 		}
 	}
 }
