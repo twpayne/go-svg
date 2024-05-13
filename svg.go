@@ -10,6 +10,7 @@ import (
 	"encoding/xml"
 	"io"
 	"sort"
+	"strings"
 )
 
 // A Comment is a comment.
@@ -26,6 +27,12 @@ type CharData []byte
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (c CharData) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
 	return encoder.EncodeToken(xml.CharData(c))
+}
+
+func (e *SVGElement) String() string {
+	var builder strings.Builder
+	_, _ = e.WriteTo(&builder)
+	return builder.String()
 }
 
 // WriteTo implements io.WriterTo.WriteTo. It writes encoding/xml.Header and
