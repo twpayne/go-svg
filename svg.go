@@ -38,10 +38,6 @@ func (e *SVGElement) WriteTo(w io.Writer) (int64, error) {
 // prefix and indent.
 func (e *SVGElement) WriteToIndent(w io.Writer, prefix, indent string) (int64, error) {
 	wc := &writeCounter{w: w}
-	_, err := wc.Write([]byte(xml.Header))
-	if err != nil {
-		return int64(wc.bytesWritten), err
-	}
 	encoder := xml.NewEncoder(wc)
 	encoder.Indent(prefix, indent)
 	if err := encoder.Encode(e); err != nil {

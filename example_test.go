@@ -24,7 +24,6 @@ func ExampleNew() {
 	}
 
 	// Output:
-	// <?xml version="1.0" encoding="UTF-8"?>
 	// <svg height="4cm" version="1.1" viewBox="0 0 400 400" width="4cm" xmlns="http://www.w3.org/2000/svg">
 	//   <title>Example triangle01- simple example of a &#39;path&#39;</title>
 	//   <desc>A path that draws a triangle</desc>
