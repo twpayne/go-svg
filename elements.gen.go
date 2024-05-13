@@ -6,9398 +6,9254 @@ import "encoding/xml"
 
 // An SVGElement is an svg element.
 type SVGElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // New returns a new SVGElement.
 func New(children ...Element) *SVGElement {
 	return &SVGElement{
-		attrs: map[string]AttrValue{
+		Attrs: map[string]AttrValue{
 			"version": String("1.1"),
 			"xmlns":   String("http://www.w3.org/2000/svg"),
 		},
-		children: children,
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *SVGElement) AppendChildren(children ...Element) *SVGElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *SVGElement) Children(children ...Element) *SVGElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // Version sets the version attribute.
 func (e *SVGElement) Version(version String) *SVGElement {
-	e.attrs["version"] = version
+	e.Attrs["version"] = version
 	return e
 }
 
 // XMLNS sets the xmlns attribute.
 func (e *SVGElement) XMLNS(xmlns String) *SVGElement {
-	e.attrs["xmlns"] = xmlns
+	e.Attrs["xmlns"] = xmlns
 	return e
 }
 
 // ViewBox sets the viewBox attribute.
 func (e *SVGElement) ViewBox(minX, minY, width, height float64) *SVGElement {
-	e.attrs["viewBox"] = ViewBox{MinX: minX, MinY: minY, Width: width, Height: height}
+	e.Attrs["viewBox"] = ViewBox{MinX: minX, MinY: minY, Width: width, Height: height}
 	return e
 }
 
 // PreserveAspectRatio sets the preserveAspectRatio attribute.
 func (e *SVGElement) PreserveAspectRatio(preserveAspectRatio String) *SVGElement {
-	e.attrs["preserveAspectRatio"] = preserveAspectRatio
+	e.Attrs["preserveAspectRatio"] = preserveAspectRatio
 	return e
 }
 
 // ZoomAndPan sets the zoomAndPan attribute.
 func (e *SVGElement) ZoomAndPan(zoomAndPan String) *SVGElement {
-	e.attrs["zoomAndPan"] = zoomAndPan
+	e.Attrs["zoomAndPan"] = zoomAndPan
 	return e
 }
 
 // Transform sets the transform attribute.
 func (e *SVGElement) Transform(transform String) *SVGElement {
-	e.attrs["transform"] = transform
+	e.Attrs["transform"] = transform
 	return e
 }
 
 // X sets the x attribute.
 func (e *SVGElement) X(x Length) *SVGElement {
-	e.attrs["x"] = x
+	e.Attrs["x"] = x
 	return e
 }
 
 // Y sets the y attribute.
 func (e *SVGElement) Y(y Length) *SVGElement {
-	e.attrs["y"] = y
+	e.Attrs["y"] = y
 	return e
 }
 
 // Width sets the width attribute.
 func (e *SVGElement) Width(width Length) *SVGElement {
-	e.attrs["width"] = width
+	e.Attrs["width"] = width
 	return e
 }
 
 // Height sets the height attribute.
 func (e *SVGElement) Height(height Length) *SVGElement {
-	e.attrs["height"] = height
+	e.Attrs["height"] = height
 	return e
 }
 
 // WidthHeight sets the width and height attributes.
 func (e *SVGElement) WidthHeight(width, height float64, lengthFunc LengthFunc) *SVGElement {
-	e.attrs["width"] = lengthFunc(width)
-	e.attrs["height"] = lengthFunc(height)
+	e.Attrs["width"] = lengthFunc(width)
+	e.Attrs["height"] = lengthFunc(height)
 	return e
 }
 
 // XY sets the x and y attributes.
 func (e *SVGElement) XY(x, y float64, lengthFunc LengthFunc) *SVGElement {
-	e.attrs["x"] = lengthFunc(x)
-	e.attrs["y"] = lengthFunc(y)
+	e.Attrs["x"] = lengthFunc(x)
+	e.Attrs["y"] = lengthFunc(y)
 	return e
 }
 
 // XYWidthHeight sets the x, y, width, and height attributes.
 func (e *SVGElement) XYWidthHeight(x, y, width, height float64, lengthFunc LengthFunc) *SVGElement {
-	e.attrs["x"] = lengthFunc(x)
-	e.attrs["y"] = lengthFunc(y)
-	e.attrs["width"] = lengthFunc(width)
-	e.attrs["height"] = lengthFunc(height)
+	e.Attrs["x"] = lengthFunc(x)
+	e.Attrs["y"] = lengthFunc(y)
+	e.Attrs["width"] = lengthFunc(width)
+	e.Attrs["height"] = lengthFunc(height)
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *SVGElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "svg", e.attrs, e.children)
+	return encodeElement(encoder, "svg", e.Attrs, e.Children)
 }
 
 // An AElement is an a element.
 type AElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // A returns a new AElement.
 func A(children ...Element) *AElement {
 	return &AElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *AElement) AppendChildren(children ...Element) *AElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *AElement) Children(children ...Element) *AElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // Href sets the href attribute.
 func (e *AElement) Href(href String) *AElement {
-	e.attrs["href"] = href
+	e.Attrs["href"] = href
 	return e
 }
 
 // Target sets the target attribute.
 func (e *AElement) Target(target String) *AElement {
-	e.attrs["target"] = target
+	e.Attrs["target"] = target
 	return e
 }
 
 // Download sets the download attribute.
 func (e *AElement) Download(download String) *AElement {
-	e.attrs["download"] = download
+	e.Attrs["download"] = download
 	return e
 }
 
 // Ping sets the ping attribute.
 func (e *AElement) Ping(ping String) *AElement {
-	e.attrs["ping"] = ping
+	e.Attrs["ping"] = ping
 	return e
 }
 
 // Rel sets the rel attribute.
 func (e *AElement) Rel(rel String) *AElement {
-	e.attrs["rel"] = rel
+	e.Attrs["rel"] = rel
 	return e
 }
 
 // HrefLang sets the hreflang attribute.
 func (e *AElement) HrefLang(hrefLang String) *AElement {
-	e.attrs["hreflang"] = hrefLang
+	e.Attrs["hreflang"] = hrefLang
 	return e
 }
 
 // Type sets the type attribute.
 func (e *AElement) Type(_type String) *AElement {
-	e.attrs["type"] = _type
+	e.Attrs["type"] = _type
 	return e
 }
 
 // ReferrerPolicy sets the referrerpolicy attribute.
 func (e *AElement) ReferrerPolicy(referrerPolicy String) *AElement {
-	e.attrs["referrerpolicy"] = referrerPolicy
+	e.Attrs["referrerpolicy"] = referrerPolicy
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *AElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "a", e.attrs, e.children)
+	return encodeElement(encoder, "a", e.Attrs, e.Children)
 }
 
 // A CircleElement is a circle element.
 type CircleElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // Circle returns a new CircleElement.
 func Circle(children ...Element) *CircleElement {
 	return &CircleElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *CircleElement) AppendChildren(children ...Element) *CircleElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *CircleElement) Children(children ...Element) *CircleElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *CircleElement) ID(id String) *CircleElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *CircleElement) TabIndex(tabIndex Int) *CircleElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *CircleElement) Lang(lang String) *CircleElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *CircleElement) Class(class String) *CircleElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *CircleElement) Style(style String) *CircleElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *CircleElement) AlignmentBaseline(alignmentBaseline String) *CircleElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *CircleElement) BaselineShift(baselineShift String) *CircleElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *CircleElement) ClipPath(clipPath String) *CircleElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *CircleElement) ClipRule(clipRule String) *CircleElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *CircleElement) Color(color String) *CircleElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *CircleElement) ColorInterpolation(colorInterpolation String) *CircleElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *CircleElement) ColorInterpolationFilters(colorInterpolationFilters String) *CircleElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *CircleElement) ColorRendering(colorRendering String) *CircleElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *CircleElement) Cursor(cursor String) *CircleElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *CircleElement) Direction(direction String) *CircleElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *CircleElement) Display(display String) *CircleElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *CircleElement) DominantBaseline(dominantBaseline String) *CircleElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *CircleElement) Fill(fill String) *CircleElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *CircleElement) FillOpacity(fillOpacity Float64) *CircleElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *CircleElement) FillRule(fillRule String) *CircleElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *CircleElement) Filter(filter String) *CircleElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *CircleElement) FloodColor(floodColor String) *CircleElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *CircleElement) FloodOpacity(floodOpacity Float64) *CircleElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *CircleElement) FontFamily(fontFamily String) *CircleElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *CircleElement) FontSize(fontSize String) *CircleElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *CircleElement) FontSizeAdjust(fontSizeAdjust String) *CircleElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *CircleElement) FontStretch(fontStretch String) *CircleElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *CircleElement) FontStyle(fontStyle String) *CircleElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *CircleElement) FontVariant(fontVariant String) *CircleElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *CircleElement) FontWeight(fontWeight String) *CircleElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *CircleElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *CircleElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *CircleElement) GlyphOrientationVertical(glyphOrientationVertical String) *CircleElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *CircleElement) ImageRendering(imageRendering String) *CircleElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *CircleElement) LetterSpacing(letterSpacing String) *CircleElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *CircleElement) LightingColor(lightingColor String) *CircleElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *CircleElement) MarkerEnd(markerEnd String) *CircleElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *CircleElement) MarkerMid(markerMid String) *CircleElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *CircleElement) MarkerStart(markerStart String) *CircleElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *CircleElement) Mask(mask String) *CircleElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *CircleElement) Opacity(opacity Float64) *CircleElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *CircleElement) Overflow(overflow String) *CircleElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *CircleElement) PaintOrder(paintOrder String) *CircleElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *CircleElement) PointerEvents(pointerEvents String) *CircleElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *CircleElement) ShapeRendering(shapeRendering String) *CircleElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *CircleElement) StopColor(stopColor String) *CircleElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *CircleElement) StopOpacity(stopOpacity Float64) *CircleElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *CircleElement) Stroke(stroke String) *CircleElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *CircleElement) StrokeDashArray(strokeDashArray String) *CircleElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *CircleElement) StrokeDashOffset(strokeDashOffset Float64) *CircleElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *CircleElement) StrokeLineCap(strokeLineCap String) *CircleElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *CircleElement) StrokeLineJoin(strokeLineJoin String) *CircleElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *CircleElement) StrokeMiterLimit(strokeMiterLimit Float64) *CircleElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *CircleElement) StrokeOpacity(strokeOpacity Float64) *CircleElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *CircleElement) StrokeWidth(strokeWidth Length) *CircleElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *CircleElement) TextAnchor(textAnchor String) *CircleElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *CircleElement) TextDecoration(textDecoration String) *CircleElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *CircleElement) TextOverflow(textOverflow String) *CircleElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *CircleElement) TextRendering(textRendering String) *CircleElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *CircleElement) UnicodeBiDi(UnicodeBiDi String) *CircleElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *CircleElement) VectorEffect(vectorEffect String) *CircleElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *CircleElement) Visibility(visibility String) *CircleElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *CircleElement) WhiteSpace(whiteSpace String) *CircleElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *CircleElement) WordSpacing(wordSpacing String) *CircleElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *CircleElement) WritingMode(writingMode String) *CircleElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // PathLength sets the pathLength attribute.
 func (e *CircleElement) PathLength(pathLength String) *CircleElement {
-	e.attrs["pathLength"] = pathLength
+	e.Attrs["pathLength"] = pathLength
 	return e
 }
 
 // CX sets the cx attribute.
 func (e *CircleElement) CX(cx Length) *CircleElement {
-	e.attrs["cx"] = cx
+	e.Attrs["cx"] = cx
 	return e
 }
 
 // CY sets the cy attribute.
 func (e *CircleElement) CY(cy Length) *CircleElement {
-	e.attrs["cy"] = cy
+	e.Attrs["cy"] = cy
 	return e
 }
 
 // R sets the r attribute.
 func (e *CircleElement) R(r Length) *CircleElement {
-	e.attrs["r"] = r
+	e.Attrs["r"] = r
 	return e
 }
 
 // CXCY sets the cx and cy attributes.
 func (e *CircleElement) CXCY(cx, cy float64, lengthFunc LengthFunc) *CircleElement {
-	e.attrs["cx"] = lengthFunc(cx)
-	e.attrs["cy"] = lengthFunc(cy)
+	e.Attrs["cx"] = lengthFunc(cx)
+	e.Attrs["cy"] = lengthFunc(cy)
 	return e
 }
 
 // CXCYR sets the cx, cy, and r attributes.
 func (e *CircleElement) CXCYR(cx, cy, r float64, lengthFunc LengthFunc) *CircleElement {
-	e.attrs["cx"] = lengthFunc(cx)
-	e.attrs["cy"] = lengthFunc(cy)
-	e.attrs["r"] = lengthFunc(r)
+	e.Attrs["cx"] = lengthFunc(cx)
+	e.Attrs["cy"] = lengthFunc(cy)
+	e.Attrs["r"] = lengthFunc(r)
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *CircleElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "circle", e.attrs, e.children)
+	return encodeElement(encoder, "circle", e.Attrs, e.Children)
 }
 
 // A ClipPathElement is a clipPath element.
 type ClipPathElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // ClipPath returns a new ClipPathElement.
 func ClipPath(children ...Element) *ClipPathElement {
 	return &ClipPathElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *ClipPathElement) AppendChildren(children ...Element) *ClipPathElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *ClipPathElement) Children(children ...Element) *ClipPathElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *ClipPathElement) ID(id String) *ClipPathElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *ClipPathElement) TabIndex(tabIndex Int) *ClipPathElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *ClipPathElement) Lang(lang String) *ClipPathElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *ClipPathElement) Class(class String) *ClipPathElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *ClipPathElement) Style(style String) *ClipPathElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *ClipPathElement) AlignmentBaseline(alignmentBaseline String) *ClipPathElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *ClipPathElement) BaselineShift(baselineShift String) *ClipPathElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *ClipPathElement) ClipPath(clipPath String) *ClipPathElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *ClipPathElement) ClipRule(clipRule String) *ClipPathElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *ClipPathElement) Color(color String) *ClipPathElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *ClipPathElement) ColorInterpolation(colorInterpolation String) *ClipPathElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *ClipPathElement) ColorInterpolationFilters(colorInterpolationFilters String) *ClipPathElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *ClipPathElement) ColorRendering(colorRendering String) *ClipPathElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *ClipPathElement) Cursor(cursor String) *ClipPathElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *ClipPathElement) Direction(direction String) *ClipPathElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *ClipPathElement) Display(display String) *ClipPathElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *ClipPathElement) DominantBaseline(dominantBaseline String) *ClipPathElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *ClipPathElement) Fill(fill String) *ClipPathElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *ClipPathElement) FillOpacity(fillOpacity Float64) *ClipPathElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *ClipPathElement) FillRule(fillRule String) *ClipPathElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *ClipPathElement) Filter(filter String) *ClipPathElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *ClipPathElement) FloodColor(floodColor String) *ClipPathElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *ClipPathElement) FloodOpacity(floodOpacity Float64) *ClipPathElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *ClipPathElement) FontFamily(fontFamily String) *ClipPathElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *ClipPathElement) FontSize(fontSize String) *ClipPathElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *ClipPathElement) FontSizeAdjust(fontSizeAdjust String) *ClipPathElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *ClipPathElement) FontStretch(fontStretch String) *ClipPathElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *ClipPathElement) FontStyle(fontStyle String) *ClipPathElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *ClipPathElement) FontVariant(fontVariant String) *ClipPathElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *ClipPathElement) FontWeight(fontWeight String) *ClipPathElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *ClipPathElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *ClipPathElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *ClipPathElement) GlyphOrientationVertical(glyphOrientationVertical String) *ClipPathElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *ClipPathElement) ImageRendering(imageRendering String) *ClipPathElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *ClipPathElement) LetterSpacing(letterSpacing String) *ClipPathElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *ClipPathElement) LightingColor(lightingColor String) *ClipPathElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *ClipPathElement) MarkerEnd(markerEnd String) *ClipPathElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *ClipPathElement) MarkerMid(markerMid String) *ClipPathElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *ClipPathElement) MarkerStart(markerStart String) *ClipPathElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *ClipPathElement) Mask(mask String) *ClipPathElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *ClipPathElement) Opacity(opacity Float64) *ClipPathElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *ClipPathElement) Overflow(overflow String) *ClipPathElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *ClipPathElement) PaintOrder(paintOrder String) *ClipPathElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *ClipPathElement) PointerEvents(pointerEvents String) *ClipPathElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *ClipPathElement) ShapeRendering(shapeRendering String) *ClipPathElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *ClipPathElement) StopColor(stopColor String) *ClipPathElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *ClipPathElement) StopOpacity(stopOpacity Float64) *ClipPathElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *ClipPathElement) Stroke(stroke String) *ClipPathElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *ClipPathElement) StrokeDashArray(strokeDashArray String) *ClipPathElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *ClipPathElement) StrokeDashOffset(strokeDashOffset Float64) *ClipPathElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *ClipPathElement) StrokeLineCap(strokeLineCap String) *ClipPathElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *ClipPathElement) StrokeLineJoin(strokeLineJoin String) *ClipPathElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *ClipPathElement) StrokeMiterLimit(strokeMiterLimit Float64) *ClipPathElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *ClipPathElement) StrokeOpacity(strokeOpacity Float64) *ClipPathElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *ClipPathElement) StrokeWidth(strokeWidth Length) *ClipPathElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *ClipPathElement) TextAnchor(textAnchor String) *ClipPathElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *ClipPathElement) TextDecoration(textDecoration String) *ClipPathElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *ClipPathElement) TextOverflow(textOverflow String) *ClipPathElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *ClipPathElement) TextRendering(textRendering String) *ClipPathElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *ClipPathElement) UnicodeBiDi(UnicodeBiDi String) *ClipPathElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *ClipPathElement) VectorEffect(vectorEffect String) *ClipPathElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *ClipPathElement) Visibility(visibility String) *ClipPathElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *ClipPathElement) WhiteSpace(whiteSpace String) *ClipPathElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *ClipPathElement) WordSpacing(wordSpacing String) *ClipPathElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *ClipPathElement) WritingMode(writingMode String) *ClipPathElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // ExternalResourcesRequired sets the externalResourcesRequired attribute.
 func (e *ClipPathElement) ExternalResourcesRequired(externalResourcesRequired String) *ClipPathElement {
-	e.attrs["externalResourcesRequired"] = externalResourcesRequired
+	e.Attrs["externalResourcesRequired"] = externalResourcesRequired
 	return e
 }
 
 // Transform sets the transform attribute.
 func (e *ClipPathElement) Transform(transform String) *ClipPathElement {
-	e.attrs["transform"] = transform
+	e.Attrs["transform"] = transform
 	return e
 }
 
 // ClipPathUnits sets the clipPathUnits attribute.
 func (e *ClipPathElement) ClipPathUnits(clipPathUnits String) *ClipPathElement {
-	e.attrs["clipPathUnits"] = clipPathUnits
+	e.Attrs["clipPathUnits"] = clipPathUnits
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *ClipPathElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "clipPath", e.attrs, e.children)
+	return encodeElement(encoder, "clipPath", e.Attrs, e.Children)
 }
 
 // A DefsElement is a defs element.
 type DefsElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // Defs returns a new DefsElement.
 func Defs(children ...Element) *DefsElement {
 	return &DefsElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *DefsElement) AppendChildren(children ...Element) *DefsElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *DefsElement) Children(children ...Element) *DefsElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *DefsElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "defs", e.attrs, e.children)
+	return encodeElement(encoder, "defs", e.Attrs, e.Children)
 }
 
 // A DescElement is a desc element.
 type DescElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // Desc returns a new DescElement.
 func Desc(children ...Element) *DescElement {
 	return &DescElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *DescElement) AppendChildren(children ...Element) *DescElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *DescElement) Children(children ...Element) *DescElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *DescElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "desc", e.attrs, e.children)
+	return encodeElement(encoder, "desc", e.Attrs, e.Children)
 }
 
 // An EllipseElement is an ellipse element.
 type EllipseElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // Ellipse returns a new EllipseElement.
 func Ellipse(children ...Element) *EllipseElement {
 	return &EllipseElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *EllipseElement) AppendChildren(children ...Element) *EllipseElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *EllipseElement) Children(children ...Element) *EllipseElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *EllipseElement) ID(id String) *EllipseElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *EllipseElement) TabIndex(tabIndex Int) *EllipseElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *EllipseElement) Lang(lang String) *EllipseElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *EllipseElement) Class(class String) *EllipseElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *EllipseElement) Style(style String) *EllipseElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *EllipseElement) AlignmentBaseline(alignmentBaseline String) *EllipseElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *EllipseElement) BaselineShift(baselineShift String) *EllipseElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *EllipseElement) ClipPath(clipPath String) *EllipseElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *EllipseElement) ClipRule(clipRule String) *EllipseElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *EllipseElement) Color(color String) *EllipseElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *EllipseElement) ColorInterpolation(colorInterpolation String) *EllipseElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *EllipseElement) ColorInterpolationFilters(colorInterpolationFilters String) *EllipseElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *EllipseElement) ColorRendering(colorRendering String) *EllipseElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *EllipseElement) Cursor(cursor String) *EllipseElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *EllipseElement) Direction(direction String) *EllipseElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *EllipseElement) Display(display String) *EllipseElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *EllipseElement) DominantBaseline(dominantBaseline String) *EllipseElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *EllipseElement) Fill(fill String) *EllipseElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *EllipseElement) FillOpacity(fillOpacity Float64) *EllipseElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *EllipseElement) FillRule(fillRule String) *EllipseElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *EllipseElement) Filter(filter String) *EllipseElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *EllipseElement) FloodColor(floodColor String) *EllipseElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *EllipseElement) FloodOpacity(floodOpacity Float64) *EllipseElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *EllipseElement) FontFamily(fontFamily String) *EllipseElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *EllipseElement) FontSize(fontSize String) *EllipseElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *EllipseElement) FontSizeAdjust(fontSizeAdjust String) *EllipseElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *EllipseElement) FontStretch(fontStretch String) *EllipseElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *EllipseElement) FontStyle(fontStyle String) *EllipseElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *EllipseElement) FontVariant(fontVariant String) *EllipseElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *EllipseElement) FontWeight(fontWeight String) *EllipseElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *EllipseElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *EllipseElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *EllipseElement) GlyphOrientationVertical(glyphOrientationVertical String) *EllipseElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *EllipseElement) ImageRendering(imageRendering String) *EllipseElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *EllipseElement) LetterSpacing(letterSpacing String) *EllipseElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *EllipseElement) LightingColor(lightingColor String) *EllipseElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *EllipseElement) MarkerEnd(markerEnd String) *EllipseElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *EllipseElement) MarkerMid(markerMid String) *EllipseElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *EllipseElement) MarkerStart(markerStart String) *EllipseElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *EllipseElement) Mask(mask String) *EllipseElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *EllipseElement) Opacity(opacity Float64) *EllipseElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *EllipseElement) Overflow(overflow String) *EllipseElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *EllipseElement) PaintOrder(paintOrder String) *EllipseElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *EllipseElement) PointerEvents(pointerEvents String) *EllipseElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *EllipseElement) ShapeRendering(shapeRendering String) *EllipseElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *EllipseElement) StopColor(stopColor String) *EllipseElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *EllipseElement) StopOpacity(stopOpacity Float64) *EllipseElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *EllipseElement) Stroke(stroke String) *EllipseElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *EllipseElement) StrokeDashArray(strokeDashArray String) *EllipseElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *EllipseElement) StrokeDashOffset(strokeDashOffset Float64) *EllipseElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *EllipseElement) StrokeLineCap(strokeLineCap String) *EllipseElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *EllipseElement) StrokeLineJoin(strokeLineJoin String) *EllipseElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *EllipseElement) StrokeMiterLimit(strokeMiterLimit Float64) *EllipseElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *EllipseElement) StrokeOpacity(strokeOpacity Float64) *EllipseElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *EllipseElement) StrokeWidth(strokeWidth Length) *EllipseElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *EllipseElement) TextAnchor(textAnchor String) *EllipseElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *EllipseElement) TextDecoration(textDecoration String) *EllipseElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *EllipseElement) TextOverflow(textOverflow String) *EllipseElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *EllipseElement) TextRendering(textRendering String) *EllipseElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *EllipseElement) UnicodeBiDi(UnicodeBiDi String) *EllipseElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *EllipseElement) VectorEffect(vectorEffect String) *EllipseElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *EllipseElement) Visibility(visibility String) *EllipseElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *EllipseElement) WhiteSpace(whiteSpace String) *EllipseElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *EllipseElement) WordSpacing(wordSpacing String) *EllipseElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *EllipseElement) WritingMode(writingMode String) *EllipseElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // PathLength sets the pathLength attribute.
 func (e *EllipseElement) PathLength(pathLength String) *EllipseElement {
-	e.attrs["pathLength"] = pathLength
+	e.Attrs["pathLength"] = pathLength
 	return e
 }
 
 // CX sets the cx attribute.
 func (e *EllipseElement) CX(cx Length) *EllipseElement {
-	e.attrs["cx"] = cx
+	e.Attrs["cx"] = cx
 	return e
 }
 
 // CY sets the cy attribute.
 func (e *EllipseElement) CY(cy Length) *EllipseElement {
-	e.attrs["cy"] = cy
+	e.Attrs["cy"] = cy
 	return e
 }
 
 // RX sets the rx attribute.
 func (e *EllipseElement) RX(rx Length) *EllipseElement {
-	e.attrs["rx"] = rx
+	e.Attrs["rx"] = rx
 	return e
 }
 
 // RY sets the ry attribute.
 func (e *EllipseElement) RY(ry Length) *EllipseElement {
-	e.attrs["ry"] = ry
+	e.Attrs["ry"] = ry
 	return e
 }
 
 // CXCY sets the cx and cy attributes.
 func (e *EllipseElement) CXCY(cx, cy float64, lengthFunc LengthFunc) *EllipseElement {
-	e.attrs["cx"] = lengthFunc(cx)
-	e.attrs["cy"] = lengthFunc(cy)
+	e.Attrs["cx"] = lengthFunc(cx)
+	e.Attrs["cy"] = lengthFunc(cy)
 	return e
 }
 
 // RXRY sets the rx and ry attributes.
 func (e *EllipseElement) RXRY(rx, ry float64, lengthFunc LengthFunc) *EllipseElement {
-	e.attrs["rx"] = lengthFunc(rx)
-	e.attrs["ry"] = lengthFunc(ry)
+	e.Attrs["rx"] = lengthFunc(rx)
+	e.Attrs["ry"] = lengthFunc(ry)
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *EllipseElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "ellipse", e.attrs, e.children)
+	return encodeElement(encoder, "ellipse", e.Attrs, e.Children)
 }
 
 // A ForeignObjectElement is a foreignObject element.
 type ForeignObjectElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // ForeignObject returns a new ForeignObjectElement.
 func ForeignObject(children ...Element) *ForeignObjectElement {
 	return &ForeignObjectElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *ForeignObjectElement) AppendChildren(children ...Element) *ForeignObjectElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *ForeignObjectElement) Children(children ...Element) *ForeignObjectElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *ForeignObjectElement) ID(id String) *ForeignObjectElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *ForeignObjectElement) TabIndex(tabIndex Int) *ForeignObjectElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *ForeignObjectElement) Lang(lang String) *ForeignObjectElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *ForeignObjectElement) Class(class String) *ForeignObjectElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *ForeignObjectElement) Style(style String) *ForeignObjectElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *ForeignObjectElement) AlignmentBaseline(alignmentBaseline String) *ForeignObjectElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *ForeignObjectElement) BaselineShift(baselineShift String) *ForeignObjectElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *ForeignObjectElement) ClipPath(clipPath String) *ForeignObjectElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *ForeignObjectElement) ClipRule(clipRule String) *ForeignObjectElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *ForeignObjectElement) Color(color String) *ForeignObjectElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *ForeignObjectElement) ColorInterpolation(colorInterpolation String) *ForeignObjectElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *ForeignObjectElement) ColorInterpolationFilters(colorInterpolationFilters String) *ForeignObjectElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *ForeignObjectElement) ColorRendering(colorRendering String) *ForeignObjectElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *ForeignObjectElement) Cursor(cursor String) *ForeignObjectElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *ForeignObjectElement) Direction(direction String) *ForeignObjectElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *ForeignObjectElement) Display(display String) *ForeignObjectElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *ForeignObjectElement) DominantBaseline(dominantBaseline String) *ForeignObjectElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *ForeignObjectElement) Fill(fill String) *ForeignObjectElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *ForeignObjectElement) FillOpacity(fillOpacity Float64) *ForeignObjectElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *ForeignObjectElement) FillRule(fillRule String) *ForeignObjectElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *ForeignObjectElement) Filter(filter String) *ForeignObjectElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *ForeignObjectElement) FloodColor(floodColor String) *ForeignObjectElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *ForeignObjectElement) FloodOpacity(floodOpacity Float64) *ForeignObjectElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *ForeignObjectElement) FontFamily(fontFamily String) *ForeignObjectElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *ForeignObjectElement) FontSize(fontSize String) *ForeignObjectElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *ForeignObjectElement) FontSizeAdjust(fontSizeAdjust String) *ForeignObjectElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *ForeignObjectElement) FontStretch(fontStretch String) *ForeignObjectElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *ForeignObjectElement) FontStyle(fontStyle String) *ForeignObjectElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *ForeignObjectElement) FontVariant(fontVariant String) *ForeignObjectElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *ForeignObjectElement) FontWeight(fontWeight String) *ForeignObjectElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *ForeignObjectElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *ForeignObjectElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *ForeignObjectElement) GlyphOrientationVertical(glyphOrientationVertical String) *ForeignObjectElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *ForeignObjectElement) ImageRendering(imageRendering String) *ForeignObjectElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *ForeignObjectElement) LetterSpacing(letterSpacing String) *ForeignObjectElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *ForeignObjectElement) LightingColor(lightingColor String) *ForeignObjectElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *ForeignObjectElement) MarkerEnd(markerEnd String) *ForeignObjectElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *ForeignObjectElement) MarkerMid(markerMid String) *ForeignObjectElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *ForeignObjectElement) MarkerStart(markerStart String) *ForeignObjectElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *ForeignObjectElement) Mask(mask String) *ForeignObjectElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *ForeignObjectElement) Opacity(opacity Float64) *ForeignObjectElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *ForeignObjectElement) Overflow(overflow String) *ForeignObjectElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *ForeignObjectElement) PaintOrder(paintOrder String) *ForeignObjectElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *ForeignObjectElement) PointerEvents(pointerEvents String) *ForeignObjectElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *ForeignObjectElement) ShapeRendering(shapeRendering String) *ForeignObjectElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *ForeignObjectElement) StopColor(stopColor String) *ForeignObjectElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *ForeignObjectElement) StopOpacity(stopOpacity Float64) *ForeignObjectElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *ForeignObjectElement) Stroke(stroke String) *ForeignObjectElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *ForeignObjectElement) StrokeDashArray(strokeDashArray String) *ForeignObjectElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *ForeignObjectElement) StrokeDashOffset(strokeDashOffset Float64) *ForeignObjectElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *ForeignObjectElement) StrokeLineCap(strokeLineCap String) *ForeignObjectElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *ForeignObjectElement) StrokeLineJoin(strokeLineJoin String) *ForeignObjectElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *ForeignObjectElement) StrokeMiterLimit(strokeMiterLimit Float64) *ForeignObjectElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *ForeignObjectElement) StrokeOpacity(strokeOpacity Float64) *ForeignObjectElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *ForeignObjectElement) StrokeWidth(strokeWidth Length) *ForeignObjectElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *ForeignObjectElement) TextAnchor(textAnchor String) *ForeignObjectElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *ForeignObjectElement) TextDecoration(textDecoration String) *ForeignObjectElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *ForeignObjectElement) TextOverflow(textOverflow String) *ForeignObjectElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *ForeignObjectElement) TextRendering(textRendering String) *ForeignObjectElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *ForeignObjectElement) UnicodeBiDi(UnicodeBiDi String) *ForeignObjectElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *ForeignObjectElement) VectorEffect(vectorEffect String) *ForeignObjectElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *ForeignObjectElement) Visibility(visibility String) *ForeignObjectElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *ForeignObjectElement) WhiteSpace(whiteSpace String) *ForeignObjectElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *ForeignObjectElement) WordSpacing(wordSpacing String) *ForeignObjectElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *ForeignObjectElement) WritingMode(writingMode String) *ForeignObjectElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // RequiredExtensions sets the requiredExtensions attribute.
 func (e *ForeignObjectElement) RequiredExtensions(requiredExtensions String) *ForeignObjectElement {
-	e.attrs["requiredExtensions"] = requiredExtensions
+	e.Attrs["requiredExtensions"] = requiredExtensions
 	return e
 }
 
 // SystemLanguage sets the systemLanguage attribute.
 func (e *ForeignObjectElement) SystemLanguage(systemLanguage String) *ForeignObjectElement {
-	e.attrs["systemLanguage"] = systemLanguage
+	e.Attrs["systemLanguage"] = systemLanguage
 	return e
 }
 
 // Href sets the href attribute.
 func (e *ForeignObjectElement) Href(href String) *ForeignObjectElement {
-	e.attrs["href"] = href
+	e.Attrs["href"] = href
 	return e
 }
 
 // X sets the x attribute.
 func (e *ForeignObjectElement) X(x Length) *ForeignObjectElement {
-	e.attrs["x"] = x
+	e.Attrs["x"] = x
 	return e
 }
 
 // Y sets the y attribute.
 func (e *ForeignObjectElement) Y(y Length) *ForeignObjectElement {
-	e.attrs["y"] = y
+	e.Attrs["y"] = y
 	return e
 }
 
 // Width sets the width attribute.
 func (e *ForeignObjectElement) Width(width Length) *ForeignObjectElement {
-	e.attrs["width"] = width
+	e.Attrs["width"] = width
 	return e
 }
 
 // Height sets the height attribute.
 func (e *ForeignObjectElement) Height(height Length) *ForeignObjectElement {
-	e.attrs["height"] = height
+	e.Attrs["height"] = height
 	return e
 }
 
 // WidthHeight sets the width and height attributes.
 func (e *ForeignObjectElement) WidthHeight(width, height float64, lengthFunc LengthFunc) *ForeignObjectElement {
-	e.attrs["width"] = lengthFunc(width)
-	e.attrs["height"] = lengthFunc(height)
+	e.Attrs["width"] = lengthFunc(width)
+	e.Attrs["height"] = lengthFunc(height)
 	return e
 }
 
 // XY sets the x and y attributes.
 func (e *ForeignObjectElement) XY(x, y float64, lengthFunc LengthFunc) *ForeignObjectElement {
-	e.attrs["x"] = lengthFunc(x)
-	e.attrs["y"] = lengthFunc(y)
+	e.Attrs["x"] = lengthFunc(x)
+	e.Attrs["y"] = lengthFunc(y)
 	return e
 }
 
 // XYWidthHeight sets the x, y, width, and height attributes.
 func (e *ForeignObjectElement) XYWidthHeight(x, y, width, height float64, lengthFunc LengthFunc) *ForeignObjectElement {
-	e.attrs["x"] = lengthFunc(x)
-	e.attrs["y"] = lengthFunc(y)
-	e.attrs["width"] = lengthFunc(width)
-	e.attrs["height"] = lengthFunc(height)
+	e.Attrs["x"] = lengthFunc(x)
+	e.Attrs["y"] = lengthFunc(y)
+	e.Attrs["width"] = lengthFunc(width)
+	e.Attrs["height"] = lengthFunc(height)
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *ForeignObjectElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "foreignObject", e.attrs, e.children)
+	return encodeElement(encoder, "foreignObject", e.Attrs, e.Children)
 }
 
 // A GElement is a g element.
 type GElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // G returns a new GElement.
 func G(children ...Element) *GElement {
 	return &GElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *GElement) AppendChildren(children ...Element) *GElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *GElement) Children(children ...Element) *GElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *GElement) ID(id String) *GElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *GElement) TabIndex(tabIndex Int) *GElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *GElement) Lang(lang String) *GElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *GElement) Class(class String) *GElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *GElement) Style(style String) *GElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *GElement) AlignmentBaseline(alignmentBaseline String) *GElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *GElement) BaselineShift(baselineShift String) *GElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *GElement) ClipPath(clipPath String) *GElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *GElement) ClipRule(clipRule String) *GElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *GElement) Color(color String) *GElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *GElement) ColorInterpolation(colorInterpolation String) *GElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *GElement) ColorInterpolationFilters(colorInterpolationFilters String) *GElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *GElement) ColorRendering(colorRendering String) *GElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *GElement) Cursor(cursor String) *GElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *GElement) Direction(direction String) *GElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *GElement) Display(display String) *GElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *GElement) DominantBaseline(dominantBaseline String) *GElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *GElement) Fill(fill String) *GElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *GElement) FillOpacity(fillOpacity Float64) *GElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *GElement) FillRule(fillRule String) *GElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *GElement) Filter(filter String) *GElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *GElement) FloodColor(floodColor String) *GElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *GElement) FloodOpacity(floodOpacity Float64) *GElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *GElement) FontFamily(fontFamily String) *GElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *GElement) FontSize(fontSize String) *GElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *GElement) FontSizeAdjust(fontSizeAdjust String) *GElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *GElement) FontStretch(fontStretch String) *GElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *GElement) FontStyle(fontStyle String) *GElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *GElement) FontVariant(fontVariant String) *GElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *GElement) FontWeight(fontWeight String) *GElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *GElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *GElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *GElement) GlyphOrientationVertical(glyphOrientationVertical String) *GElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *GElement) ImageRendering(imageRendering String) *GElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *GElement) LetterSpacing(letterSpacing String) *GElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *GElement) LightingColor(lightingColor String) *GElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *GElement) MarkerEnd(markerEnd String) *GElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *GElement) MarkerMid(markerMid String) *GElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *GElement) MarkerStart(markerStart String) *GElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *GElement) Mask(mask String) *GElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *GElement) Opacity(opacity Float64) *GElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *GElement) Overflow(overflow String) *GElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *GElement) PaintOrder(paintOrder String) *GElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *GElement) PointerEvents(pointerEvents String) *GElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *GElement) ShapeRendering(shapeRendering String) *GElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *GElement) StopColor(stopColor String) *GElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *GElement) StopOpacity(stopOpacity Float64) *GElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *GElement) Stroke(stroke String) *GElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *GElement) StrokeDashArray(strokeDashArray String) *GElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *GElement) StrokeDashOffset(strokeDashOffset Float64) *GElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *GElement) StrokeLineCap(strokeLineCap String) *GElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *GElement) StrokeLineJoin(strokeLineJoin String) *GElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *GElement) StrokeMiterLimit(strokeMiterLimit Float64) *GElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *GElement) StrokeOpacity(strokeOpacity Float64) *GElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *GElement) StrokeWidth(strokeWidth Length) *GElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *GElement) TextAnchor(textAnchor String) *GElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *GElement) TextDecoration(textDecoration String) *GElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *GElement) TextOverflow(textOverflow String) *GElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *GElement) TextRendering(textRendering String) *GElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *GElement) UnicodeBiDi(UnicodeBiDi String) *GElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *GElement) VectorEffect(vectorEffect String) *GElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *GElement) Visibility(visibility String) *GElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *GElement) WhiteSpace(whiteSpace String) *GElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *GElement) WordSpacing(wordSpacing String) *GElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *GElement) WritingMode(writingMode String) *GElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *GElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "g", e.attrs, e.children)
+	return encodeElement(encoder, "g", e.Attrs, e.Children)
 }
 
 // A ImageElement is a image element.
 type ImageElement struct {
-	attrs map[string]AttrValue
+	Attrs map[string]AttrValue
 }
 
 // Image returns a new ImageElement.
 func Image() *ImageElement {
 	return &ImageElement{
-		attrs: map[string]AttrValue{},
+		Attrs: map[string]AttrValue{},
 	}
 }
 
 // ID sets the id attribute.
 func (e *ImageElement) ID(id String) *ImageElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *ImageElement) TabIndex(tabIndex Int) *ImageElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *ImageElement) Lang(lang String) *ImageElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *ImageElement) Class(class String) *ImageElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *ImageElement) Style(style String) *ImageElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *ImageElement) AlignmentBaseline(alignmentBaseline String) *ImageElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *ImageElement) BaselineShift(baselineShift String) *ImageElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *ImageElement) ClipPath(clipPath String) *ImageElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *ImageElement) ClipRule(clipRule String) *ImageElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *ImageElement) Color(color String) *ImageElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *ImageElement) ColorInterpolation(colorInterpolation String) *ImageElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *ImageElement) ColorInterpolationFilters(colorInterpolationFilters String) *ImageElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *ImageElement) ColorRendering(colorRendering String) *ImageElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *ImageElement) Cursor(cursor String) *ImageElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *ImageElement) Direction(direction String) *ImageElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *ImageElement) Display(display String) *ImageElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *ImageElement) DominantBaseline(dominantBaseline String) *ImageElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *ImageElement) Fill(fill String) *ImageElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *ImageElement) FillOpacity(fillOpacity Float64) *ImageElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *ImageElement) FillRule(fillRule String) *ImageElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *ImageElement) Filter(filter String) *ImageElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *ImageElement) FloodColor(floodColor String) *ImageElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *ImageElement) FloodOpacity(floodOpacity Float64) *ImageElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *ImageElement) FontFamily(fontFamily String) *ImageElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *ImageElement) FontSize(fontSize String) *ImageElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *ImageElement) FontSizeAdjust(fontSizeAdjust String) *ImageElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *ImageElement) FontStretch(fontStretch String) *ImageElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *ImageElement) FontStyle(fontStyle String) *ImageElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *ImageElement) FontVariant(fontVariant String) *ImageElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *ImageElement) FontWeight(fontWeight String) *ImageElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *ImageElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *ImageElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *ImageElement) GlyphOrientationVertical(glyphOrientationVertical String) *ImageElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *ImageElement) ImageRendering(imageRendering String) *ImageElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *ImageElement) LetterSpacing(letterSpacing String) *ImageElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *ImageElement) LightingColor(lightingColor String) *ImageElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *ImageElement) MarkerEnd(markerEnd String) *ImageElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *ImageElement) MarkerMid(markerMid String) *ImageElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *ImageElement) MarkerStart(markerStart String) *ImageElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *ImageElement) Mask(mask String) *ImageElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *ImageElement) Opacity(opacity Float64) *ImageElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *ImageElement) Overflow(overflow String) *ImageElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *ImageElement) PaintOrder(paintOrder String) *ImageElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *ImageElement) PointerEvents(pointerEvents String) *ImageElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *ImageElement) ShapeRendering(shapeRendering String) *ImageElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *ImageElement) StopColor(stopColor String) *ImageElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *ImageElement) StopOpacity(stopOpacity Float64) *ImageElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *ImageElement) Stroke(stroke String) *ImageElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *ImageElement) StrokeDashArray(strokeDashArray String) *ImageElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *ImageElement) StrokeDashOffset(strokeDashOffset Float64) *ImageElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *ImageElement) StrokeLineCap(strokeLineCap String) *ImageElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *ImageElement) StrokeLineJoin(strokeLineJoin String) *ImageElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *ImageElement) StrokeMiterLimit(strokeMiterLimit Float64) *ImageElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *ImageElement) StrokeOpacity(strokeOpacity Float64) *ImageElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *ImageElement) StrokeWidth(strokeWidth Length) *ImageElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *ImageElement) TextAnchor(textAnchor String) *ImageElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *ImageElement) TextDecoration(textDecoration String) *ImageElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *ImageElement) TextOverflow(textOverflow String) *ImageElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *ImageElement) TextRendering(textRendering String) *ImageElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *ImageElement) UnicodeBiDi(UnicodeBiDi String) *ImageElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *ImageElement) VectorEffect(vectorEffect String) *ImageElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *ImageElement) Visibility(visibility String) *ImageElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *ImageElement) WhiteSpace(whiteSpace String) *ImageElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *ImageElement) WordSpacing(wordSpacing String) *ImageElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *ImageElement) WritingMode(writingMode String) *ImageElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // PreserveAspectRatio sets the preserveAspectRatio attribute.
 func (e *ImageElement) PreserveAspectRatio(preserveAspectRatio String) *ImageElement {
-	e.attrs["preserveAspectRatio"] = preserveAspectRatio
+	e.Attrs["preserveAspectRatio"] = preserveAspectRatio
 	return e
 }
 
 // Href sets the href attribute.
 func (e *ImageElement) Href(href String) *ImageElement {
-	e.attrs["href"] = href
+	e.Attrs["href"] = href
 	return e
 }
 
 // CrossOrigin sets the crossorigin attribute.
 func (e *ImageElement) CrossOrigin(crossOrigin String) *ImageElement {
-	e.attrs["crossorigin"] = crossOrigin
+	e.Attrs["crossorigin"] = crossOrigin
 	return e
 }
 
 // X sets the x attribute.
 func (e *ImageElement) X(x Length) *ImageElement {
-	e.attrs["x"] = x
+	e.Attrs["x"] = x
 	return e
 }
 
 // Y sets the y attribute.
 func (e *ImageElement) Y(y Length) *ImageElement {
-	e.attrs["y"] = y
+	e.Attrs["y"] = y
 	return e
 }
 
 // Width sets the width attribute.
 func (e *ImageElement) Width(width Length) *ImageElement {
-	e.attrs["width"] = width
+	e.Attrs["width"] = width
 	return e
 }
 
 // Height sets the height attribute.
 func (e *ImageElement) Height(height Length) *ImageElement {
-	e.attrs["height"] = height
+	e.Attrs["height"] = height
 	return e
 }
 
 // WidthHeight sets the width and height attributes.
 func (e *ImageElement) WidthHeight(width, height float64, lengthFunc LengthFunc) *ImageElement {
-	e.attrs["width"] = lengthFunc(width)
-	e.attrs["height"] = lengthFunc(height)
+	e.Attrs["width"] = lengthFunc(width)
+	e.Attrs["height"] = lengthFunc(height)
 	return e
 }
 
 // XY sets the x and y attributes.
 func (e *ImageElement) XY(x, y float64, lengthFunc LengthFunc) *ImageElement {
-	e.attrs["x"] = lengthFunc(x)
-	e.attrs["y"] = lengthFunc(y)
+	e.Attrs["x"] = lengthFunc(x)
+	e.Attrs["y"] = lengthFunc(y)
 	return e
 }
 
 // XYWidthHeight sets the x, y, width, and height attributes.
 func (e *ImageElement) XYWidthHeight(x, y, width, height float64, lengthFunc LengthFunc) *ImageElement {
-	e.attrs["x"] = lengthFunc(x)
-	e.attrs["y"] = lengthFunc(y)
-	e.attrs["width"] = lengthFunc(width)
-	e.attrs["height"] = lengthFunc(height)
+	e.Attrs["x"] = lengthFunc(x)
+	e.Attrs["y"] = lengthFunc(y)
+	e.Attrs["width"] = lengthFunc(width)
+	e.Attrs["height"] = lengthFunc(height)
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *ImageElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "image", e.attrs, nil)
+	return encodeElement(encoder, "image", e.Attrs, nil)
 }
 
 // A LineElement is a line element.
 type LineElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // Line returns a new LineElement.
 func Line(children ...Element) *LineElement {
 	return &LineElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *LineElement) AppendChildren(children ...Element) *LineElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *LineElement) Children(children ...Element) *LineElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *LineElement) ID(id String) *LineElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *LineElement) TabIndex(tabIndex Int) *LineElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *LineElement) Lang(lang String) *LineElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *LineElement) Class(class String) *LineElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *LineElement) Style(style String) *LineElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *LineElement) AlignmentBaseline(alignmentBaseline String) *LineElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *LineElement) BaselineShift(baselineShift String) *LineElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *LineElement) ClipPath(clipPath String) *LineElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *LineElement) ClipRule(clipRule String) *LineElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *LineElement) Color(color String) *LineElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *LineElement) ColorInterpolation(colorInterpolation String) *LineElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *LineElement) ColorInterpolationFilters(colorInterpolationFilters String) *LineElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *LineElement) ColorRendering(colorRendering String) *LineElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *LineElement) Cursor(cursor String) *LineElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *LineElement) Direction(direction String) *LineElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *LineElement) Display(display String) *LineElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *LineElement) DominantBaseline(dominantBaseline String) *LineElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *LineElement) Fill(fill String) *LineElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *LineElement) FillOpacity(fillOpacity Float64) *LineElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *LineElement) FillRule(fillRule String) *LineElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *LineElement) Filter(filter String) *LineElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *LineElement) FloodColor(floodColor String) *LineElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *LineElement) FloodOpacity(floodOpacity Float64) *LineElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *LineElement) FontFamily(fontFamily String) *LineElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *LineElement) FontSize(fontSize String) *LineElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *LineElement) FontSizeAdjust(fontSizeAdjust String) *LineElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *LineElement) FontStretch(fontStretch String) *LineElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *LineElement) FontStyle(fontStyle String) *LineElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *LineElement) FontVariant(fontVariant String) *LineElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *LineElement) FontWeight(fontWeight String) *LineElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *LineElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *LineElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *LineElement) GlyphOrientationVertical(glyphOrientationVertical String) *LineElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *LineElement) ImageRendering(imageRendering String) *LineElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *LineElement) LetterSpacing(letterSpacing String) *LineElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *LineElement) LightingColor(lightingColor String) *LineElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *LineElement) MarkerEnd(markerEnd String) *LineElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *LineElement) MarkerMid(markerMid String) *LineElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *LineElement) MarkerStart(markerStart String) *LineElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *LineElement) Mask(mask String) *LineElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *LineElement) Opacity(opacity Float64) *LineElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *LineElement) Overflow(overflow String) *LineElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *LineElement) PaintOrder(paintOrder String) *LineElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *LineElement) PointerEvents(pointerEvents String) *LineElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *LineElement) ShapeRendering(shapeRendering String) *LineElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *LineElement) StopColor(stopColor String) *LineElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *LineElement) StopOpacity(stopOpacity Float64) *LineElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *LineElement) Stroke(stroke String) *LineElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *LineElement) StrokeDashArray(strokeDashArray String) *LineElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *LineElement) StrokeDashOffset(strokeDashOffset Float64) *LineElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *LineElement) StrokeLineCap(strokeLineCap String) *LineElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *LineElement) StrokeLineJoin(strokeLineJoin String) *LineElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *LineElement) StrokeMiterLimit(strokeMiterLimit Float64) *LineElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *LineElement) StrokeOpacity(strokeOpacity Float64) *LineElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *LineElement) StrokeWidth(strokeWidth Length) *LineElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *LineElement) TextAnchor(textAnchor String) *LineElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *LineElement) TextDecoration(textDecoration String) *LineElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *LineElement) TextOverflow(textOverflow String) *LineElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *LineElement) TextRendering(textRendering String) *LineElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *LineElement) UnicodeBiDi(UnicodeBiDi String) *LineElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *LineElement) VectorEffect(vectorEffect String) *LineElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *LineElement) Visibility(visibility String) *LineElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *LineElement) WhiteSpace(whiteSpace String) *LineElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *LineElement) WordSpacing(wordSpacing String) *LineElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *LineElement) WritingMode(writingMode String) *LineElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // PathLength sets the pathLength attribute.
 func (e *LineElement) PathLength(pathLength String) *LineElement {
-	e.attrs["pathLength"] = pathLength
+	e.Attrs["pathLength"] = pathLength
 	return e
 }
 
 // X1 sets the x1 attribute.
 func (e *LineElement) X1(x1 String) *LineElement {
-	e.attrs["x1"] = x1
+	e.Attrs["x1"] = x1
 	return e
 }
 
 // Y1 sets the y1 attribute.
 func (e *LineElement) Y1(y1 String) *LineElement {
-	e.attrs["y1"] = y1
+	e.Attrs["y1"] = y1
 	return e
 }
 
 // X2 sets the x2 attribute.
 func (e *LineElement) X2(x2 String) *LineElement {
-	e.attrs["x2"] = x2
+	e.Attrs["x2"] = x2
 	return e
 }
 
 // Y2 sets the y2 attribute.
 func (e *LineElement) Y2(y2 String) *LineElement {
-	e.attrs["y2"] = y2
+	e.Attrs["y2"] = y2
 	return e
 }
 
 // X1Y1X2Y2 sets the x1, y1, x2, and y2 attributes.
 func (e *LineElement) X1Y1X2Y2(x1, y1, x2, y2 float64) *LineElement {
-	e.attrs["x1"] = Float64(x1)
-	e.attrs["y1"] = Float64(y1)
-	e.attrs["x2"] = Float64(x2)
-	e.attrs["y2"] = Float64(y2)
+	e.Attrs["x1"] = Float64(x1)
+	e.Attrs["y1"] = Float64(y1)
+	e.Attrs["x2"] = Float64(x2)
+	e.Attrs["y2"] = Float64(y2)
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *LineElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "line", e.attrs, e.children)
+	return encodeElement(encoder, "line", e.Attrs, e.Children)
 }
 
 // A MarkerElement is a marker element.
 type MarkerElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // Marker returns a new MarkerElement.
 func Marker(children ...Element) *MarkerElement {
 	return &MarkerElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *MarkerElement) AppendChildren(children ...Element) *MarkerElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *MarkerElement) Children(children ...Element) *MarkerElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *MarkerElement) ID(id String) *MarkerElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *MarkerElement) TabIndex(tabIndex Int) *MarkerElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *MarkerElement) Lang(lang String) *MarkerElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *MarkerElement) Class(class String) *MarkerElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *MarkerElement) Style(style String) *MarkerElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *MarkerElement) AlignmentBaseline(alignmentBaseline String) *MarkerElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *MarkerElement) BaselineShift(baselineShift String) *MarkerElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *MarkerElement) ClipPath(clipPath String) *MarkerElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *MarkerElement) ClipRule(clipRule String) *MarkerElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *MarkerElement) Color(color String) *MarkerElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *MarkerElement) ColorInterpolation(colorInterpolation String) *MarkerElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *MarkerElement) ColorInterpolationFilters(colorInterpolationFilters String) *MarkerElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *MarkerElement) ColorRendering(colorRendering String) *MarkerElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *MarkerElement) Cursor(cursor String) *MarkerElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *MarkerElement) Direction(direction String) *MarkerElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *MarkerElement) Display(display String) *MarkerElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *MarkerElement) DominantBaseline(dominantBaseline String) *MarkerElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *MarkerElement) Fill(fill String) *MarkerElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *MarkerElement) FillOpacity(fillOpacity Float64) *MarkerElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *MarkerElement) FillRule(fillRule String) *MarkerElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *MarkerElement) Filter(filter String) *MarkerElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *MarkerElement) FloodColor(floodColor String) *MarkerElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *MarkerElement) FloodOpacity(floodOpacity Float64) *MarkerElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *MarkerElement) FontFamily(fontFamily String) *MarkerElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *MarkerElement) FontSize(fontSize String) *MarkerElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *MarkerElement) FontSizeAdjust(fontSizeAdjust String) *MarkerElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *MarkerElement) FontStretch(fontStretch String) *MarkerElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *MarkerElement) FontStyle(fontStyle String) *MarkerElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *MarkerElement) FontVariant(fontVariant String) *MarkerElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *MarkerElement) FontWeight(fontWeight String) *MarkerElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *MarkerElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *MarkerElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *MarkerElement) GlyphOrientationVertical(glyphOrientationVertical String) *MarkerElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *MarkerElement) ImageRendering(imageRendering String) *MarkerElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *MarkerElement) LetterSpacing(letterSpacing String) *MarkerElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *MarkerElement) LightingColor(lightingColor String) *MarkerElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *MarkerElement) MarkerEnd(markerEnd String) *MarkerElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *MarkerElement) MarkerMid(markerMid String) *MarkerElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *MarkerElement) MarkerStart(markerStart String) *MarkerElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *MarkerElement) Mask(mask String) *MarkerElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *MarkerElement) Opacity(opacity Float64) *MarkerElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *MarkerElement) Overflow(overflow String) *MarkerElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *MarkerElement) PaintOrder(paintOrder String) *MarkerElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *MarkerElement) PointerEvents(pointerEvents String) *MarkerElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *MarkerElement) ShapeRendering(shapeRendering String) *MarkerElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *MarkerElement) StopColor(stopColor String) *MarkerElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *MarkerElement) StopOpacity(stopOpacity Float64) *MarkerElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *MarkerElement) Stroke(stroke String) *MarkerElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *MarkerElement) StrokeDashArray(strokeDashArray String) *MarkerElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *MarkerElement) StrokeDashOffset(strokeDashOffset Float64) *MarkerElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *MarkerElement) StrokeLineCap(strokeLineCap String) *MarkerElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *MarkerElement) StrokeLineJoin(strokeLineJoin String) *MarkerElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *MarkerElement) StrokeMiterLimit(strokeMiterLimit Float64) *MarkerElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *MarkerElement) StrokeOpacity(strokeOpacity Float64) *MarkerElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *MarkerElement) StrokeWidth(strokeWidth Length) *MarkerElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *MarkerElement) TextAnchor(textAnchor String) *MarkerElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *MarkerElement) TextDecoration(textDecoration String) *MarkerElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *MarkerElement) TextOverflow(textOverflow String) *MarkerElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *MarkerElement) TextRendering(textRendering String) *MarkerElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *MarkerElement) UnicodeBiDi(UnicodeBiDi String) *MarkerElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *MarkerElement) VectorEffect(vectorEffect String) *MarkerElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *MarkerElement) Visibility(visibility String) *MarkerElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *MarkerElement) WhiteSpace(whiteSpace String) *MarkerElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *MarkerElement) WordSpacing(wordSpacing String) *MarkerElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *MarkerElement) WritingMode(writingMode String) *MarkerElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // ViewBox sets the viewBox attribute.
 func (e *MarkerElement) ViewBox(minX, minY, width, height float64) *MarkerElement {
-	e.attrs["viewBox"] = ViewBox{MinX: minX, MinY: minY, Width: width, Height: height}
+	e.Attrs["viewBox"] = ViewBox{MinX: minX, MinY: minY, Width: width, Height: height}
 	return e
 }
 
 // PreserveAspectRatio sets the preserveAspectRatio attribute.
 func (e *MarkerElement) PreserveAspectRatio(preserveAspectRatio String) *MarkerElement {
-	e.attrs["preserveAspectRatio"] = preserveAspectRatio
+	e.Attrs["preserveAspectRatio"] = preserveAspectRatio
 	return e
 }
 
 // RefX sets the refX attribute.
 func (e *MarkerElement) RefX(refX Float64) *MarkerElement {
-	e.attrs["refX"] = refX
+	e.Attrs["refX"] = refX
 	return e
 }
 
 // RefY sets the refY attribute.
 func (e *MarkerElement) RefY(refY Float64) *MarkerElement {
-	e.attrs["refY"] = refY
+	e.Attrs["refY"] = refY
 	return e
 }
 
 // MarkerUnits sets the markerUnits attribute.
 func (e *MarkerElement) MarkerUnits(markerUnits String) *MarkerElement {
-	e.attrs["markerUnits"] = markerUnits
+	e.Attrs["markerUnits"] = markerUnits
 	return e
 }
 
 // MarkerWidth sets the markerWidth attribute.
 func (e *MarkerElement) MarkerWidth(markerWidth Float64) *MarkerElement {
-	e.attrs["markerWidth"] = markerWidth
+	e.Attrs["markerWidth"] = markerWidth
 	return e
 }
 
 // MarkerHeight sets the markerHeight attribute.
 func (e *MarkerElement) MarkerHeight(markerHeight Float64) *MarkerElement {
-	e.attrs["markerHeight"] = markerHeight
+	e.Attrs["markerHeight"] = markerHeight
 	return e
 }
 
 // Orient sets the orient attribute.
 func (e *MarkerElement) Orient(orient String) *MarkerElement {
-	e.attrs["orient"] = orient
+	e.Attrs["orient"] = orient
 	return e
 }
 
 // RefXY sets the refX and refY attributes.
 func (e *MarkerElement) RefXY(refX, refY float64) *MarkerElement {
-	e.attrs["refX"] = Float64(refX)
-	e.attrs["refY"] = Float64(refY)
+	e.Attrs["refX"] = Float64(refX)
+	e.Attrs["refY"] = Float64(refY)
 	return e
 }
 
 // MarkerWidthHeight sets the markerWidth and markerHeight attributes.
 func (e *MarkerElement) MarkerWidthHeight(markerWidth, markerHeight float64) *MarkerElement {
-	e.attrs["markerWidth"] = Float64(markerWidth)
-	e.attrs["markerHeight"] = Float64(markerHeight)
+	e.Attrs["markerWidth"] = Float64(markerWidth)
+	e.Attrs["markerHeight"] = Float64(markerHeight)
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *MarkerElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "marker", e.attrs, e.children)
+	return encodeElement(encoder, "marker", e.Attrs, e.Children)
 }
 
 // A MaskElement is a mask element.
 type MaskElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // Mask returns a new MaskElement.
 func Mask(children ...Element) *MaskElement {
 	return &MaskElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *MaskElement) AppendChildren(children ...Element) *MaskElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *MaskElement) Children(children ...Element) *MaskElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *MaskElement) ID(id String) *MaskElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *MaskElement) TabIndex(tabIndex Int) *MaskElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *MaskElement) Lang(lang String) *MaskElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *MaskElement) Class(class String) *MaskElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *MaskElement) Style(style String) *MaskElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *MaskElement) AlignmentBaseline(alignmentBaseline String) *MaskElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *MaskElement) BaselineShift(baselineShift String) *MaskElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *MaskElement) ClipPath(clipPath String) *MaskElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *MaskElement) ClipRule(clipRule String) *MaskElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *MaskElement) Color(color String) *MaskElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *MaskElement) ColorInterpolation(colorInterpolation String) *MaskElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *MaskElement) ColorInterpolationFilters(colorInterpolationFilters String) *MaskElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *MaskElement) ColorRendering(colorRendering String) *MaskElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *MaskElement) Cursor(cursor String) *MaskElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *MaskElement) Direction(direction String) *MaskElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *MaskElement) Display(display String) *MaskElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *MaskElement) DominantBaseline(dominantBaseline String) *MaskElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *MaskElement) Fill(fill String) *MaskElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *MaskElement) FillOpacity(fillOpacity Float64) *MaskElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *MaskElement) FillRule(fillRule String) *MaskElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *MaskElement) Filter(filter String) *MaskElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *MaskElement) FloodColor(floodColor String) *MaskElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *MaskElement) FloodOpacity(floodOpacity Float64) *MaskElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *MaskElement) FontFamily(fontFamily String) *MaskElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *MaskElement) FontSize(fontSize String) *MaskElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *MaskElement) FontSizeAdjust(fontSizeAdjust String) *MaskElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *MaskElement) FontStretch(fontStretch String) *MaskElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *MaskElement) FontStyle(fontStyle String) *MaskElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *MaskElement) FontVariant(fontVariant String) *MaskElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *MaskElement) FontWeight(fontWeight String) *MaskElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *MaskElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *MaskElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *MaskElement) GlyphOrientationVertical(glyphOrientationVertical String) *MaskElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *MaskElement) ImageRendering(imageRendering String) *MaskElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *MaskElement) LetterSpacing(letterSpacing String) *MaskElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *MaskElement) LightingColor(lightingColor String) *MaskElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *MaskElement) MarkerEnd(markerEnd String) *MaskElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *MaskElement) MarkerMid(markerMid String) *MaskElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *MaskElement) MarkerStart(markerStart String) *MaskElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *MaskElement) Mask(mask String) *MaskElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *MaskElement) Opacity(opacity Float64) *MaskElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *MaskElement) Overflow(overflow String) *MaskElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *MaskElement) PaintOrder(paintOrder String) *MaskElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *MaskElement) PointerEvents(pointerEvents String) *MaskElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *MaskElement) ShapeRendering(shapeRendering String) *MaskElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *MaskElement) StopColor(stopColor String) *MaskElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *MaskElement) StopOpacity(stopOpacity Float64) *MaskElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *MaskElement) Stroke(stroke String) *MaskElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *MaskElement) StrokeDashArray(strokeDashArray String) *MaskElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *MaskElement) StrokeDashOffset(strokeDashOffset Float64) *MaskElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *MaskElement) StrokeLineCap(strokeLineCap String) *MaskElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *MaskElement) StrokeLineJoin(strokeLineJoin String) *MaskElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *MaskElement) StrokeMiterLimit(strokeMiterLimit Float64) *MaskElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *MaskElement) StrokeOpacity(strokeOpacity Float64) *MaskElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *MaskElement) StrokeWidth(strokeWidth Length) *MaskElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *MaskElement) TextAnchor(textAnchor String) *MaskElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *MaskElement) TextDecoration(textDecoration String) *MaskElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *MaskElement) TextOverflow(textOverflow String) *MaskElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *MaskElement) TextRendering(textRendering String) *MaskElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *MaskElement) UnicodeBiDi(UnicodeBiDi String) *MaskElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *MaskElement) VectorEffect(vectorEffect String) *MaskElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *MaskElement) Visibility(visibility String) *MaskElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *MaskElement) WhiteSpace(whiteSpace String) *MaskElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *MaskElement) WordSpacing(wordSpacing String) *MaskElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *MaskElement) WritingMode(writingMode String) *MaskElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // MaskUnits sets the maskUnits attribute.
 func (e *MaskElement) MaskUnits(maskUnits String) *MaskElement {
-	e.attrs["maskUnits"] = maskUnits
+	e.Attrs["maskUnits"] = maskUnits
 	return e
 }
 
 // MaskContentUnits sets the maskContentUnits attribute.
 func (e *MaskElement) MaskContentUnits(maskContentUnits String) *MaskElement {
-	e.attrs["maskContentUnits"] = maskContentUnits
+	e.Attrs["maskContentUnits"] = maskContentUnits
 	return e
 }
 
 // X sets the x attribute.
 func (e *MaskElement) X(x Length) *MaskElement {
-	e.attrs["x"] = x
+	e.Attrs["x"] = x
 	return e
 }
 
 // Y sets the y attribute.
 func (e *MaskElement) Y(y Length) *MaskElement {
-	e.attrs["y"] = y
+	e.Attrs["y"] = y
 	return e
 }
 
 // Width sets the width attribute.
 func (e *MaskElement) Width(width Length) *MaskElement {
-	e.attrs["width"] = width
+	e.Attrs["width"] = width
 	return e
 }
 
 // Height sets the height attribute.
 func (e *MaskElement) Height(height Length) *MaskElement {
-	e.attrs["height"] = height
+	e.Attrs["height"] = height
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *MaskElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "mask", e.attrs, e.children)
+	return encodeElement(encoder, "mask", e.Attrs, e.Children)
 }
 
 // A PathElement is a path element.
 type PathElement struct {
-	attrs map[string]AttrValue
+	Attrs map[string]AttrValue
 }
 
 // Path returns a new PathElement.
 func Path() *PathElement {
 	return &PathElement{
-		attrs: map[string]AttrValue{},
+		Attrs: map[string]AttrValue{},
 	}
 }
 
 // ID sets the id attribute.
 func (e *PathElement) ID(id String) *PathElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *PathElement) TabIndex(tabIndex Int) *PathElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *PathElement) Lang(lang String) *PathElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *PathElement) Class(class String) *PathElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *PathElement) Style(style String) *PathElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *PathElement) AlignmentBaseline(alignmentBaseline String) *PathElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *PathElement) BaselineShift(baselineShift String) *PathElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *PathElement) ClipPath(clipPath String) *PathElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *PathElement) ClipRule(clipRule String) *PathElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *PathElement) Color(color String) *PathElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *PathElement) ColorInterpolation(colorInterpolation String) *PathElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *PathElement) ColorInterpolationFilters(colorInterpolationFilters String) *PathElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *PathElement) ColorRendering(colorRendering String) *PathElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *PathElement) Cursor(cursor String) *PathElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *PathElement) Direction(direction String) *PathElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *PathElement) Display(display String) *PathElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *PathElement) DominantBaseline(dominantBaseline String) *PathElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *PathElement) Fill(fill String) *PathElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *PathElement) FillOpacity(fillOpacity Float64) *PathElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *PathElement) FillRule(fillRule String) *PathElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *PathElement) Filter(filter String) *PathElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *PathElement) FloodColor(floodColor String) *PathElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *PathElement) FloodOpacity(floodOpacity Float64) *PathElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *PathElement) FontFamily(fontFamily String) *PathElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *PathElement) FontSize(fontSize String) *PathElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *PathElement) FontSizeAdjust(fontSizeAdjust String) *PathElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *PathElement) FontStretch(fontStretch String) *PathElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *PathElement) FontStyle(fontStyle String) *PathElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *PathElement) FontVariant(fontVariant String) *PathElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *PathElement) FontWeight(fontWeight String) *PathElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *PathElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *PathElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *PathElement) GlyphOrientationVertical(glyphOrientationVertical String) *PathElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *PathElement) ImageRendering(imageRendering String) *PathElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *PathElement) LetterSpacing(letterSpacing String) *PathElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *PathElement) LightingColor(lightingColor String) *PathElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *PathElement) MarkerEnd(markerEnd String) *PathElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *PathElement) MarkerMid(markerMid String) *PathElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *PathElement) MarkerStart(markerStart String) *PathElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *PathElement) Mask(mask String) *PathElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *PathElement) Opacity(opacity Float64) *PathElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *PathElement) Overflow(overflow String) *PathElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *PathElement) PaintOrder(paintOrder String) *PathElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *PathElement) PointerEvents(pointerEvents String) *PathElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *PathElement) ShapeRendering(shapeRendering String) *PathElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *PathElement) StopColor(stopColor String) *PathElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *PathElement) StopOpacity(stopOpacity Float64) *PathElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *PathElement) Stroke(stroke String) *PathElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *PathElement) StrokeDashArray(strokeDashArray String) *PathElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *PathElement) StrokeDashOffset(strokeDashOffset Float64) *PathElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *PathElement) StrokeLineCap(strokeLineCap String) *PathElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *PathElement) StrokeLineJoin(strokeLineJoin String) *PathElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *PathElement) StrokeMiterLimit(strokeMiterLimit Float64) *PathElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *PathElement) StrokeOpacity(strokeOpacity Float64) *PathElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *PathElement) StrokeWidth(strokeWidth Length) *PathElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *PathElement) TextAnchor(textAnchor String) *PathElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *PathElement) TextDecoration(textDecoration String) *PathElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *PathElement) TextOverflow(textOverflow String) *PathElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *PathElement) TextRendering(textRendering String) *PathElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *PathElement) UnicodeBiDi(UnicodeBiDi String) *PathElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *PathElement) VectorEffect(vectorEffect String) *PathElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *PathElement) Visibility(visibility String) *PathElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *PathElement) WhiteSpace(whiteSpace String) *PathElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *PathElement) WordSpacing(wordSpacing String) *PathElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *PathElement) WritingMode(writingMode String) *PathElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // D sets the d attribute.
 func (e *PathElement) D(d AttrValue) *PathElement {
-	e.attrs["d"] = d
+	e.Attrs["d"] = d
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *PathElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "path", e.attrs, nil)
+	return encodeElement(encoder, "path", e.Attrs, nil)
 }
 
 // A PatternElement is a pattern element.
 type PatternElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // Pattern returns a new PatternElement.
 func Pattern(children ...Element) *PatternElement {
 	return &PatternElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *PatternElement) AppendChildren(children ...Element) *PatternElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *PatternElement) Children(children ...Element) *PatternElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *PatternElement) ID(id String) *PatternElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *PatternElement) TabIndex(tabIndex Int) *PatternElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *PatternElement) Lang(lang String) *PatternElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *PatternElement) Class(class String) *PatternElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *PatternElement) Style(style String) *PatternElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *PatternElement) AlignmentBaseline(alignmentBaseline String) *PatternElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *PatternElement) BaselineShift(baselineShift String) *PatternElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *PatternElement) ClipPath(clipPath String) *PatternElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *PatternElement) ClipRule(clipRule String) *PatternElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *PatternElement) Color(color String) *PatternElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *PatternElement) ColorInterpolation(colorInterpolation String) *PatternElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *PatternElement) ColorInterpolationFilters(colorInterpolationFilters String) *PatternElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *PatternElement) ColorRendering(colorRendering String) *PatternElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *PatternElement) Cursor(cursor String) *PatternElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *PatternElement) Direction(direction String) *PatternElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *PatternElement) Display(display String) *PatternElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *PatternElement) DominantBaseline(dominantBaseline String) *PatternElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *PatternElement) Fill(fill String) *PatternElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *PatternElement) FillOpacity(fillOpacity Float64) *PatternElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *PatternElement) FillRule(fillRule String) *PatternElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *PatternElement) Filter(filter String) *PatternElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *PatternElement) FloodColor(floodColor String) *PatternElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *PatternElement) FloodOpacity(floodOpacity Float64) *PatternElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *PatternElement) FontFamily(fontFamily String) *PatternElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *PatternElement) FontSize(fontSize String) *PatternElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *PatternElement) FontSizeAdjust(fontSizeAdjust String) *PatternElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *PatternElement) FontStretch(fontStretch String) *PatternElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *PatternElement) FontStyle(fontStyle String) *PatternElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *PatternElement) FontVariant(fontVariant String) *PatternElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *PatternElement) FontWeight(fontWeight String) *PatternElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *PatternElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *PatternElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *PatternElement) GlyphOrientationVertical(glyphOrientationVertical String) *PatternElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *PatternElement) ImageRendering(imageRendering String) *PatternElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *PatternElement) LetterSpacing(letterSpacing String) *PatternElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *PatternElement) LightingColor(lightingColor String) *PatternElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *PatternElement) MarkerEnd(markerEnd String) *PatternElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *PatternElement) MarkerMid(markerMid String) *PatternElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *PatternElement) MarkerStart(markerStart String) *PatternElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *PatternElement) Mask(mask String) *PatternElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *PatternElement) Opacity(opacity Float64) *PatternElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *PatternElement) Overflow(overflow String) *PatternElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *PatternElement) PaintOrder(paintOrder String) *PatternElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *PatternElement) PointerEvents(pointerEvents String) *PatternElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *PatternElement) ShapeRendering(shapeRendering String) *PatternElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *PatternElement) StopColor(stopColor String) *PatternElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *PatternElement) StopOpacity(stopOpacity Float64) *PatternElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *PatternElement) Stroke(stroke String) *PatternElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *PatternElement) StrokeDashArray(strokeDashArray String) *PatternElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *PatternElement) StrokeDashOffset(strokeDashOffset Float64) *PatternElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *PatternElement) StrokeLineCap(strokeLineCap String) *PatternElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *PatternElement) StrokeLineJoin(strokeLineJoin String) *PatternElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *PatternElement) StrokeMiterLimit(strokeMiterLimit Float64) *PatternElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *PatternElement) StrokeOpacity(strokeOpacity Float64) *PatternElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *PatternElement) StrokeWidth(strokeWidth Length) *PatternElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *PatternElement) TextAnchor(textAnchor String) *PatternElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *PatternElement) TextDecoration(textDecoration String) *PatternElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *PatternElement) TextOverflow(textOverflow String) *PatternElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *PatternElement) TextRendering(textRendering String) *PatternElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *PatternElement) UnicodeBiDi(UnicodeBiDi String) *PatternElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *PatternElement) VectorEffect(vectorEffect String) *PatternElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *PatternElement) Visibility(visibility String) *PatternElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *PatternElement) WhiteSpace(whiteSpace String) *PatternElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *PatternElement) WordSpacing(wordSpacing String) *PatternElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *PatternElement) WritingMode(writingMode String) *PatternElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // ViewBox sets the viewBox attribute.
 func (e *PatternElement) ViewBox(minX, minY, width, height float64) *PatternElement {
-	e.attrs["viewBox"] = ViewBox{MinX: minX, MinY: minY, Width: width, Height: height}
+	e.Attrs["viewBox"] = ViewBox{MinX: minX, MinY: minY, Width: width, Height: height}
 	return e
 }
 
 // PreserveAspectRatio sets the preserveAspectRatio attribute.
 func (e *PatternElement) PreserveAspectRatio(preserveAspectRatio String) *PatternElement {
-	e.attrs["preserveAspectRatio"] = preserveAspectRatio
+	e.Attrs["preserveAspectRatio"] = preserveAspectRatio
 	return e
 }
 
 // PatternUnits sets the patternUnits attribute.
 func (e *PatternElement) PatternUnits(patternUnits String) *PatternElement {
-	e.attrs["patternUnits"] = patternUnits
+	e.Attrs["patternUnits"] = patternUnits
 	return e
 }
 
 // PatternContentUnits sets the patternContentUnits attribute.
 func (e *PatternElement) PatternContentUnits(patternContentUnits String) *PatternElement {
-	e.attrs["patternContentUnits"] = patternContentUnits
+	e.Attrs["patternContentUnits"] = patternContentUnits
 	return e
 }
 
 // PatternTransform sets the patternTransform attribute.
 func (e *PatternElement) PatternTransform(patternTransform String) *PatternElement {
-	e.attrs["patternTransform"] = patternTransform
+	e.Attrs["patternTransform"] = patternTransform
 	return e
 }
 
 // Href sets the href attribute.
 func (e *PatternElement) Href(href String) *PatternElement {
-	e.attrs["href"] = href
+	e.Attrs["href"] = href
 	return e
 }
 
 // X sets the x attribute.
 func (e *PatternElement) X(x Length) *PatternElement {
-	e.attrs["x"] = x
+	e.Attrs["x"] = x
 	return e
 }
 
 // Y sets the y attribute.
 func (e *PatternElement) Y(y Length) *PatternElement {
-	e.attrs["y"] = y
+	e.Attrs["y"] = y
 	return e
 }
 
 // Width sets the width attribute.
 func (e *PatternElement) Width(width Length) *PatternElement {
-	e.attrs["width"] = width
+	e.Attrs["width"] = width
 	return e
 }
 
 // Height sets the height attribute.
 func (e *PatternElement) Height(height Length) *PatternElement {
-	e.attrs["height"] = height
+	e.Attrs["height"] = height
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *PatternElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "pattern", e.attrs, e.children)
+	return encodeElement(encoder, "pattern", e.Attrs, e.Children)
 }
 
 // A PolygonElement is a polygon element.
 type PolygonElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // Polygon returns a new PolygonElement.
 func Polygon(children ...Element) *PolygonElement {
 	return &PolygonElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *PolygonElement) AppendChildren(children ...Element) *PolygonElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *PolygonElement) Children(children ...Element) *PolygonElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *PolygonElement) ID(id String) *PolygonElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *PolygonElement) TabIndex(tabIndex Int) *PolygonElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *PolygonElement) Lang(lang String) *PolygonElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *PolygonElement) Class(class String) *PolygonElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *PolygonElement) Style(style String) *PolygonElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *PolygonElement) AlignmentBaseline(alignmentBaseline String) *PolygonElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *PolygonElement) BaselineShift(baselineShift String) *PolygonElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *PolygonElement) ClipPath(clipPath String) *PolygonElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *PolygonElement) ClipRule(clipRule String) *PolygonElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *PolygonElement) Color(color String) *PolygonElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *PolygonElement) ColorInterpolation(colorInterpolation String) *PolygonElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *PolygonElement) ColorInterpolationFilters(colorInterpolationFilters String) *PolygonElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *PolygonElement) ColorRendering(colorRendering String) *PolygonElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *PolygonElement) Cursor(cursor String) *PolygonElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *PolygonElement) Direction(direction String) *PolygonElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *PolygonElement) Display(display String) *PolygonElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *PolygonElement) DominantBaseline(dominantBaseline String) *PolygonElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *PolygonElement) Fill(fill String) *PolygonElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *PolygonElement) FillOpacity(fillOpacity Float64) *PolygonElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *PolygonElement) FillRule(fillRule String) *PolygonElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *PolygonElement) Filter(filter String) *PolygonElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *PolygonElement) FloodColor(floodColor String) *PolygonElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *PolygonElement) FloodOpacity(floodOpacity Float64) *PolygonElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *PolygonElement) FontFamily(fontFamily String) *PolygonElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *PolygonElement) FontSize(fontSize String) *PolygonElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *PolygonElement) FontSizeAdjust(fontSizeAdjust String) *PolygonElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *PolygonElement) FontStretch(fontStretch String) *PolygonElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *PolygonElement) FontStyle(fontStyle String) *PolygonElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *PolygonElement) FontVariant(fontVariant String) *PolygonElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *PolygonElement) FontWeight(fontWeight String) *PolygonElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *PolygonElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *PolygonElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *PolygonElement) GlyphOrientationVertical(glyphOrientationVertical String) *PolygonElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *PolygonElement) ImageRendering(imageRendering String) *PolygonElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *PolygonElement) LetterSpacing(letterSpacing String) *PolygonElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *PolygonElement) LightingColor(lightingColor String) *PolygonElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *PolygonElement) MarkerEnd(markerEnd String) *PolygonElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *PolygonElement) MarkerMid(markerMid String) *PolygonElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *PolygonElement) MarkerStart(markerStart String) *PolygonElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *PolygonElement) Mask(mask String) *PolygonElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *PolygonElement) Opacity(opacity Float64) *PolygonElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *PolygonElement) Overflow(overflow String) *PolygonElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *PolygonElement) PaintOrder(paintOrder String) *PolygonElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *PolygonElement) PointerEvents(pointerEvents String) *PolygonElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *PolygonElement) ShapeRendering(shapeRendering String) *PolygonElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *PolygonElement) StopColor(stopColor String) *PolygonElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *PolygonElement) StopOpacity(stopOpacity Float64) *PolygonElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *PolygonElement) Stroke(stroke String) *PolygonElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *PolygonElement) StrokeDashArray(strokeDashArray String) *PolygonElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *PolygonElement) StrokeDashOffset(strokeDashOffset Float64) *PolygonElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *PolygonElement) StrokeLineCap(strokeLineCap String) *PolygonElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *PolygonElement) StrokeLineJoin(strokeLineJoin String) *PolygonElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *PolygonElement) StrokeMiterLimit(strokeMiterLimit Float64) *PolygonElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *PolygonElement) StrokeOpacity(strokeOpacity Float64) *PolygonElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *PolygonElement) StrokeWidth(strokeWidth Length) *PolygonElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *PolygonElement) TextAnchor(textAnchor String) *PolygonElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *PolygonElement) TextDecoration(textDecoration String) *PolygonElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *PolygonElement) TextOverflow(textOverflow String) *PolygonElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *PolygonElement) TextRendering(textRendering String) *PolygonElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *PolygonElement) UnicodeBiDi(UnicodeBiDi String) *PolygonElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *PolygonElement) VectorEffect(vectorEffect String) *PolygonElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *PolygonElement) Visibility(visibility String) *PolygonElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *PolygonElement) WhiteSpace(whiteSpace String) *PolygonElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *PolygonElement) WordSpacing(wordSpacing String) *PolygonElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *PolygonElement) WritingMode(writingMode String) *PolygonElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // PathLength sets the pathLength attribute.
 func (e *PolygonElement) PathLength(pathLength String) *PolygonElement {
-	e.attrs["pathLength"] = pathLength
+	e.Attrs["pathLength"] = pathLength
 	return e
 }
 
 // Points sets the points attribute.
 func (e *PolygonElement) Points(points Points) *PolygonElement {
-	e.attrs["points"] = points
+	e.Attrs["points"] = points
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *PolygonElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "polygon", e.attrs, e.children)
+	return encodeElement(encoder, "polygon", e.Attrs, e.Children)
 }
 
 // A PolylineElement is a polyline element.
 type PolylineElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // Polyline returns a new PolylineElement.
 func Polyline(children ...Element) *PolylineElement {
 	return &PolylineElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *PolylineElement) AppendChildren(children ...Element) *PolylineElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *PolylineElement) Children(children ...Element) *PolylineElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *PolylineElement) ID(id String) *PolylineElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *PolylineElement) TabIndex(tabIndex Int) *PolylineElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *PolylineElement) Lang(lang String) *PolylineElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *PolylineElement) Class(class String) *PolylineElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *PolylineElement) Style(style String) *PolylineElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *PolylineElement) AlignmentBaseline(alignmentBaseline String) *PolylineElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *PolylineElement) BaselineShift(baselineShift String) *PolylineElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *PolylineElement) ClipPath(clipPath String) *PolylineElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *PolylineElement) ClipRule(clipRule String) *PolylineElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *PolylineElement) Color(color String) *PolylineElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *PolylineElement) ColorInterpolation(colorInterpolation String) *PolylineElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *PolylineElement) ColorInterpolationFilters(colorInterpolationFilters String) *PolylineElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *PolylineElement) ColorRendering(colorRendering String) *PolylineElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *PolylineElement) Cursor(cursor String) *PolylineElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *PolylineElement) Direction(direction String) *PolylineElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *PolylineElement) Display(display String) *PolylineElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *PolylineElement) DominantBaseline(dominantBaseline String) *PolylineElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *PolylineElement) Fill(fill String) *PolylineElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *PolylineElement) FillOpacity(fillOpacity Float64) *PolylineElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *PolylineElement) FillRule(fillRule String) *PolylineElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *PolylineElement) Filter(filter String) *PolylineElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *PolylineElement) FloodColor(floodColor String) *PolylineElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *PolylineElement) FloodOpacity(floodOpacity Float64) *PolylineElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *PolylineElement) FontFamily(fontFamily String) *PolylineElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *PolylineElement) FontSize(fontSize String) *PolylineElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *PolylineElement) FontSizeAdjust(fontSizeAdjust String) *PolylineElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *PolylineElement) FontStretch(fontStretch String) *PolylineElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *PolylineElement) FontStyle(fontStyle String) *PolylineElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *PolylineElement) FontVariant(fontVariant String) *PolylineElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *PolylineElement) FontWeight(fontWeight String) *PolylineElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *PolylineElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *PolylineElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *PolylineElement) GlyphOrientationVertical(glyphOrientationVertical String) *PolylineElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *PolylineElement) ImageRendering(imageRendering String) *PolylineElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *PolylineElement) LetterSpacing(letterSpacing String) *PolylineElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *PolylineElement) LightingColor(lightingColor String) *PolylineElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *PolylineElement) MarkerEnd(markerEnd String) *PolylineElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *PolylineElement) MarkerMid(markerMid String) *PolylineElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *PolylineElement) MarkerStart(markerStart String) *PolylineElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *PolylineElement) Mask(mask String) *PolylineElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *PolylineElement) Opacity(opacity Float64) *PolylineElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *PolylineElement) Overflow(overflow String) *PolylineElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *PolylineElement) PaintOrder(paintOrder String) *PolylineElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *PolylineElement) PointerEvents(pointerEvents String) *PolylineElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *PolylineElement) ShapeRendering(shapeRendering String) *PolylineElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *PolylineElement) StopColor(stopColor String) *PolylineElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *PolylineElement) StopOpacity(stopOpacity Float64) *PolylineElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *PolylineElement) Stroke(stroke String) *PolylineElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *PolylineElement) StrokeDashArray(strokeDashArray String) *PolylineElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *PolylineElement) StrokeDashOffset(strokeDashOffset Float64) *PolylineElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *PolylineElement) StrokeLineCap(strokeLineCap String) *PolylineElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *PolylineElement) StrokeLineJoin(strokeLineJoin String) *PolylineElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *PolylineElement) StrokeMiterLimit(strokeMiterLimit Float64) *PolylineElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *PolylineElement) StrokeOpacity(strokeOpacity Float64) *PolylineElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *PolylineElement) StrokeWidth(strokeWidth Length) *PolylineElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *PolylineElement) TextAnchor(textAnchor String) *PolylineElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *PolylineElement) TextDecoration(textDecoration String) *PolylineElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *PolylineElement) TextOverflow(textOverflow String) *PolylineElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *PolylineElement) TextRendering(textRendering String) *PolylineElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *PolylineElement) UnicodeBiDi(UnicodeBiDi String) *PolylineElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *PolylineElement) VectorEffect(vectorEffect String) *PolylineElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *PolylineElement) Visibility(visibility String) *PolylineElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *PolylineElement) WhiteSpace(whiteSpace String) *PolylineElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *PolylineElement) WordSpacing(wordSpacing String) *PolylineElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *PolylineElement) WritingMode(writingMode String) *PolylineElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // PathLength sets the pathLength attribute.
 func (e *PolylineElement) PathLength(pathLength String) *PolylineElement {
-	e.attrs["pathLength"] = pathLength
+	e.Attrs["pathLength"] = pathLength
 	return e
 }
 
 // Points sets the points attribute.
 func (e *PolylineElement) Points(points Points) *PolylineElement {
-	e.attrs["points"] = points
+	e.Attrs["points"] = points
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *PolylineElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "polyline", e.attrs, e.children)
+	return encodeElement(encoder, "polyline", e.Attrs, e.Children)
 }
 
 // A RectElement is a rect element.
 type RectElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // Rect returns a new RectElement.
 func Rect(children ...Element) *RectElement {
 	return &RectElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *RectElement) AppendChildren(children ...Element) *RectElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *RectElement) Children(children ...Element) *RectElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *RectElement) ID(id String) *RectElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *RectElement) TabIndex(tabIndex Int) *RectElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *RectElement) Lang(lang String) *RectElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *RectElement) Class(class String) *RectElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *RectElement) Style(style String) *RectElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *RectElement) AlignmentBaseline(alignmentBaseline String) *RectElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *RectElement) BaselineShift(baselineShift String) *RectElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *RectElement) ClipPath(clipPath String) *RectElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *RectElement) ClipRule(clipRule String) *RectElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *RectElement) Color(color String) *RectElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *RectElement) ColorInterpolation(colorInterpolation String) *RectElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *RectElement) ColorInterpolationFilters(colorInterpolationFilters String) *RectElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *RectElement) ColorRendering(colorRendering String) *RectElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *RectElement) Cursor(cursor String) *RectElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *RectElement) Direction(direction String) *RectElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *RectElement) Display(display String) *RectElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *RectElement) DominantBaseline(dominantBaseline String) *RectElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *RectElement) Fill(fill String) *RectElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *RectElement) FillOpacity(fillOpacity Float64) *RectElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *RectElement) FillRule(fillRule String) *RectElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *RectElement) Filter(filter String) *RectElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *RectElement) FloodColor(floodColor String) *RectElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *RectElement) FloodOpacity(floodOpacity Float64) *RectElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *RectElement) FontFamily(fontFamily String) *RectElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *RectElement) FontSize(fontSize String) *RectElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *RectElement) FontSizeAdjust(fontSizeAdjust String) *RectElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *RectElement) FontStretch(fontStretch String) *RectElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *RectElement) FontStyle(fontStyle String) *RectElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *RectElement) FontVariant(fontVariant String) *RectElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *RectElement) FontWeight(fontWeight String) *RectElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *RectElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *RectElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *RectElement) GlyphOrientationVertical(glyphOrientationVertical String) *RectElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *RectElement) ImageRendering(imageRendering String) *RectElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *RectElement) LetterSpacing(letterSpacing String) *RectElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *RectElement) LightingColor(lightingColor String) *RectElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *RectElement) MarkerEnd(markerEnd String) *RectElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *RectElement) MarkerMid(markerMid String) *RectElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *RectElement) MarkerStart(markerStart String) *RectElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *RectElement) Mask(mask String) *RectElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *RectElement) Opacity(opacity Float64) *RectElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *RectElement) Overflow(overflow String) *RectElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *RectElement) PaintOrder(paintOrder String) *RectElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *RectElement) PointerEvents(pointerEvents String) *RectElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *RectElement) ShapeRendering(shapeRendering String) *RectElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *RectElement) StopColor(stopColor String) *RectElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *RectElement) StopOpacity(stopOpacity Float64) *RectElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *RectElement) Stroke(stroke String) *RectElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *RectElement) StrokeDashArray(strokeDashArray String) *RectElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *RectElement) StrokeDashOffset(strokeDashOffset Float64) *RectElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *RectElement) StrokeLineCap(strokeLineCap String) *RectElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *RectElement) StrokeLineJoin(strokeLineJoin String) *RectElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *RectElement) StrokeMiterLimit(strokeMiterLimit Float64) *RectElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *RectElement) StrokeOpacity(strokeOpacity Float64) *RectElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *RectElement) StrokeWidth(strokeWidth Length) *RectElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *RectElement) TextAnchor(textAnchor String) *RectElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *RectElement) TextDecoration(textDecoration String) *RectElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *RectElement) TextOverflow(textOverflow String) *RectElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *RectElement) TextRendering(textRendering String) *RectElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *RectElement) UnicodeBiDi(UnicodeBiDi String) *RectElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *RectElement) VectorEffect(vectorEffect String) *RectElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *RectElement) Visibility(visibility String) *RectElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *RectElement) WhiteSpace(whiteSpace String) *RectElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *RectElement) WordSpacing(wordSpacing String) *RectElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *RectElement) WritingMode(writingMode String) *RectElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // PathLength sets the pathLength attribute.
 func (e *RectElement) PathLength(pathLength String) *RectElement {
-	e.attrs["pathLength"] = pathLength
+	e.Attrs["pathLength"] = pathLength
 	return e
 }
 
 // X sets the x attribute.
 func (e *RectElement) X(x Length) *RectElement {
-	e.attrs["x"] = x
+	e.Attrs["x"] = x
 	return e
 }
 
 // Y sets the y attribute.
 func (e *RectElement) Y(y Length) *RectElement {
-	e.attrs["y"] = y
+	e.Attrs["y"] = y
 	return e
 }
 
 // Width sets the width attribute.
 func (e *RectElement) Width(width Length) *RectElement {
-	e.attrs["width"] = width
+	e.Attrs["width"] = width
 	return e
 }
 
 // Height sets the height attribute.
 func (e *RectElement) Height(height Length) *RectElement {
-	e.attrs["height"] = height
+	e.Attrs["height"] = height
 	return e
 }
 
 // RX sets the rx attribute.
 func (e *RectElement) RX(rx Length) *RectElement {
-	e.attrs["rx"] = rx
+	e.Attrs["rx"] = rx
 	return e
 }
 
 // RY sets the ry attribute.
 func (e *RectElement) RY(ry Length) *RectElement {
-	e.attrs["ry"] = ry
+	e.Attrs["ry"] = ry
 	return e
 }
 
 // RXRY sets the rx and ry attributes.
 func (e *RectElement) RXRY(rx, ry float64, lengthFunc LengthFunc) *RectElement {
-	e.attrs["rx"] = lengthFunc(rx)
-	e.attrs["ry"] = lengthFunc(ry)
+	e.Attrs["rx"] = lengthFunc(rx)
+	e.Attrs["ry"] = lengthFunc(ry)
 	return e
 }
 
 // WidthHeight sets the width and height attributes.
 func (e *RectElement) WidthHeight(width, height float64, lengthFunc LengthFunc) *RectElement {
-	e.attrs["width"] = lengthFunc(width)
-	e.attrs["height"] = lengthFunc(height)
+	e.Attrs["width"] = lengthFunc(width)
+	e.Attrs["height"] = lengthFunc(height)
 	return e
 }
 
 // XY sets the x and y attributes.
 func (e *RectElement) XY(x, y float64, lengthFunc LengthFunc) *RectElement {
-	e.attrs["x"] = lengthFunc(x)
-	e.attrs["y"] = lengthFunc(y)
+	e.Attrs["x"] = lengthFunc(x)
+	e.Attrs["y"] = lengthFunc(y)
 	return e
 }
 
 // XYWidthHeight sets the x, y, width, and height attributes.
 func (e *RectElement) XYWidthHeight(x, y, width, height float64, lengthFunc LengthFunc) *RectElement {
-	e.attrs["x"] = lengthFunc(x)
-	e.attrs["y"] = lengthFunc(y)
-	e.attrs["width"] = lengthFunc(width)
-	e.attrs["height"] = lengthFunc(height)
+	e.Attrs["x"] = lengthFunc(x)
+	e.Attrs["y"] = lengthFunc(y)
+	e.Attrs["width"] = lengthFunc(width)
+	e.Attrs["height"] = lengthFunc(height)
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *RectElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "rect", e.attrs, e.children)
+	return encodeElement(encoder, "rect", e.Attrs, e.Children)
 }
 
 // A StyleElement is a style element.
 type StyleElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // Style returns a new StyleElement.
 func Style(children ...Element) *StyleElement {
 	return &StyleElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *StyleElement) AppendChildren(children ...Element) *StyleElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *StyleElement) Children(children ...Element) *StyleElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // Type sets the type attribute.
 func (e *StyleElement) Type(_type String) *StyleElement {
-	e.attrs["type"] = _type
+	e.Attrs["type"] = _type
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *StyleElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "style", e.attrs, e.children)
+	return encodeElement(encoder, "style", e.Attrs, e.Children)
 }
 
 // A SwitchElement is a switch element.
 type SwitchElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // Switch returns a new SwitchElement.
 func Switch(children ...Element) *SwitchElement {
 	return &SwitchElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *SwitchElement) AppendChildren(children ...Element) *SwitchElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *SwitchElement) Children(children ...Element) *SwitchElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *SwitchElement) ID(id String) *SwitchElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *SwitchElement) TabIndex(tabIndex Int) *SwitchElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *SwitchElement) Lang(lang String) *SwitchElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *SwitchElement) Class(class String) *SwitchElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *SwitchElement) Style(style String) *SwitchElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *SwitchElement) AlignmentBaseline(alignmentBaseline String) *SwitchElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *SwitchElement) BaselineShift(baselineShift String) *SwitchElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *SwitchElement) ClipPath(clipPath String) *SwitchElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *SwitchElement) ClipRule(clipRule String) *SwitchElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *SwitchElement) Color(color String) *SwitchElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *SwitchElement) ColorInterpolation(colorInterpolation String) *SwitchElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *SwitchElement) ColorInterpolationFilters(colorInterpolationFilters String) *SwitchElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *SwitchElement) ColorRendering(colorRendering String) *SwitchElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *SwitchElement) Cursor(cursor String) *SwitchElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *SwitchElement) Direction(direction String) *SwitchElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *SwitchElement) Display(display String) *SwitchElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *SwitchElement) DominantBaseline(dominantBaseline String) *SwitchElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *SwitchElement) Fill(fill String) *SwitchElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *SwitchElement) FillOpacity(fillOpacity Float64) *SwitchElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *SwitchElement) FillRule(fillRule String) *SwitchElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *SwitchElement) Filter(filter String) *SwitchElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *SwitchElement) FloodColor(floodColor String) *SwitchElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *SwitchElement) FloodOpacity(floodOpacity Float64) *SwitchElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *SwitchElement) FontFamily(fontFamily String) *SwitchElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *SwitchElement) FontSize(fontSize String) *SwitchElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *SwitchElement) FontSizeAdjust(fontSizeAdjust String) *SwitchElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *SwitchElement) FontStretch(fontStretch String) *SwitchElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *SwitchElement) FontStyle(fontStyle String) *SwitchElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *SwitchElement) FontVariant(fontVariant String) *SwitchElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *SwitchElement) FontWeight(fontWeight String) *SwitchElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *SwitchElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *SwitchElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *SwitchElement) GlyphOrientationVertical(glyphOrientationVertical String) *SwitchElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *SwitchElement) ImageRendering(imageRendering String) *SwitchElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *SwitchElement) LetterSpacing(letterSpacing String) *SwitchElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *SwitchElement) LightingColor(lightingColor String) *SwitchElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *SwitchElement) MarkerEnd(markerEnd String) *SwitchElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *SwitchElement) MarkerMid(markerMid String) *SwitchElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *SwitchElement) MarkerStart(markerStart String) *SwitchElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *SwitchElement) Mask(mask String) *SwitchElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *SwitchElement) Opacity(opacity Float64) *SwitchElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *SwitchElement) Overflow(overflow String) *SwitchElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *SwitchElement) PaintOrder(paintOrder String) *SwitchElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *SwitchElement) PointerEvents(pointerEvents String) *SwitchElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *SwitchElement) ShapeRendering(shapeRendering String) *SwitchElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *SwitchElement) StopColor(stopColor String) *SwitchElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *SwitchElement) StopOpacity(stopOpacity Float64) *SwitchElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *SwitchElement) Stroke(stroke String) *SwitchElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *SwitchElement) StrokeDashArray(strokeDashArray String) *SwitchElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *SwitchElement) StrokeDashOffset(strokeDashOffset Float64) *SwitchElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *SwitchElement) StrokeLineCap(strokeLineCap String) *SwitchElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *SwitchElement) StrokeLineJoin(strokeLineJoin String) *SwitchElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *SwitchElement) StrokeMiterLimit(strokeMiterLimit Float64) *SwitchElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *SwitchElement) StrokeOpacity(strokeOpacity Float64) *SwitchElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *SwitchElement) StrokeWidth(strokeWidth Length) *SwitchElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *SwitchElement) TextAnchor(textAnchor String) *SwitchElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *SwitchElement) TextDecoration(textDecoration String) *SwitchElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *SwitchElement) TextOverflow(textOverflow String) *SwitchElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *SwitchElement) TextRendering(textRendering String) *SwitchElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *SwitchElement) UnicodeBiDi(UnicodeBiDi String) *SwitchElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *SwitchElement) VectorEffect(vectorEffect String) *SwitchElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *SwitchElement) Visibility(visibility String) *SwitchElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *SwitchElement) WhiteSpace(whiteSpace String) *SwitchElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *SwitchElement) WordSpacing(wordSpacing String) *SwitchElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *SwitchElement) WritingMode(writingMode String) *SwitchElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *SwitchElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "switch", e.attrs, e.children)
+	return encodeElement(encoder, "switch", e.Attrs, e.Children)
 }
 
 // A SymbolElement is a symbol element.
 type SymbolElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // Symbol returns a new SymbolElement.
 func Symbol(children ...Element) *SymbolElement {
 	return &SymbolElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *SymbolElement) AppendChildren(children ...Element) *SymbolElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *SymbolElement) Children(children ...Element) *SymbolElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *SymbolElement) ID(id String) *SymbolElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *SymbolElement) TabIndex(tabIndex Int) *SymbolElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *SymbolElement) Lang(lang String) *SymbolElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *SymbolElement) Class(class String) *SymbolElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *SymbolElement) Style(style String) *SymbolElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *SymbolElement) AlignmentBaseline(alignmentBaseline String) *SymbolElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *SymbolElement) BaselineShift(baselineShift String) *SymbolElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *SymbolElement) ClipPath(clipPath String) *SymbolElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *SymbolElement) ClipRule(clipRule String) *SymbolElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *SymbolElement) Color(color String) *SymbolElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *SymbolElement) ColorInterpolation(colorInterpolation String) *SymbolElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *SymbolElement) ColorInterpolationFilters(colorInterpolationFilters String) *SymbolElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *SymbolElement) ColorRendering(colorRendering String) *SymbolElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *SymbolElement) Cursor(cursor String) *SymbolElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *SymbolElement) Direction(direction String) *SymbolElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *SymbolElement) Display(display String) *SymbolElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *SymbolElement) DominantBaseline(dominantBaseline String) *SymbolElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *SymbolElement) Fill(fill String) *SymbolElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *SymbolElement) FillOpacity(fillOpacity Float64) *SymbolElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *SymbolElement) FillRule(fillRule String) *SymbolElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *SymbolElement) Filter(filter String) *SymbolElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *SymbolElement) FloodColor(floodColor String) *SymbolElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *SymbolElement) FloodOpacity(floodOpacity Float64) *SymbolElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *SymbolElement) FontFamily(fontFamily String) *SymbolElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *SymbolElement) FontSize(fontSize String) *SymbolElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *SymbolElement) FontSizeAdjust(fontSizeAdjust String) *SymbolElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *SymbolElement) FontStretch(fontStretch String) *SymbolElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *SymbolElement) FontStyle(fontStyle String) *SymbolElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *SymbolElement) FontVariant(fontVariant String) *SymbolElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *SymbolElement) FontWeight(fontWeight String) *SymbolElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *SymbolElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *SymbolElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *SymbolElement) GlyphOrientationVertical(glyphOrientationVertical String) *SymbolElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *SymbolElement) ImageRendering(imageRendering String) *SymbolElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *SymbolElement) LetterSpacing(letterSpacing String) *SymbolElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *SymbolElement) LightingColor(lightingColor String) *SymbolElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *SymbolElement) MarkerEnd(markerEnd String) *SymbolElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *SymbolElement) MarkerMid(markerMid String) *SymbolElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *SymbolElement) MarkerStart(markerStart String) *SymbolElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *SymbolElement) Mask(mask String) *SymbolElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *SymbolElement) Opacity(opacity Float64) *SymbolElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *SymbolElement) Overflow(overflow String) *SymbolElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *SymbolElement) PaintOrder(paintOrder String) *SymbolElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *SymbolElement) PointerEvents(pointerEvents String) *SymbolElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *SymbolElement) ShapeRendering(shapeRendering String) *SymbolElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *SymbolElement) StopColor(stopColor String) *SymbolElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *SymbolElement) StopOpacity(stopOpacity Float64) *SymbolElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *SymbolElement) Stroke(stroke String) *SymbolElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *SymbolElement) StrokeDashArray(strokeDashArray String) *SymbolElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *SymbolElement) StrokeDashOffset(strokeDashOffset Float64) *SymbolElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *SymbolElement) StrokeLineCap(strokeLineCap String) *SymbolElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *SymbolElement) StrokeLineJoin(strokeLineJoin String) *SymbolElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *SymbolElement) StrokeMiterLimit(strokeMiterLimit Float64) *SymbolElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *SymbolElement) StrokeOpacity(strokeOpacity Float64) *SymbolElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *SymbolElement) StrokeWidth(strokeWidth Length) *SymbolElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *SymbolElement) TextAnchor(textAnchor String) *SymbolElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *SymbolElement) TextDecoration(textDecoration String) *SymbolElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *SymbolElement) TextOverflow(textOverflow String) *SymbolElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *SymbolElement) TextRendering(textRendering String) *SymbolElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *SymbolElement) UnicodeBiDi(UnicodeBiDi String) *SymbolElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *SymbolElement) VectorEffect(vectorEffect String) *SymbolElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *SymbolElement) Visibility(visibility String) *SymbolElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *SymbolElement) WhiteSpace(whiteSpace String) *SymbolElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *SymbolElement) WordSpacing(wordSpacing String) *SymbolElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *SymbolElement) WritingMode(writingMode String) *SymbolElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // PreserveAspectRatio sets the preserveAspectRatio attribute.
 func (e *SymbolElement) PreserveAspectRatio(preserveAspectRatio String) *SymbolElement {
-	e.attrs["preserveAspectRatio"] = preserveAspectRatio
+	e.Attrs["preserveAspectRatio"] = preserveAspectRatio
 	return e
 }
 
 // ViewBox sets the viewBox attribute.
 func (e *SymbolElement) ViewBox(minX, minY, width, height float64) *SymbolElement {
-	e.attrs["viewBox"] = ViewBox{MinX: minX, MinY: minY, Width: width, Height: height}
+	e.Attrs["viewBox"] = ViewBox{MinX: minX, MinY: minY, Width: width, Height: height}
 	return e
 }
 
 // RefX sets the refX attribute.
 func (e *SymbolElement) RefX(refX String) *SymbolElement {
-	e.attrs["refX"] = refX
+	e.Attrs["refX"] = refX
 	return e
 }
 
 // RefY sets the refY attribute.
 func (e *SymbolElement) RefY(refY String) *SymbolElement {
-	e.attrs["refY"] = refY
+	e.Attrs["refY"] = refY
 	return e
 }
 
 // X sets the x attribute.
 func (e *SymbolElement) X(x Length) *SymbolElement {
-	e.attrs["x"] = x
+	e.Attrs["x"] = x
 	return e
 }
 
 // Y sets the y attribute.
 func (e *SymbolElement) Y(y Length) *SymbolElement {
-	e.attrs["y"] = y
+	e.Attrs["y"] = y
 	return e
 }
 
 // Width sets the width attribute.
 func (e *SymbolElement) Width(width Length) *SymbolElement {
-	e.attrs["width"] = width
+	e.Attrs["width"] = width
 	return e
 }
 
 // Height sets the height attribute.
 func (e *SymbolElement) Height(height Length) *SymbolElement {
-	e.attrs["height"] = height
+	e.Attrs["height"] = height
 	return e
 }
 
 // WidthHeight sets the width and height attributes.
 func (e *SymbolElement) WidthHeight(width, height float64, lengthFunc LengthFunc) *SymbolElement {
-	e.attrs["width"] = lengthFunc(width)
-	e.attrs["height"] = lengthFunc(height)
+	e.Attrs["width"] = lengthFunc(width)
+	e.Attrs["height"] = lengthFunc(height)
 	return e
 }
 
 // XY sets the x and y attributes.
 func (e *SymbolElement) XY(x, y float64, lengthFunc LengthFunc) *SymbolElement {
-	e.attrs["x"] = lengthFunc(x)
-	e.attrs["y"] = lengthFunc(y)
+	e.Attrs["x"] = lengthFunc(x)
+	e.Attrs["y"] = lengthFunc(y)
 	return e
 }
 
 // XYWidthHeight sets the x, y, width, and height attributes.
 func (e *SymbolElement) XYWidthHeight(x, y, width, height float64, lengthFunc LengthFunc) *SymbolElement {
-	e.attrs["x"] = lengthFunc(x)
-	e.attrs["y"] = lengthFunc(y)
-	e.attrs["width"] = lengthFunc(width)
-	e.attrs["height"] = lengthFunc(height)
+	e.Attrs["x"] = lengthFunc(x)
+	e.Attrs["y"] = lengthFunc(y)
+	e.Attrs["width"] = lengthFunc(width)
+	e.Attrs["height"] = lengthFunc(height)
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *SymbolElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "symbol", e.attrs, e.children)
+	return encodeElement(encoder, "symbol", e.Attrs, e.Children)
 }
 
 // A TextElement is a text element.
 type TextElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // Text returns a new TextElement.
 func Text(children ...Element) *TextElement {
 	return &TextElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *TextElement) AppendChildren(children ...Element) *TextElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *TextElement) Children(children ...Element) *TextElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *TextElement) ID(id String) *TextElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *TextElement) TabIndex(tabIndex Int) *TextElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *TextElement) Lang(lang String) *TextElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *TextElement) Class(class String) *TextElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *TextElement) Style(style String) *TextElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *TextElement) AlignmentBaseline(alignmentBaseline String) *TextElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *TextElement) BaselineShift(baselineShift String) *TextElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *TextElement) ClipPath(clipPath String) *TextElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *TextElement) ClipRule(clipRule String) *TextElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *TextElement) Color(color String) *TextElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *TextElement) ColorInterpolation(colorInterpolation String) *TextElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *TextElement) ColorInterpolationFilters(colorInterpolationFilters String) *TextElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *TextElement) ColorRendering(colorRendering String) *TextElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *TextElement) Cursor(cursor String) *TextElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *TextElement) Direction(direction String) *TextElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *TextElement) Display(display String) *TextElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *TextElement) DominantBaseline(dominantBaseline String) *TextElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *TextElement) Fill(fill String) *TextElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *TextElement) FillOpacity(fillOpacity Float64) *TextElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *TextElement) FillRule(fillRule String) *TextElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *TextElement) Filter(filter String) *TextElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *TextElement) FloodColor(floodColor String) *TextElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *TextElement) FloodOpacity(floodOpacity Float64) *TextElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *TextElement) FontFamily(fontFamily String) *TextElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *TextElement) FontSize(fontSize String) *TextElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *TextElement) FontSizeAdjust(fontSizeAdjust String) *TextElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *TextElement) FontStretch(fontStretch String) *TextElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *TextElement) FontStyle(fontStyle String) *TextElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *TextElement) FontVariant(fontVariant String) *TextElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *TextElement) FontWeight(fontWeight String) *TextElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *TextElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *TextElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *TextElement) GlyphOrientationVertical(glyphOrientationVertical String) *TextElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *TextElement) ImageRendering(imageRendering String) *TextElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *TextElement) LetterSpacing(letterSpacing String) *TextElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *TextElement) LightingColor(lightingColor String) *TextElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *TextElement) MarkerEnd(markerEnd String) *TextElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *TextElement) MarkerMid(markerMid String) *TextElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *TextElement) MarkerStart(markerStart String) *TextElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *TextElement) Mask(mask String) *TextElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *TextElement) Opacity(opacity Float64) *TextElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *TextElement) Overflow(overflow String) *TextElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *TextElement) PaintOrder(paintOrder String) *TextElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *TextElement) PointerEvents(pointerEvents String) *TextElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *TextElement) ShapeRendering(shapeRendering String) *TextElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *TextElement) StopColor(stopColor String) *TextElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *TextElement) StopOpacity(stopOpacity Float64) *TextElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *TextElement) Stroke(stroke String) *TextElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *TextElement) StrokeDashArray(strokeDashArray String) *TextElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *TextElement) StrokeDashOffset(strokeDashOffset Float64) *TextElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *TextElement) StrokeLineCap(strokeLineCap String) *TextElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *TextElement) StrokeLineJoin(strokeLineJoin String) *TextElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *TextElement) StrokeMiterLimit(strokeMiterLimit Float64) *TextElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *TextElement) StrokeOpacity(strokeOpacity Float64) *TextElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *TextElement) StrokeWidth(strokeWidth Length) *TextElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *TextElement) TextAnchor(textAnchor String) *TextElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *TextElement) TextDecoration(textDecoration String) *TextElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *TextElement) TextOverflow(textOverflow String) *TextElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *TextElement) TextRendering(textRendering String) *TextElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *TextElement) UnicodeBiDi(UnicodeBiDi String) *TextElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *TextElement) VectorEffect(vectorEffect String) *TextElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *TextElement) Visibility(visibility String) *TextElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *TextElement) WhiteSpace(whiteSpace String) *TextElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *TextElement) WordSpacing(wordSpacing String) *TextElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *TextElement) WritingMode(writingMode String) *TextElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // LengthAdjust sets the lengthAdjust attribute.
 func (e *TextElement) LengthAdjust(lengthAdjust String) *TextElement {
-	e.attrs["lengthAdjust"] = lengthAdjust
+	e.Attrs["lengthAdjust"] = lengthAdjust
 	return e
 }
 
 // X sets the x attribute.
 func (e *TextElement) X(x String) *TextElement {
-	e.attrs["x"] = x
+	e.Attrs["x"] = x
 	return e
 }
 
 // Y sets the y attribute.
 func (e *TextElement) Y(y String) *TextElement {
-	e.attrs["y"] = y
+	e.Attrs["y"] = y
 	return e
 }
 
 // Dx sets the dx attribute.
 func (e *TextElement) Dx(dx String) *TextElement {
-	e.attrs["dx"] = dx
+	e.Attrs["dx"] = dx
 	return e
 }
 
 // Dy sets the dy attribute.
 func (e *TextElement) Dy(dy String) *TextElement {
-	e.attrs["dy"] = dy
+	e.Attrs["dy"] = dy
 	return e
 }
 
 // Rotate sets the rotate attribute.
 func (e *TextElement) Rotate(rotate String) *TextElement {
-	e.attrs["rotate"] = rotate
+	e.Attrs["rotate"] = rotate
 	return e
 }
 
 // TextLength sets the textLength attribute.
 func (e *TextElement) TextLength(textLength String) *TextElement {
-	e.attrs["textLength"] = textLength
+	e.Attrs["textLength"] = textLength
 	return e
 }
 
 // XY sets the x and y attributes.
 func (e *TextElement) XY(x, y float64, lengthFunc LengthFunc) *TextElement {
-	e.attrs["x"] = lengthFunc(x)
-	e.attrs["y"] = lengthFunc(y)
+	e.Attrs["x"] = lengthFunc(x)
+	e.Attrs["y"] = lengthFunc(y)
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *TextElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "text", e.attrs, e.children)
+	return encodeElement(encoder, "text", e.Attrs, e.Children)
 }
 
 // A TextPathElement is a textPath element.
 type TextPathElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // TextPath returns a new TextPathElement.
 func TextPath(children ...Element) *TextPathElement {
 	return &TextPathElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *TextPathElement) AppendChildren(children ...Element) *TextPathElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *TextPathElement) Children(children ...Element) *TextPathElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *TextPathElement) ID(id String) *TextPathElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *TextPathElement) TabIndex(tabIndex Int) *TextPathElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *TextPathElement) Lang(lang String) *TextPathElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *TextPathElement) Class(class String) *TextPathElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *TextPathElement) Style(style String) *TextPathElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *TextPathElement) AlignmentBaseline(alignmentBaseline String) *TextPathElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *TextPathElement) BaselineShift(baselineShift String) *TextPathElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *TextPathElement) ClipPath(clipPath String) *TextPathElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *TextPathElement) ClipRule(clipRule String) *TextPathElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *TextPathElement) Color(color String) *TextPathElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *TextPathElement) ColorInterpolation(colorInterpolation String) *TextPathElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *TextPathElement) ColorInterpolationFilters(colorInterpolationFilters String) *TextPathElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *TextPathElement) ColorRendering(colorRendering String) *TextPathElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *TextPathElement) Cursor(cursor String) *TextPathElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *TextPathElement) Direction(direction String) *TextPathElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *TextPathElement) Display(display String) *TextPathElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *TextPathElement) DominantBaseline(dominantBaseline String) *TextPathElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *TextPathElement) Fill(fill String) *TextPathElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *TextPathElement) FillOpacity(fillOpacity Float64) *TextPathElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *TextPathElement) FillRule(fillRule String) *TextPathElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *TextPathElement) Filter(filter String) *TextPathElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *TextPathElement) FloodColor(floodColor String) *TextPathElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *TextPathElement) FloodOpacity(floodOpacity Float64) *TextPathElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *TextPathElement) FontFamily(fontFamily String) *TextPathElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *TextPathElement) FontSize(fontSize String) *TextPathElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *TextPathElement) FontSizeAdjust(fontSizeAdjust String) *TextPathElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *TextPathElement) FontStretch(fontStretch String) *TextPathElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *TextPathElement) FontStyle(fontStyle String) *TextPathElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *TextPathElement) FontVariant(fontVariant String) *TextPathElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *TextPathElement) FontWeight(fontWeight String) *TextPathElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *TextPathElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *TextPathElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *TextPathElement) GlyphOrientationVertical(glyphOrientationVertical String) *TextPathElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *TextPathElement) ImageRendering(imageRendering String) *TextPathElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *TextPathElement) LetterSpacing(letterSpacing String) *TextPathElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *TextPathElement) LightingColor(lightingColor String) *TextPathElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *TextPathElement) MarkerEnd(markerEnd String) *TextPathElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *TextPathElement) MarkerMid(markerMid String) *TextPathElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *TextPathElement) MarkerStart(markerStart String) *TextPathElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *TextPathElement) Mask(mask String) *TextPathElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *TextPathElement) Opacity(opacity Float64) *TextPathElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *TextPathElement) Overflow(overflow String) *TextPathElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *TextPathElement) PaintOrder(paintOrder String) *TextPathElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *TextPathElement) PointerEvents(pointerEvents String) *TextPathElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *TextPathElement) ShapeRendering(shapeRendering String) *TextPathElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *TextPathElement) StopColor(stopColor String) *TextPathElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *TextPathElement) StopOpacity(stopOpacity Float64) *TextPathElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *TextPathElement) Stroke(stroke String) *TextPathElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *TextPathElement) StrokeDashArray(strokeDashArray String) *TextPathElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *TextPathElement) StrokeDashOffset(strokeDashOffset Float64) *TextPathElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *TextPathElement) StrokeLineCap(strokeLineCap String) *TextPathElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *TextPathElement) StrokeLineJoin(strokeLineJoin String) *TextPathElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *TextPathElement) StrokeMiterLimit(strokeMiterLimit Float64) *TextPathElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *TextPathElement) StrokeOpacity(strokeOpacity Float64) *TextPathElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *TextPathElement) StrokeWidth(strokeWidth Length) *TextPathElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *TextPathElement) TextAnchor(textAnchor String) *TextPathElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *TextPathElement) TextDecoration(textDecoration String) *TextPathElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *TextPathElement) TextOverflow(textOverflow String) *TextPathElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *TextPathElement) TextRendering(textRendering String) *TextPathElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *TextPathElement) UnicodeBiDi(UnicodeBiDi String) *TextPathElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *TextPathElement) VectorEffect(vectorEffect String) *TextPathElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *TextPathElement) Visibility(visibility String) *TextPathElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *TextPathElement) WhiteSpace(whiteSpace String) *TextPathElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *TextPathElement) WordSpacing(wordSpacing String) *TextPathElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *TextPathElement) WritingMode(writingMode String) *TextPathElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // LengthAdjust sets the lengthAdjust attribute.
 func (e *TextPathElement) LengthAdjust(lengthAdjust String) *TextPathElement {
-	e.attrs["lengthAdjust"] = lengthAdjust
+	e.Attrs["lengthAdjust"] = lengthAdjust
 	return e
 }
 
 // TextLength sets the textLength attribute.
 func (e *TextPathElement) TextLength(textLength String) *TextPathElement {
-	e.attrs["textLength"] = textLength
+	e.Attrs["textLength"] = textLength
 	return e
 }
 
 // Path sets the path attribute.
 func (e *TextPathElement) Path(path String) *TextPathElement {
-	e.attrs["path"] = path
+	e.Attrs["path"] = path
 	return e
 }
 
 // Href sets the href attribute.
 func (e *TextPathElement) Href(href String) *TextPathElement {
-	e.attrs["href"] = href
+	e.Attrs["href"] = href
 	return e
 }
 
 // StartOffset sets the startOffset attribute.
 func (e *TextPathElement) StartOffset(startOffset String) *TextPathElement {
-	e.attrs["startOffset"] = startOffset
+	e.Attrs["startOffset"] = startOffset
 	return e
 }
 
 // Method sets the method attribute.
 func (e *TextPathElement) Method(method String) *TextPathElement {
-	e.attrs["method"] = method
+	e.Attrs["method"] = method
 	return e
 }
 
 // Spacing sets the spacing attribute.
 func (e *TextPathElement) Spacing(spacing String) *TextPathElement {
-	e.attrs["spacing"] = spacing
+	e.Attrs["spacing"] = spacing
 	return e
 }
 
 // Side sets the side attribute.
 func (e *TextPathElement) Side(side String) *TextPathElement {
-	e.attrs["side"] = side
+	e.Attrs["side"] = side
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *TextPathElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "textPath", e.attrs, e.children)
+	return encodeElement(encoder, "textPath", e.Attrs, e.Children)
 }
 
 // A TitleElement is a title element.
 type TitleElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // Title returns a new TitleElement.
 func Title(children ...Element) *TitleElement {
 	return &TitleElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *TitleElement) AppendChildren(children ...Element) *TitleElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *TitleElement) Children(children ...Element) *TitleElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *TitleElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "title", e.attrs, e.children)
+	return encodeElement(encoder, "title", e.Attrs, e.Children)
 }
 
 // A TSpanElement is a tspan element.
 type TSpanElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // TSpan returns a new TSpanElement.
 func TSpan(children ...Element) *TSpanElement {
 	return &TSpanElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *TSpanElement) AppendChildren(children ...Element) *TSpanElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *TSpanElement) Children(children ...Element) *TSpanElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *TSpanElement) ID(id String) *TSpanElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *TSpanElement) TabIndex(tabIndex Int) *TSpanElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *TSpanElement) Lang(lang String) *TSpanElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *TSpanElement) Class(class String) *TSpanElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *TSpanElement) Style(style String) *TSpanElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *TSpanElement) AlignmentBaseline(alignmentBaseline String) *TSpanElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *TSpanElement) BaselineShift(baselineShift String) *TSpanElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *TSpanElement) ClipPath(clipPath String) *TSpanElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *TSpanElement) ClipRule(clipRule String) *TSpanElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *TSpanElement) Color(color String) *TSpanElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *TSpanElement) ColorInterpolation(colorInterpolation String) *TSpanElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *TSpanElement) ColorInterpolationFilters(colorInterpolationFilters String) *TSpanElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *TSpanElement) ColorRendering(colorRendering String) *TSpanElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *TSpanElement) Cursor(cursor String) *TSpanElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *TSpanElement) Direction(direction String) *TSpanElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *TSpanElement) Display(display String) *TSpanElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *TSpanElement) DominantBaseline(dominantBaseline String) *TSpanElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *TSpanElement) Fill(fill String) *TSpanElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *TSpanElement) FillOpacity(fillOpacity Float64) *TSpanElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *TSpanElement) FillRule(fillRule String) *TSpanElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *TSpanElement) Filter(filter String) *TSpanElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *TSpanElement) FloodColor(floodColor String) *TSpanElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *TSpanElement) FloodOpacity(floodOpacity Float64) *TSpanElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *TSpanElement) FontFamily(fontFamily String) *TSpanElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *TSpanElement) FontSize(fontSize String) *TSpanElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *TSpanElement) FontSizeAdjust(fontSizeAdjust String) *TSpanElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *TSpanElement) FontStretch(fontStretch String) *TSpanElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *TSpanElement) FontStyle(fontStyle String) *TSpanElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *TSpanElement) FontVariant(fontVariant String) *TSpanElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *TSpanElement) FontWeight(fontWeight String) *TSpanElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *TSpanElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *TSpanElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *TSpanElement) GlyphOrientationVertical(glyphOrientationVertical String) *TSpanElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *TSpanElement) ImageRendering(imageRendering String) *TSpanElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *TSpanElement) LetterSpacing(letterSpacing String) *TSpanElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *TSpanElement) LightingColor(lightingColor String) *TSpanElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *TSpanElement) MarkerEnd(markerEnd String) *TSpanElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *TSpanElement) MarkerMid(markerMid String) *TSpanElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *TSpanElement) MarkerStart(markerStart String) *TSpanElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *TSpanElement) Mask(mask String) *TSpanElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *TSpanElement) Opacity(opacity Float64) *TSpanElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *TSpanElement) Overflow(overflow String) *TSpanElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *TSpanElement) PaintOrder(paintOrder String) *TSpanElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *TSpanElement) PointerEvents(pointerEvents String) *TSpanElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *TSpanElement) ShapeRendering(shapeRendering String) *TSpanElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *TSpanElement) StopColor(stopColor String) *TSpanElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *TSpanElement) StopOpacity(stopOpacity Float64) *TSpanElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *TSpanElement) Stroke(stroke String) *TSpanElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *TSpanElement) StrokeDashArray(strokeDashArray String) *TSpanElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *TSpanElement) StrokeDashOffset(strokeDashOffset Float64) *TSpanElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *TSpanElement) StrokeLineCap(strokeLineCap String) *TSpanElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *TSpanElement) StrokeLineJoin(strokeLineJoin String) *TSpanElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *TSpanElement) StrokeMiterLimit(strokeMiterLimit Float64) *TSpanElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *TSpanElement) StrokeOpacity(strokeOpacity Float64) *TSpanElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *TSpanElement) StrokeWidth(strokeWidth Length) *TSpanElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *TSpanElement) TextAnchor(textAnchor String) *TSpanElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *TSpanElement) TextDecoration(textDecoration String) *TSpanElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *TSpanElement) TextOverflow(textOverflow String) *TSpanElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *TSpanElement) TextRendering(textRendering String) *TSpanElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *TSpanElement) UnicodeBiDi(UnicodeBiDi String) *TSpanElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *TSpanElement) VectorEffect(vectorEffect String) *TSpanElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *TSpanElement) Visibility(visibility String) *TSpanElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *TSpanElement) WhiteSpace(whiteSpace String) *TSpanElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *TSpanElement) WordSpacing(wordSpacing String) *TSpanElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *TSpanElement) WritingMode(writingMode String) *TSpanElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // X sets the x attribute.
 func (e *TSpanElement) X(x String) *TSpanElement {
-	e.attrs["x"] = x
+	e.Attrs["x"] = x
 	return e
 }
 
 // Y sets the y attribute.
 func (e *TSpanElement) Y(y String) *TSpanElement {
-	e.attrs["y"] = y
+	e.Attrs["y"] = y
 	return e
 }
 
 // Dx sets the dx attribute.
 func (e *TSpanElement) Dx(dx String) *TSpanElement {
-	e.attrs["dx"] = dx
+	e.Attrs["dx"] = dx
 	return e
 }
 
 // Dy sets the dy attribute.
 func (e *TSpanElement) Dy(dy String) *TSpanElement {
-	e.attrs["dy"] = dy
+	e.Attrs["dy"] = dy
 	return e
 }
 
 // Rotate sets the rotate attribute.
 func (e *TSpanElement) Rotate(rotate String) *TSpanElement {
-	e.attrs["rotate"] = rotate
+	e.Attrs["rotate"] = rotate
 	return e
 }
 
 // TextLength sets the textLength attribute.
 func (e *TSpanElement) TextLength(textLength String) *TSpanElement {
-	e.attrs["textLength"] = textLength
+	e.Attrs["textLength"] = textLength
 	return e
 }
 
 // LengthAdjust sets the lengthAdjust attribute.
 func (e *TSpanElement) LengthAdjust(lengthAdjust String) *TSpanElement {
-	e.attrs["lengthAdjust"] = lengthAdjust
+	e.Attrs["lengthAdjust"] = lengthAdjust
 	return e
 }
 
 // XY sets the x and y attributes.
 func (e *TSpanElement) XY(x, y float64) *TSpanElement {
-	e.attrs["x"] = Float64(x)
-	e.attrs["y"] = Float64(y)
+	e.Attrs["x"] = Float64(x)
+	e.Attrs["y"] = Float64(y)
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *TSpanElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "tspan", e.attrs, e.children)
+	return encodeElement(encoder, "tspan", e.Attrs, e.Children)
 }
 
 // A UseElement is a use element.
 type UseElement struct {
-	attrs    map[string]AttrValue
-	children []Element
+	Attrs    map[string]AttrValue
+	Children []Element
 }
 
 // Use returns a new UseElement.
 func Use(children ...Element) *UseElement {
 	return &UseElement{
-		attrs:    map[string]AttrValue{},
-		children: children,
+		Attrs:    map[string]AttrValue{},
+		Children: children,
 	}
 }
 
 // AppendChildren appends the given children.
 func (e *UseElement) AppendChildren(children ...Element) *UseElement {
-	e.children = append(e.children, children...)
-	return e
-}
-
-// Children sets the children.
-func (e *UseElement) Children(children ...Element) *UseElement {
-	e.children = children
+	e.Children = append(e.Children, children...)
 	return e
 }
 
 // ID sets the id attribute.
 func (e *UseElement) ID(id String) *UseElement {
-	e.attrs["id"] = id
+	e.Attrs["id"] = id
 	return e
 }
 
 // TabIndex sets the tabindex attribute.
 func (e *UseElement) TabIndex(tabIndex Int) *UseElement {
-	e.attrs["tabindex"] = tabIndex
+	e.Attrs["tabindex"] = tabIndex
 	return e
 }
 
 // Lang sets the lang attribute.
 func (e *UseElement) Lang(lang String) *UseElement {
-	e.attrs["lang"] = lang
+	e.Attrs["lang"] = lang
 	return e
 }
 
 // Class sets the class attribute.
 func (e *UseElement) Class(class String) *UseElement {
-	e.attrs["class"] = class
+	e.Attrs["class"] = class
 	return e
 }
 
 // Style sets the style attribute.
 func (e *UseElement) Style(style String) *UseElement {
-	e.attrs["style"] = style
+	e.Attrs["style"] = style
 	return e
 }
 
 // AlignmentBaseline sets the alignment-baseline attribute.
 func (e *UseElement) AlignmentBaseline(alignmentBaseline String) *UseElement {
-	e.attrs["alignment-baseline"] = alignmentBaseline
+	e.Attrs["alignment-baseline"] = alignmentBaseline
 	return e
 }
 
 // BaselineShift sets the baseline-shift attribute.
 func (e *UseElement) BaselineShift(baselineShift String) *UseElement {
-	e.attrs["baseline-shift"] = baselineShift
+	e.Attrs["baseline-shift"] = baselineShift
 	return e
 }
 
 // ClipPath sets the clip-path attribute.
 func (e *UseElement) ClipPath(clipPath String) *UseElement {
-	e.attrs["clip-path"] = clipPath
+	e.Attrs["clip-path"] = clipPath
 	return e
 }
 
 // ClipRule sets the clip-rule attribute.
 func (e *UseElement) ClipRule(clipRule String) *UseElement {
-	e.attrs["clip-rule"] = clipRule
+	e.Attrs["clip-rule"] = clipRule
 	return e
 }
 
 // Color sets the color attribute.
 func (e *UseElement) Color(color String) *UseElement {
-	e.attrs["color"] = color
+	e.Attrs["color"] = color
 	return e
 }
 
 // ColorInterpolation sets the color-interpolation attribute.
 func (e *UseElement) ColorInterpolation(colorInterpolation String) *UseElement {
-	e.attrs["color-interpolation"] = colorInterpolation
+	e.Attrs["color-interpolation"] = colorInterpolation
 	return e
 }
 
 // ColorInterpolationFilters sets the color-interpolation-filters attribute.
 func (e *UseElement) ColorInterpolationFilters(colorInterpolationFilters String) *UseElement {
-	e.attrs["color-interpolation-filters"] = colorInterpolationFilters
+	e.Attrs["color-interpolation-filters"] = colorInterpolationFilters
 	return e
 }
 
 // ColorRendering sets the color-rendering attribute.
 func (e *UseElement) ColorRendering(colorRendering String) *UseElement {
-	e.attrs["color-rendering"] = colorRendering
+	e.Attrs["color-rendering"] = colorRendering
 	return e
 }
 
 // Cursor sets the cursor attribute.
 func (e *UseElement) Cursor(cursor String) *UseElement {
-	e.attrs["cursor"] = cursor
+	e.Attrs["cursor"] = cursor
 	return e
 }
 
 // Direction sets the direction attribute.
 func (e *UseElement) Direction(direction String) *UseElement {
-	e.attrs["direction"] = direction
+	e.Attrs["direction"] = direction
 	return e
 }
 
 // Display sets the display attribute.
 func (e *UseElement) Display(display String) *UseElement {
-	e.attrs["display"] = display
+	e.Attrs["display"] = display
 	return e
 }
 
 // DominantBaseline sets the dominant-baseline attribute.
 func (e *UseElement) DominantBaseline(dominantBaseline String) *UseElement {
-	e.attrs["dominant-baseline"] = dominantBaseline
+	e.Attrs["dominant-baseline"] = dominantBaseline
 	return e
 }
 
 // Fill sets the fill attribute.
 func (e *UseElement) Fill(fill String) *UseElement {
-	e.attrs["fill"] = fill
+	e.Attrs["fill"] = fill
 	return e
 }
 
 // FillOpacity sets the fill-opacity attribute.
 func (e *UseElement) FillOpacity(fillOpacity Float64) *UseElement {
-	e.attrs["fill-opacity"] = fillOpacity
+	e.Attrs["fill-opacity"] = fillOpacity
 	return e
 }
 
 // FillRule sets the fill-rule attribute.
 func (e *UseElement) FillRule(fillRule String) *UseElement {
-	e.attrs["fill-rule"] = fillRule
+	e.Attrs["fill-rule"] = fillRule
 	return e
 }
 
 // Filter sets the filter attribute.
 func (e *UseElement) Filter(filter String) *UseElement {
-	e.attrs["filter"] = filter
+	e.Attrs["filter"] = filter
 	return e
 }
 
 // FloodColor sets the flood-color attribute.
 func (e *UseElement) FloodColor(floodColor String) *UseElement {
-	e.attrs["flood-color"] = floodColor
+	e.Attrs["flood-color"] = floodColor
 	return e
 }
 
 // FloodOpacity sets the flood-opacity attribute.
 func (e *UseElement) FloodOpacity(floodOpacity Float64) *UseElement {
-	e.attrs["flood-opacity"] = floodOpacity
+	e.Attrs["flood-opacity"] = floodOpacity
 	return e
 }
 
 // FontFamily sets the font-family attribute.
 func (e *UseElement) FontFamily(fontFamily String) *UseElement {
-	e.attrs["font-family"] = fontFamily
+	e.Attrs["font-family"] = fontFamily
 	return e
 }
 
 // FontSize sets the font-size attribute.
 func (e *UseElement) FontSize(fontSize String) *UseElement {
-	e.attrs["font-size"] = fontSize
+	e.Attrs["font-size"] = fontSize
 	return e
 }
 
 // FontSizeAdjust sets the font-size-adjust attribute.
 func (e *UseElement) FontSizeAdjust(fontSizeAdjust String) *UseElement {
-	e.attrs["font-size-adjust"] = fontSizeAdjust
+	e.Attrs["font-size-adjust"] = fontSizeAdjust
 	return e
 }
 
 // FontStretch sets the font-stretch attribute.
 func (e *UseElement) FontStretch(fontStretch String) *UseElement {
-	e.attrs["font-stretch"] = fontStretch
+	e.Attrs["font-stretch"] = fontStretch
 	return e
 }
 
 // FontStyle sets the font-style attribute.
 func (e *UseElement) FontStyle(fontStyle String) *UseElement {
-	e.attrs["font-style"] = fontStyle
+	e.Attrs["font-style"] = fontStyle
 	return e
 }
 
 // FontVariant sets the font-variant attribute.
 func (e *UseElement) FontVariant(fontVariant String) *UseElement {
-	e.attrs["font-variant"] = fontVariant
+	e.Attrs["font-variant"] = fontVariant
 	return e
 }
 
 // FontWeight sets the font-weight attribute.
 func (e *UseElement) FontWeight(fontWeight String) *UseElement {
-	e.attrs["font-weight"] = fontWeight
+	e.Attrs["font-weight"] = fontWeight
 	return e
 }
 
 // GlyphOrientationHorizontal sets the glyph-orientation-horizontal attribute.
 func (e *UseElement) GlyphOrientationHorizontal(glyphOrientationHorizontal String) *UseElement {
-	e.attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
+	e.Attrs["glyph-orientation-horizontal"] = glyphOrientationHorizontal
 	return e
 }
 
 // GlyphOrientationVertical sets the glyph-orientation-vertical attribute.
 func (e *UseElement) GlyphOrientationVertical(glyphOrientationVertical String) *UseElement {
-	e.attrs["glyph-orientation-vertical"] = glyphOrientationVertical
+	e.Attrs["glyph-orientation-vertical"] = glyphOrientationVertical
 	return e
 }
 
 // ImageRendering sets the image-rendering attribute.
 func (e *UseElement) ImageRendering(imageRendering String) *UseElement {
-	e.attrs["image-rendering"] = imageRendering
+	e.Attrs["image-rendering"] = imageRendering
 	return e
 }
 
 // LetterSpacing sets the letter-spacing attribute.
 func (e *UseElement) LetterSpacing(letterSpacing String) *UseElement {
-	e.attrs["letter-spacing"] = letterSpacing
+	e.Attrs["letter-spacing"] = letterSpacing
 	return e
 }
 
 // LightingColor sets the lighting-color attribute.
 func (e *UseElement) LightingColor(lightingColor String) *UseElement {
-	e.attrs["lighting-color"] = lightingColor
+	e.Attrs["lighting-color"] = lightingColor
 	return e
 }
 
 // MarkerEnd sets the marker-end attribute.
 func (e *UseElement) MarkerEnd(markerEnd String) *UseElement {
-	e.attrs["marker-end"] = markerEnd
+	e.Attrs["marker-end"] = markerEnd
 	return e
 }
 
 // MarkerMid sets the marker-mid attribute.
 func (e *UseElement) MarkerMid(markerMid String) *UseElement {
-	e.attrs["marker-mid"] = markerMid
+	e.Attrs["marker-mid"] = markerMid
 	return e
 }
 
 // MarkerStart sets the marker-start attribute.
 func (e *UseElement) MarkerStart(markerStart String) *UseElement {
-	e.attrs["marker-start"] = markerStart
+	e.Attrs["marker-start"] = markerStart
 	return e
 }
 
 // Mask sets the mask attribute.
 func (e *UseElement) Mask(mask String) *UseElement {
-	e.attrs["mask"] = mask
+	e.Attrs["mask"] = mask
 	return e
 }
 
 // Opacity sets the opacity attribute.
 func (e *UseElement) Opacity(opacity Float64) *UseElement {
-	e.attrs["opacity"] = opacity
+	e.Attrs["opacity"] = opacity
 	return e
 }
 
 // Overflow sets the overflow attribute.
 func (e *UseElement) Overflow(overflow String) *UseElement {
-	e.attrs["overflow"] = overflow
+	e.Attrs["overflow"] = overflow
 	return e
 }
 
 // PaintOrder sets the paint-order attribute.
 func (e *UseElement) PaintOrder(paintOrder String) *UseElement {
-	e.attrs["paint-order"] = paintOrder
+	e.Attrs["paint-order"] = paintOrder
 	return e
 }
 
 // PointerEvents sets the pointer-events attribute.
 func (e *UseElement) PointerEvents(pointerEvents String) *UseElement {
-	e.attrs["pointer-events"] = pointerEvents
+	e.Attrs["pointer-events"] = pointerEvents
 	return e
 }
 
 // ShapeRendering sets the shape-rendering attribute.
 func (e *UseElement) ShapeRendering(shapeRendering String) *UseElement {
-	e.attrs["shape-rendering"] = shapeRendering
+	e.Attrs["shape-rendering"] = shapeRendering
 	return e
 }
 
 // StopColor sets the stop-color attribute.
 func (e *UseElement) StopColor(stopColor String) *UseElement {
-	e.attrs["stop-color"] = stopColor
+	e.Attrs["stop-color"] = stopColor
 	return e
 }
 
 // StopOpacity sets the stop-opacity attribute.
 func (e *UseElement) StopOpacity(stopOpacity Float64) *UseElement {
-	e.attrs["stop-opacity"] = stopOpacity
+	e.Attrs["stop-opacity"] = stopOpacity
 	return e
 }
 
 // Stroke sets the stroke attribute.
 func (e *UseElement) Stroke(stroke String) *UseElement {
-	e.attrs["stroke"] = stroke
+	e.Attrs["stroke"] = stroke
 	return e
 }
 
 // StrokeDashArray sets the stroke-dasharray attribute.
 func (e *UseElement) StrokeDashArray(strokeDashArray String) *UseElement {
-	e.attrs["stroke-dasharray"] = strokeDashArray
+	e.Attrs["stroke-dasharray"] = strokeDashArray
 	return e
 }
 
 // StrokeDashOffset sets the stroke-dashoffset attribute.
 func (e *UseElement) StrokeDashOffset(strokeDashOffset Float64) *UseElement {
-	e.attrs["stroke-dashoffset"] = strokeDashOffset
+	e.Attrs["stroke-dashoffset"] = strokeDashOffset
 	return e
 }
 
 // StrokeLineCap sets the stroke-linecap attribute.
 func (e *UseElement) StrokeLineCap(strokeLineCap String) *UseElement {
-	e.attrs["stroke-linecap"] = strokeLineCap
+	e.Attrs["stroke-linecap"] = strokeLineCap
 	return e
 }
 
 // StrokeLineJoin sets the stroke-linejoin attribute.
 func (e *UseElement) StrokeLineJoin(strokeLineJoin String) *UseElement {
-	e.attrs["stroke-linejoin"] = strokeLineJoin
+	e.Attrs["stroke-linejoin"] = strokeLineJoin
 	return e
 }
 
 // StrokeMiterLimit sets the stroke-miterlimit attribute.
 func (e *UseElement) StrokeMiterLimit(strokeMiterLimit Float64) *UseElement {
-	e.attrs["stroke-miterlimit"] = strokeMiterLimit
+	e.Attrs["stroke-miterlimit"] = strokeMiterLimit
 	return e
 }
 
 // StrokeOpacity sets the stroke-opacity attribute.
 func (e *UseElement) StrokeOpacity(strokeOpacity Float64) *UseElement {
-	e.attrs["stroke-opacity"] = strokeOpacity
+	e.Attrs["stroke-opacity"] = strokeOpacity
 	return e
 }
 
 // StrokeWidth sets the stroke-width attribute.
 func (e *UseElement) StrokeWidth(strokeWidth Length) *UseElement {
-	e.attrs["stroke-width"] = strokeWidth
+	e.Attrs["stroke-width"] = strokeWidth
 	return e
 }
 
 // TextAnchor sets the text-anchor attribute.
 func (e *UseElement) TextAnchor(textAnchor String) *UseElement {
-	e.attrs["text-anchor"] = textAnchor
+	e.Attrs["text-anchor"] = textAnchor
 	return e
 }
 
 // TextDecoration sets the text-decoration attribute.
 func (e *UseElement) TextDecoration(textDecoration String) *UseElement {
-	e.attrs["text-decoration"] = textDecoration
+	e.Attrs["text-decoration"] = textDecoration
 	return e
 }
 
 // TextOverflow sets the text-overflow attribute.
 func (e *UseElement) TextOverflow(textOverflow String) *UseElement {
-	e.attrs["text-overflow"] = textOverflow
+	e.Attrs["text-overflow"] = textOverflow
 	return e
 }
 
 // TextRendering sets the text-rendering attribute.
 func (e *UseElement) TextRendering(textRendering String) *UseElement {
-	e.attrs["text-rendering"] = textRendering
+	e.Attrs["text-rendering"] = textRendering
 	return e
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
 func (e *UseElement) UnicodeBiDi(UnicodeBiDi String) *UseElement {
-	e.attrs["unicode-bidi"] = UnicodeBiDi
+	e.Attrs["unicode-bidi"] = UnicodeBiDi
 	return e
 }
 
 // VectorEffect sets the vector-effect attribute.
 func (e *UseElement) VectorEffect(vectorEffect String) *UseElement {
-	e.attrs["vector-effect"] = vectorEffect
+	e.Attrs["vector-effect"] = vectorEffect
 	return e
 }
 
 // Visibility sets the visibility attribute.
 func (e *UseElement) Visibility(visibility String) *UseElement {
-	e.attrs["visibility"] = visibility
+	e.Attrs["visibility"] = visibility
 	return e
 }
 
 // WhiteSpace sets the white-space attribute.
 func (e *UseElement) WhiteSpace(whiteSpace String) *UseElement {
-	e.attrs["white-space"] = whiteSpace
+	e.Attrs["white-space"] = whiteSpace
 	return e
 }
 
 // WordSpacing sets the word-spacing attribute.
 func (e *UseElement) WordSpacing(wordSpacing String) *UseElement {
-	e.attrs["word-spacing"] = wordSpacing
+	e.Attrs["word-spacing"] = wordSpacing
 	return e
 }
 
 // WritingMode sets the writing-mode attribute.
 func (e *UseElement) WritingMode(writingMode String) *UseElement {
-	e.attrs["writing-mode"] = writingMode
+	e.Attrs["writing-mode"] = writingMode
 	return e
 }
 
 // Href sets the href attribute.
 func (e *UseElement) Href(href String) *UseElement {
-	e.attrs["href"] = href
+	e.Attrs["href"] = href
 	return e
 }
 
 // X sets the x attribute.
 func (e *UseElement) X(x Length) *UseElement {
-	e.attrs["x"] = x
+	e.Attrs["x"] = x
 	return e
 }
 
 // Y sets the y attribute.
 func (e *UseElement) Y(y Length) *UseElement {
-	e.attrs["y"] = y
+	e.Attrs["y"] = y
 	return e
 }
 
 // Width sets the width attribute.
 func (e *UseElement) Width(width Length) *UseElement {
-	e.attrs["width"] = width
+	e.Attrs["width"] = width
 	return e
 }
 
 // Height sets the height attribute.
 func (e *UseElement) Height(height Length) *UseElement {
-	e.attrs["height"] = height
+	e.Attrs["height"] = height
 	return e
 }
 
 // WidthHeight sets the width and height attributes.
 func (e *UseElement) WidthHeight(width, height float64, lengthFunc LengthFunc) *UseElement {
-	e.attrs["width"] = lengthFunc(width)
-	e.attrs["height"] = lengthFunc(height)
+	e.Attrs["width"] = lengthFunc(width)
+	e.Attrs["height"] = lengthFunc(height)
 	return e
 }
 
 // XY sets the x and y attributes.
 func (e *UseElement) XY(x, y float64, lengthFunc LengthFunc) *UseElement {
-	e.attrs["x"] = lengthFunc(x)
-	e.attrs["y"] = lengthFunc(y)
+	e.Attrs["x"] = lengthFunc(x)
+	e.Attrs["y"] = lengthFunc(y)
 	return e
 }
 
 // XYWidthHeight sets the x, y, width, and height attributes.
 func (e *UseElement) XYWidthHeight(x, y, width, height float64, lengthFunc LengthFunc) *UseElement {
-	e.attrs["x"] = lengthFunc(x)
-	e.attrs["y"] = lengthFunc(y)
-	e.attrs["width"] = lengthFunc(width)
-	e.attrs["height"] = lengthFunc(height)
+	e.Attrs["x"] = lengthFunc(x)
+	e.Attrs["y"] = lengthFunc(y)
+	e.Attrs["width"] = lengthFunc(width)
+	e.Attrs["height"] = lengthFunc(height)
 	return e
 }
 
 // MarshallXML implements encoding/xml.Marshaller.MarshalXML.
 func (e *UseElement) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
-	return encodeElement(encoder, "use", e.attrs, e.children)
+	return encodeElement(encoder, "use", e.Attrs, e.Children)
 }

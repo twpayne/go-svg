@@ -29,40 +29,40 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "simple",
-			svg: svg.New().WidthHeight(300, 200, svg.Number).Children(
+			svg: svg.New().WidthHeight(300, 200, svg.Number).AppendChildren(
 				svg.Rect().WidthHeight(100, 100, svg.Percent).Fill("red"),
 				svg.Circle().CXCYR(150, 80, 80, svg.Number).Fill("green"),
-				svg.Text().XY(150, 125, svg.Number).FontSize("60").TextAnchor("middle").Fill("white").Children(
+				svg.Text().XY(150, 125, svg.Number).FontSize("60").TextAnchor("middle").Fill("white").AppendChildren(
 					svg.CharData("SVG"),
 				),
 			),
 		},
 		{
 			name: "opacity", // 3.6.1
-			svg: svg.New().WidthHeight(600, 175, svg.Number).ViewBox(0, 0, 1200, 350).Children(
+			svg: svg.New().WidthHeight(600, 175, svg.Number).ViewBox(0, 0, 1200, 350).AppendChildren(
 				svg.Rect().XYWidthHeight(100, 100, 1000, 150, svg.Number).Fill("blue"),
 				svg.Circle().CXCYR(200, 100, 50, svg.Number).Fill("red").Opacity(1),
 				svg.Circle().CXCYR(400, 100, 50, svg.Number).Fill("red").Opacity(0.8),
 				svg.Circle().CXCYR(600, 100, 50, svg.Number).Fill("red").Opacity(0.6),
 				svg.Circle().CXCYR(800, 100, 50, svg.Number).Fill("red").Opacity(0.4),
 				svg.Circle().CXCYR(1000, 100, 50, svg.Number).Fill("red").Opacity(0.2),
-				svg.G().Opacity(1).Children(
+				svg.G().Opacity(1).AppendChildren(
 					svg.Circle().CXCYR(182.5, 250, 50, svg.Number).Fill("red").Opacity(1),
 					svg.Circle().CXCYR(217.5, 250, 50, svg.Number).Fill("green").Opacity(1),
 				),
-				svg.G().Opacity(0.5).Children(
+				svg.G().Opacity(0.5).AppendChildren(
 					svg.Circle().CXCYR(382.5, 250, 50, svg.Number).Fill("red").Opacity(1),
 					svg.Circle().CXCYR(417.5, 250, 50, svg.Number).Fill("green").Opacity(1),
 				),
-				svg.G().Opacity(1).Children(
+				svg.G().Opacity(1).AppendChildren(
 					svg.Circle().CXCYR(582.5, 250, 50, svg.Number).Fill("red").Opacity(0.5),
 					svg.Circle().CXCYR(617.5, 250, 50, svg.Number).Fill("green").Opacity(0.5),
 				),
-				svg.G().Opacity(1).Children(
+				svg.G().Opacity(1).AppendChildren(
 					svg.Circle().CXCYR(817.5, 250, 50, svg.Number).Fill("green").Opacity(0.5),
 					svg.Circle().CXCYR(782.5, 250, 50, svg.Number).Fill("red").Opacity(0.5),
 				),
-				svg.G().Opacity(0.5).Children(
+				svg.G().Opacity(0.5).AppendChildren(
 					svg.Circle().CXCYR(982.5, 250, 50, svg.Number).Fill("red").Opacity(0.5),
 					svg.Circle().CXCYR(1017.5, 250, 50, svg.Number).Fill("green").Opacity(0.5),
 				),
@@ -70,7 +70,7 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "slightlyMoreComplex", // 5.1.1.
-			svg: svg.New().WidthHeight(5, 4, svg.CM).Children(
+			svg: svg.New().WidthHeight(5, 4, svg.CM).AppendChildren(
 				svg.Desc(
 					svg.CharData("Four separate rectangles"),
 				),
@@ -84,7 +84,7 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "triangle01", // 9.3.1
-			svg: svg.New().WidthHeight(4, 4, svg.CM).ViewBox(0, 0, 400, 400).Children(
+			svg: svg.New().WidthHeight(4, 4, svg.CM).ViewBox(0, 0, 400, 400).AppendChildren(
 				svg.Title(svg.CharData("Example triangle01- simple example of a 'path'")),
 				svg.Desc(svg.CharData("A path that draws a triangle")),
 				svg.Rect().XYWidthHeight(1, 1, 398, 398, svg.Number).Fill("none").Stroke("blue"),
@@ -98,14 +98,14 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "cubic01", // 9.3.6
-			svg: svg.New().WidthHeight(5, 4, svg.CM).ViewBox(0, 0, 500, 400).Children(
+			svg: svg.New().WidthHeight(5, 4, svg.CM).ViewBox(0, 0, 500, 400).AppendChildren(
 				svg.Title(
 					svg.CharData("Example cubic01- cubic Bézier commands in path data"),
 				),
 				svg.Desc(
 					svg.CharData(`Picture showing a simple example of path data using both a "C" and an "S" command, along with annotations showing the control points and end points`),
 				),
-				svg.Style().Type("text/css").Children(
+				svg.Style().Type("text/css").AppendChildren(
 					svg.CharData(strings.Join([]string{
 						".Border { fill:none; stroke:blue; stroke-width:1 }",
 						"    .Connect { fill:none; stroke:#888888; stroke-width:2 }",
@@ -145,22 +145,22 @@ func TestSimple(t *testing.T) {
 				svg.Circle().Class("CtlPoint").CXCYR(250, 100, 10, svg.Number),
 				svg.Circle().Class("CtlPoint").CXCYR(400, 300, 10, svg.Number),
 				svg.Circle().Class("AutoCtlPoint").CXCYR(250, 300, 9, svg.Number),
-				svg.Text().Class("Label").XY(25, 70, svg.Number).Children(
+				svg.Text().Class("Label").XY(25, 70, svg.Number).AppendChildren(
 					svg.CharData("M100,200 C100,100 250,100 250,200"),
 				),
-				svg.Text().Class("Label").XY(325, 350, svg.Number).Style("text-anchor:middle").Children(
+				svg.Text().Class("Label").XY(325, 350, svg.Number).Style("text-anchor:middle").AppendChildren(
 					svg.CharData("S400,300 400,200"),
 				),
 			),
 		},
 		{
 			name: "line01", // 10.5
-			svg: svg.New().WidthHeight(12, 4, svg.CM).ViewBox(0, 0, 1200, 400).Children(
+			svg: svg.New().WidthHeight(12, 4, svg.CM).ViewBox(0, 0, 1200, 400).AppendChildren(
 				svg.Desc(
 					svg.CharData("Example line01 - lines expressed in user coordinates"),
 				),
 				svg.Rect().XYWidthHeight(1, 1, 1198, 398, svg.Number).Fill("none").Stroke("blue").StrokeWidth(svg.Number(2)),
-				svg.G().Stroke("green").Children(
+				svg.G().Stroke("green").AppendChildren(
 					svg.Line().X1Y1X2Y2(100, 300, 300, 100).StrokeWidth(svg.Number(5)),
 					svg.Line().X1Y1X2Y2(300, 300, 500, 100).StrokeWidth(svg.Number(10)),
 					svg.Line().X1Y1X2Y2(500, 300, 700, 100).StrokeWidth(svg.Number(15)),
@@ -171,7 +171,7 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "polyline01", // 10.6
-			svg: svg.New().WidthHeight(12, 4, svg.CM).ViewBox(0, 0, 1200, 400).Children(
+			svg: svg.New().WidthHeight(12, 4, svg.CM).ViewBox(0, 0, 1200, 400).AppendChildren(
 				svg.Desc(
 					svg.CharData("Example polyline01 - increasingly larger bars"),
 				),
@@ -204,7 +204,7 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "polygon01", // 10.7
-			svg: svg.New().WidthHeight(12, 4, svg.CM).ViewBox(0, 0, 1200, 400).Children(
+			svg: svg.New().WidthHeight(12, 4, svg.CM).ViewBox(0, 0, 1200, 400).AppendChildren(
 				svg.Desc(
 					svg.CharData("Example polygon01 - star and hexagon"),
 				),
@@ -233,7 +233,7 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "toap01", // 11.8.1
-			svg: svg.New().WidthHeight(12, 3.6, svg.CM).ViewBox(0, 0, 1000, 300).Children(
+			svg: svg.New().WidthHeight(12, 3.6, svg.CM).ViewBox(0, 0, 1000, 300).AppendChildren(
 				svg.Defs(
 					svg.Path().ID("MyPath").D(svgpath.New().
 						MoveToAbs([]float64{100, 200}).
@@ -246,8 +246,8 @@ func TestSimple(t *testing.T) {
 					svg.CharData("Example toap01 - simple text on a path"),
 				),
 				svg.Use().Href("#MyPath").Fill("none").Stroke("red"),
-				svg.Text().FontFamily("Verdana").FontSize("42.5").Fill("blue").Children(
-					svg.TextPath().Href("#MyPath").Children(
+				svg.Text().FontFamily("Verdana").FontSize("42.5").Fill("blue").AppendChildren(
+					svg.TextPath().Href("#MyPath").AppendChildren(
 						svg.CharData("We go up, then we go down, then up again"),
 					),
 				),
@@ -256,17 +256,17 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "foreignObject", // 12.5
-			svg: svg.New().WidthHeight(4, 3, svg.In).Children(
+			svg: svg.New().WidthHeight(4, 3, svg.In).AppendChildren(
 				svg.Desc(
 					svg.CharData("This example uses the 'switch' element to provide a fallback graphical representation of an paragraph, if XMHTML is not supported."),
 				),
 				svg.Switch(
 					svg.ForeignObject().WidthHeight(100, 50, svg.Number).RequiredExtensions("http://example.com/SVGExtensions/EmbeddedXHTML"),
-					svg.Text().FontSize("10").FontFamily("Verdana").Children(
-						svg.TSpan().XY(10, 10).Children(
+					svg.Text().FontSize("10").FontFamily("Verdana").AppendChildren(
+						svg.TSpan().XY(10, 10).AppendChildren(
 							svg.CharData("Here is a paragraph that"),
 						),
-						svg.TSpan().XY(10, 20).Children(
+						svg.TSpan().XY(10, 20).AppendChildren(
 							svg.CharData("requires word wrap."),
 						),
 					),
@@ -275,15 +275,15 @@ func TestSimple(t *testing.T) {
 		},
 		{
 			name: "marker", // 13.7.2
-			svg: svg.New().ViewBox(0, 0, 100, 300).Children(
+			svg: svg.New().ViewBox(0, 0, 100, 300).AppendChildren(
 				svg.Defs(
-					svg.Marker().ID("m1").ViewBox(0, 0, 10, 10).RefXY(5, 5).MarkerWidthHeight(8, 8).Children(
+					svg.Marker().ID("m1").ViewBox(0, 0, 10, 10).RefXY(5, 5).MarkerWidthHeight(8, 8).AppendChildren(
 						svg.Circle().CXCYR(5, 5, 5, svg.Number).Fill("green"),
 					),
-					svg.Marker().ID("m2").ViewBox(0, 0, 10, 10).RefXY(5, 5).MarkerWidthHeight(6.5, 6.5).Children(
+					svg.Marker().ID("m2").ViewBox(0, 0, 10, 10).RefXY(5, 5).MarkerWidthHeight(6.5, 6.5).AppendChildren(
 						svg.Circle().CXCYR(5, 5, 5, svg.Number).Fill("skyblue").Opacity(0.9),
 					),
-					svg.Marker().ID("m3").ViewBox(0, 0, 10, 10).RefXY(5, 5).MarkerWidthHeight(5, 5).Children(
+					svg.Marker().ID("m3").ViewBox(0, 0, 10, 10).RefXY(5, 5).MarkerWidthHeight(5, 5).AppendChildren(
 						svg.Circle().CXCYR(5, 5, 5, svg.Number).Fill("maroon").Opacity(0.85),
 					),
 				),

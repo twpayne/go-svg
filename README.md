@@ -16,7 +16,7 @@ Package `svg` provides convenience methods for creating and writing SVG document
 
 ```go
 func ExampleNew() {
-    svgElement := svg.New().WidthHeight(4, 4, svg.CM).ViewBox(0, 0, 400, 400).Children(
+    svgElement := svg.New().WidthHeight(4, 4, svg.CM).ViewBox(0, 0, 400, 400).AppendChildren(
         svg.Title(svg.CharData("Example triangle01- simple example of a 'path'")),
         svg.Desc(svg.CharData("A path that draws a triangle")),
         svg.Rect().XYWidthHeight(1, 1, 398, 398, svg.Number).Fill("none").Stroke("blue"),
@@ -36,7 +36,6 @@ func ExampleNew() {
 Output:
 
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
 <svg height="4cm" version="1.1" viewBox="0 0 400 400" width="4cm" xmlns="http://www.w3.org/2000/svg">
   <title>Example triangle01- simple example of a &#39;path&#39;</title>
   <desc>A path that draws a triangle</desc>

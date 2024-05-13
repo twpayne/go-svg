@@ -8,7 +8,7 @@ import (
 )
 
 func ExampleNew() {
-	svgElement := svg.New().WidthHeight(4, 4, svg.CM).ViewBox(0, 0, 400, 400).Children(
+	svgElement := svg.New().WidthHeight(4, 4, svg.CM).ViewBox(0, 0, 400, 400).AppendChildren(
 		svg.Title(svg.CharData("Example triangle01- simple example of a 'path'")),
 		svg.Desc(svg.CharData("A path that draws a triangle")),
 		svg.Rect().XYWidthHeight(1, 1, 398, 398, svg.Number).Fill("none").Stroke("blue"),

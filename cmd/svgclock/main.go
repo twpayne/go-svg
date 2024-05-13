@@ -61,7 +61,7 @@ func svgClock(t time.Time) *svg.SVGElement {
 		).Stroke(hand.stroke).StrokeWidth(hand.strokeWidth)
 		handElements = append(handElements, handElement)
 	}
-	return svg.New().WidthHeight(width, height, svg.Number).ViewBox(0, 0, width, height).Children(
+	return svg.New().WidthHeight(width, height, svg.Number).ViewBox(0, 0, width, height).AppendChildren(
 		svg.Circle().CXCYR(width/2, height/2, radius, svg.Number).Fill("none").Stroke("black"),
 	).AppendChildren(handElements...)
 }
