@@ -1,4 +1,4 @@
-//go:generate go run ./internal/cmds/execute-template -data elements.yaml -output elements.gen.go elements.go.tmpl
+//go:generate go tool execute-template -data elements.yaml -output elements.gen.go elements.go.tmpl
 
 // Package svg provides convenience methods for creating and writing SVG
 // documents.
