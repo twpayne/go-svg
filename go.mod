@@ -1,6 +1,8 @@
 module github.com/twpayne/go-svg
 
-go 1.22.2
+go 1.24.0
+
+tool github.com/twpayne/go-svg/internal/cmds/execute-template
 
 require (
 	github.com/alecthomas/assert/v2 v2.9.0
