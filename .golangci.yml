@@ -1,131 +1,140 @@
+version: "2"
 linters:
   enable:
-  - asasalint
-  - asciicheck
-  - bidichk
-  - bodyclose
-  - containedctx
-  - contextcheck
-  - decorder
-  - dogsled
-  - dupl
-  - dupword
-  - durationcheck
-  - err113
-  - errcheck
-  - errchkjson
-  - errname
-  - errorlint
-  - exhaustive
-  - exportloopref
-  - forbidigo
-  - forcetypeassert
-  - gci
-  - ginkgolinter
-  - gocheckcompilerdirectives
-  - gochecknoinits
-  - goconst
-  - gocritic
-  - gocyclo
-  - godot
-  - gofmt
-  - gofumpt
-  - goheader
-  - goimports
-  - gomoddirectives
-  - gomodguard
-  - goprintffuncname
-  - gosec
-  - gosimple
-  - govet
-  - grouper
-  - importas
-  - ineffassign
-  - interfacebloat
-  - loggercheck
-  - makezero
-  - misspell
-  - musttag
-  - nakedret
-  - nestif
-  - nilerr
-  - nilnil
-  - noctx
-  - nolintlint
-  - nonamedreturns
-  - nosprintfhostport
-  - prealloc
-  - predeclared
-  - promlinter
-  - reassign
-  - revive
-  - rowserrcheck
-  - sqlclosecheck
-  - staticcheck
-  - stylecheck
-  - tagliatelle
-  - tenv
-  - testpackage
-  - thelper
-  - tparallel
-  - typecheck
-  - unconvert
-  - unparam
-  - unused
-  - usestdlibvars
-  - wastedassign
-  - whitespace
-  disable:
-  - cyclop
-  - depguard
-  - exhaustivestruct
-  - exhaustruct
-  - funlen
-  - gochecknoglobals
-  - gocognit
-  - godox
-  - gomnd
-  - ireturn
-  - lll
-  - maintidx
-  - nlreturn
-  - paralleltest
-  - testableexamples
-  - varnamelen
-  - wrapcheck
-  - wsl
-
-linters-settings:
-  gci:
-    sections:
-    - standard
-    - default
-    - prefix(github.com/twpayne/go-svg)
-  gofumpt:
-    extra-rules: true
-  goimports:
-    local-prefixes: github.com/twpayne/go-svg
-  govet:
-    disable:
-    - fieldalignment
-    - shadow
-    enable-all: true
-  misspell:
-    locale: US
-  stylecheck:
-    checks:
-    - all
-
-issues:
-  exclude-rules:
-  - linters:
+    - asasalint
+    - asciicheck
+    - bidichk
+    - bodyclose
+    - containedctx
+    - contextcheck
+    - decorder
+    - dogsled
     - dupl
-    - scopelint
-    path: "_test\\.go"
-  - linters:
-    - forbidigo
-    - gosec
-    path: "(cmd|internal)/"
-  - linters:
+    - dupword
+    - durationcheck
     - err113
-    text: do not define dynamic errors, use wrapped static errors instead
+    - errchkjson
+    - errname
+    - errorlint
+    - exhaustive
+    - forbidigo
+    - forcetypeassert
+    - ginkgolinter
+    - gocheckcompilerdirectives
+    - gochecknoinits
+    - goconst
+    - gocritic
+    - gocyclo
+    - godot
+    - goheader
+    - gomoddirectives
+    - gomodguard
+    - goprintffuncname
+    - gosec
+    - grouper
+    - importas
+    - interfacebloat
+    - loggercheck
+    - makezero
+    - misspell
+    - musttag
+    - nakedret
+    - nestif
+    - nilerr
+    - nilnil
+    - noctx
+    - nolintlint
+    - nonamedreturns
+    - nosprintfhostport
+    - prealloc
+    - predeclared
+    - promlinter
+    - reassign
+    - revive
+    - rowserrcheck
+    - sqlclosecheck
+    - staticcheck
+    - tagliatelle
+    - testpackage
+    - thelper
+    - tparallel
+    - unconvert
+    - unparam
+    - usestdlibvars
+    - wastedassign
+    - whitespace
+  disable:
+    - cyclop
+    - depguard
+    - exhaustruct
+    - funlen
+    - gochecknoglobals
+    - gocognit
+    - godox
+    - ireturn
+    - lll
+    - maintidx
+    - mnd
+    - nlreturn
+    - paralleltest
+    - testableexamples
+    - varnamelen
+    - wrapcheck
+    - wsl
+  settings:
+    govet:
+      disable:
+        - fieldalignment
+        - shadow
+      enable-all: true
+    misspell:
+      locale: US
+    staticcheck:
+      checks:
+        - all
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - linters:
+          - dupl
+          - scopelint
+        path: _test\.go
+      - linters:
+          - forbidigo
+          - gosec
+        path: (cmd|internal)/
+      - linters:
+          - err113
+        text: do not define dynamic errors, use wrapped static errors instead
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+  settings:
+    gci:
+      sections:
+        - standard
+        - default
+        - prefix(github.com/twpayne/go-svg)
+    gofumpt:
+      extra-rules: true
+    goimports:
+      local-prefixes:
+        - github.com/twpayne/go-svg
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
