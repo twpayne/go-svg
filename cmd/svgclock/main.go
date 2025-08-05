@@ -84,6 +84,7 @@ func run() error {
 		_ = indexTemplate.Execute(w, nil)
 	})
 
+	fmt.Println("open https://localhost" + *addr + " in a web browser")
 	return http.ListenAndServe(*addr, nil)
 }
 
