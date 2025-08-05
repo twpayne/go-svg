@@ -7,21 +7,27 @@ linters:
     - bodyclose
     - containedctx
     - contextcheck
+    - copyloopvar
     - decorder
     - dogsled
     - dupl
     - dupword
     - durationcheck
+    - embeddedstructfieldcheck
     - err113
     - errchkjson
     - errname
     - errorlint
     - exhaustive
+    - exptostd
+    - fatcontext
     - forbidigo
     - forcetypeassert
+    - funcorder
     - ginkgolinter
     - gocheckcompilerdirectives
     - gochecknoinits
+    - gochecksumtype
     - goconst
     - gocritic
     - gocyclo
@@ -31,29 +37,40 @@ linters:
     - gomodguard
     - goprintffuncname
     - gosec
+    - gosmopolitan
     - grouper
+    - iface
     - importas
+    - inamedparam
     - interfacebloat
+    - intrange
     - loggercheck
     - makezero
+    - mirror
     - misspell
     - musttag
     - nakedret
     - nestif
     - nilerr
+    - nilnesserr
     - nilnil
     - noctx
     - nolintlint
     - nonamedreturns
     - nosprintfhostport
+    - perfsprint
     - prealloc
     - predeclared
     - promlinter
     - reassign
+    - recvcheck
     - revive
     - rowserrcheck
+    - sloglint
+    - spancheck
     - sqlclosecheck
     - staticcheck
+    - tagalign
     - tagliatelle
     - testpackage
     - thelper
@@ -61,9 +78,12 @@ linters:
     - unconvert
     - unparam
     - usestdlibvars
+    - usetesting
     - wastedassign
     - whitespace
   disable:
+    - arangolint
+    - canonicalheader
     - cyclop
     - depguard
     - exhaustruct
@@ -76,11 +96,16 @@ linters:
     - maintidx
     - mnd
     - nlreturn
+    - noinlineerr
     - paralleltest
+    - protogetter
     - testableexamples
+    - testifylint
     - varnamelen
     - wrapcheck
     - wsl
+    - wsl_v5
+    - zerologlint
   settings:
     govet:
       disable:
