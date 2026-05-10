@@ -45,7 +45,7 @@ func (p *Path) CurveToAbs(coords ...[]float64) *Path {
 	return p
 }
 
-// CurveToAbs appends a relative curveto command to p.
+// CurveToRel appends a relative curveto command to p.
 func (p *Path) CurveToRel(coords ...[]float64) *Path {
 	command := commandCurveToRel + formatCoords(coords)
 	p.commands = append(p.commands, command)
@@ -66,7 +66,7 @@ func (p *Path) HLineToAbs(x float64) *Path {
 	return p
 }
 
-// HLineToAbs appends a relative horizontal lineto command to p.
+// HLineToRel appends a relative horizontal lineto command to p.
 func (p *Path) HLineToRel(x float64) *Path {
 	command := commandHorizontalLineToRel + formatFloat(x)
 	p.commands = append(p.commands, command)
@@ -80,7 +80,7 @@ func (p *Path) LineToAbs(coords ...[]float64) *Path {
 	return p
 }
 
-// LineToAbs appends a relative lineto command to p.
+// LineToRel appends a relative lineto command to p.
 func (p *Path) LineToRel(coords ...[]float64) *Path {
 	command := commandLineToRel + formatCoords(coords)
 	p.commands = append(p.commands, command)
@@ -94,7 +94,7 @@ func (p *Path) MoveToAbs(coords ...[]float64) *Path {
 	return p
 }
 
-// MoveToAbs appends a relative moveto command to p.
+// MoveToRel appends a relative moveto command to p.
 func (p *Path) MoveToRel(coords ...[]float64) *Path {
 	command := commandMoveToRel + formatCoords(coords)
 	p.commands = append(p.commands, command)
@@ -122,7 +122,7 @@ func (p *Path) VLineToAbs(x float64) *Path {
 	return p
 }
 
-// VLineToAbs appends a relative vertical lineto command to p.
+// VLineToRel appends a relative vertical lineto command to p.
 func (p *Path) VLineToRel(x float64) *Path {
 	command := commandVerticalLineToRel + formatFloat(x)
 	p.commands = append(p.commands, command)

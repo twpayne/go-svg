@@ -16,7 +16,7 @@ import (
 // A Comment is a comment.
 type Comment []byte
 
-// MarshallXML implements encoding/xml.Marshaller.MarshalXML.
+// MarshalXML implements encoding/xml.Marshaller.MarshalXML.
 func (c Comment) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
 	return encoder.EncodeToken(xml.Comment(c))
 }
@@ -24,7 +24,7 @@ func (c Comment) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
 // A CharData is literal XML character data.
 type CharData []byte
 
-// MarshallXML implements encoding/xml.Marshaller.MarshalXML.
+// MarshalXML implements encoding/xml.Marshaller.MarshalXML.
 func (c CharData) MarshalXML(encoder *xml.Encoder, _ xml.StartElement) error {
 	return encoder.EncodeToken(xml.CharData(c))
 }
