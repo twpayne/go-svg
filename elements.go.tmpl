@@ -45,8 +45,8 @@ func (e *{{ $element.GoType }}) {{ $attribute.ExportedGoName }}(minX, minY, widt
     return e
 }
 {{-     else }}
-func (e *{{ $element.GoType }}) {{ $attribute.ExportedGoName }}({{ $attribute.GoName }} {{ $attribute.Type }}) *{{ $element.GoType }} {
-    e.Attrs[{{ $attribute.Name | quote }}] = {{ $attribute.GoName }}
+func (e *{{ $element.GoType }}) {{ $attribute.ExportedGoName }}({{ $attribute.GoName | untitleize }} {{ $attribute.Type }}) *{{ $element.GoType }} {
+    e.Attrs[{{ $attribute.Name | quote }}] = {{ $attribute.GoName | untitleize }}
     return e
 }
 {{-     end }}

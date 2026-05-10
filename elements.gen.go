@@ -557,8 +557,8 @@ func (e *CircleElement) TextRendering(textRendering String) *CircleElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *CircleElement) UnicodeBiDi(UnicodeBiDi String) *CircleElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *CircleElement) UnicodeBiDi(unicodeBiDi String) *CircleElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -1005,8 +1005,8 @@ func (e *ClipPathElement) TextRendering(textRendering String) *ClipPathElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *ClipPathElement) UnicodeBiDi(UnicodeBiDi String) *ClipPathElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *ClipPathElement) UnicodeBiDi(unicodeBiDi String) *ClipPathElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -1482,8 +1482,8 @@ func (e *EllipseElement) TextRendering(textRendering String) *EllipseElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *EllipseElement) UnicodeBiDi(UnicodeBiDi String) *EllipseElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *EllipseElement) UnicodeBiDi(unicodeBiDi String) *EllipseElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -1935,8 +1935,8 @@ func (e *ForeignObjectElement) TextRendering(textRendering String) *ForeignObjec
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *ForeignObjectElement) UnicodeBiDi(UnicodeBiDi String) *ForeignObjectElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *ForeignObjectElement) UnicodeBiDi(unicodeBiDi String) *ForeignObjectElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -2409,8 +2409,8 @@ func (e *GElement) TextRendering(textRendering String) *GElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *GElement) UnicodeBiDi(UnicodeBiDi String) *GElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *GElement) UnicodeBiDi(unicodeBiDi String) *GElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -2810,8 +2810,8 @@ func (e *ImageElement) TextRendering(textRendering String) *ImageElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *ImageElement) UnicodeBiDi(UnicodeBiDi String) *ImageElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *ImageElement) UnicodeBiDi(unicodeBiDi String) *ImageElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -3284,8 +3284,8 @@ func (e *LineElement) TextRendering(textRendering String) *LineElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *LineElement) UnicodeBiDi(UnicodeBiDi String) *LineElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *LineElement) UnicodeBiDi(unicodeBiDi String) *LineElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -3732,8 +3732,8 @@ func (e *MarkerElement) TextRendering(textRendering String) *MarkerElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *MarkerElement) UnicodeBiDi(UnicodeBiDi String) *MarkerElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *MarkerElement) UnicodeBiDi(unicodeBiDi String) *MarkerElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -4203,8 +4203,8 @@ func (e *MaskElement) TextRendering(textRendering String) *MaskElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *MaskElement) UnicodeBiDi(UnicodeBiDi String) *MaskElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *MaskElement) UnicodeBiDi(unicodeBiDi String) *MaskElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -4640,8 +4640,8 @@ func (e *PathElement) TextRendering(textRendering String) *PathElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *PathElement) UnicodeBiDi(UnicodeBiDi String) *PathElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *PathElement) UnicodeBiDi(unicodeBiDi String) *PathElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -5055,8 +5055,8 @@ func (e *PatternElement) TextRendering(textRendering String) *PatternElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *PatternElement) UnicodeBiDi(UnicodeBiDi String) *PatternElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *PatternElement) UnicodeBiDi(unicodeBiDi String) *PatternElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -5524,8 +5524,8 @@ func (e *PolygonElement) TextRendering(textRendering String) *PolygonElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *PolygonElement) UnicodeBiDi(UnicodeBiDi String) *PolygonElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *PolygonElement) UnicodeBiDi(unicodeBiDi String) *PolygonElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -5945,8 +5945,8 @@ func (e *PolylineElement) TextRendering(textRendering String) *PolylineElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *PolylineElement) UnicodeBiDi(UnicodeBiDi String) *PolylineElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *PolylineElement) UnicodeBiDi(unicodeBiDi String) *PolylineElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -6366,8 +6366,8 @@ func (e *RectElement) TextRendering(textRendering String) *RectElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *RectElement) UnicodeBiDi(UnicodeBiDi String) *RectElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *RectElement) UnicodeBiDi(unicodeBiDi String) *RectElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -6878,8 +6878,8 @@ func (e *SwitchElement) TextRendering(textRendering String) *SwitchElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *SwitchElement) UnicodeBiDi(UnicodeBiDi String) *SwitchElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *SwitchElement) UnicodeBiDi(unicodeBiDi String) *SwitchElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -7287,8 +7287,8 @@ func (e *SymbolElement) TextRendering(textRendering String) *SymbolElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *SymbolElement) UnicodeBiDi(UnicodeBiDi String) *SymbolElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *SymbolElement) UnicodeBiDi(unicodeBiDi String) *SymbolElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -7767,8 +7767,8 @@ func (e *TextElement) TextRendering(textRendering String) *TextElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *TextElement) UnicodeBiDi(UnicodeBiDi String) *TextElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *TextElement) UnicodeBiDi(unicodeBiDi String) *TextElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -8225,8 +8225,8 @@ func (e *TextPathElement) TextRendering(textRendering String) *TextPathElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *TextPathElement) UnicodeBiDi(UnicodeBiDi String) *TextPathElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *TextPathElement) UnicodeBiDi(unicodeBiDi String) *TextPathElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -8707,8 +8707,8 @@ func (e *TSpanElement) TextRendering(textRendering String) *TSpanElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *TSpanElement) UnicodeBiDi(UnicodeBiDi String) *TSpanElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *TSpanElement) UnicodeBiDi(unicodeBiDi String) *TSpanElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
@@ -9165,8 +9165,8 @@ func (e *UseElement) TextRendering(textRendering String) *UseElement {
 }
 
 // UnicodeBiDi sets the unicode-bidi attribute.
-func (e *UseElement) UnicodeBiDi(UnicodeBiDi String) *UseElement {
-	e.Attrs["unicode-bidi"] = UnicodeBiDi
+func (e *UseElement) UnicodeBiDi(unicodeBiDi String) *UseElement {
+	e.Attrs["unicode-bidi"] = unicodeBiDi
 	return e
 }
 
