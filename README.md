@@ -46,6 +46,10 @@ Output:
 
 ![Output](testdata/triangle01.svg)
 
+## Dynamic example
+
+See [`cmd/svgclock`](https://github.com/twpayne/go-svg/tree/master/cmd/svgclock).
+
 ## License
 
 MIT

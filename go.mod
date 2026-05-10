@@ -2,7 +2,10 @@ module github.com/twpayne/go-svg
 
 go 1.25
 
-tool github.com/twpayne/go-svg/internal/cmds/execute-template
+tool (
+	github.com/twpayne/go-svg/cmd/svgclock
+	github.com/twpayne/go-svg/internal/cmds/execute-template
+)
 
 require (
 	github.com/alecthomas/assert/v2 v2.11.0
